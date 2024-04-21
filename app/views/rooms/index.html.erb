@@ -1,1 +1,16 @@
-Group Archve
+<h1>Group Archive</h1>
+
+<% if user_signed_in? %>
+<div><%= current_user.nickname %></div>
+<div><%= current_user.profile %></div>
+<div>
+<%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
+</div>
+<% else %>
+<div>
+<%= link_to "ログインページへ", new_user_session_path%>
+</div>
+<div>
+<%= link_to "新規登録ページへ", new_user_registration_path%>
+</div>
+<% end %>
