@@ -4,7 +4,7 @@ class Room < ApplicationRecord
   validate :user_ids_must_be_unique
 
   has_many :room_users
-  has_many :users, through: :room_users
+  has_many :users, through: :room_users, autosave: false
   # has_many :chats
   # has_many :question_sheets
   # has_many :memos
