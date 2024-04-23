@@ -1,16 +1,37 @@
 <h1>Group Archive</h1>
 
 <% if user_signed_in? %>
-<div><%= current_user.nickname %></div>
-<div><%= current_user.profile %></div>
-<div>
-<%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
-</div>
+  <div><%= current_user.nickname %></div>
+  <div><%= current_user.profile %></div>
+  <div>
+    <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
+  </div>
+  <div>
+    <%= link_to "新規ルーム作成", new_room_path %>
+  </div>
+
+<h1>Your Rooms</h1>
+<ul>
+  <% @rooms.each do |room| %>
+      <%# root_pathはroomページ実装後にroom_path(room)に置き換える %>
+      <li>
+        <%= link_to room.room_name, root_path %>
+        <% room_users = room.room_users.includes(:user).order('created_at ASC') %>
+        <% room_users.each do |room_user| %>
+        <%= room_user.user.nickname %><%= "," unless room_user == room_users.last %>
+        <% end %>
+      </li>
+  <% end %>
+</ul>
+
+
+
+
 <% else %>
-<div>
-<%= link_to "ログインページへ", new_user_session_path%>
-</div>
-<div>
-<%= link_to "新規登録ページへ", new_user_registration_path%>
-</div>
+  <div>
+    <%= link_to "ログインページへ", new_user_session_path%>
+  </div>
+  <div>
+    <%= link_to "新規登録ページへ", new_user_registration_path%>
+  </div>
 <% end %>

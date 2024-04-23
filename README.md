@@ -26,8 +26,8 @@
 
 ### Association
 
-- has_many :rooms_users
-- has_many :rooms, through: :rooms_users
+- has_many :room_users
+- has_many :rooms, through: :room_users
 - has_many :chats
 - has_many :question_sheets_users
 - has_many :question_sheets, through: :question_sheets_users
@@ -44,15 +44,15 @@
 
 ### Association
 
-- has_many :rooms_users
-- has_many :users, through: :rooms_users
+- has_many :room_users
+- has_many :users, through: :room_users
 - has_many :chats
 - has_many :question_sheets
 - has_many :memos
 - has_many :archives
 
 
-## rooms_users テーブル
+## room_users テーブル
 
 | Column            | Type    | Options     |
 | ----------------- | ------- | ----------- |
