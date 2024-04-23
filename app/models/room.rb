@@ -17,12 +17,12 @@ class Room < ApplicationRecord
 
   def user_ids_must_be_unique
     if user_ids.uniq.size != user_ids.size
-      errors.add(:user_ids, "can't have duplicate members")
+      errors.add(:users, "can't have duplicate members")
     end
   end
 
   def must_have_exactly_three_users
-    errors.add(:users, 'must be exactly three users') unless users.size == 3
+    errors.add(:users, 'must be exactly two users (and you)') unless users.size == 3
   end
 
 end
