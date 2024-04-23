@@ -1,27 +1,29 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
 
-  def index; end
+  def index
+   @rooms = current_user.rooms.order(created_at: :desc)
+  end
 
   def new
     @room = Room.new
+  end
+ 
+  def create
+   @room = Room.new(room_params)
+   if @room.save
+     redirect_to root_path, notice: 'Room was successfully created.'
+   else
+     render :new
    end
- 
-   def create
-     @room = Room.new(room_params)
-     if @room.save
-       redirect_to root_path, notice: 'Room was successfully created.'
-     else
-       render :new
-     end
-   end
+  end
  
  
-   private
+  private
  
-   def room_params
-     params.require(:room).permit(:room_name, :group_memo, user_ids: [])
-   end
+  def room_params
+   params.require(:room).permit(:room_name, :group_memo, user_ids: [])
+  end
 
 
 
