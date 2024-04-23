@@ -4,15 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
 
-         # 新規作成時のみパスワードのバリデーションを実行
-         validates_format_of :password, with: PASSWORD_REGEX, on: :create,
-                                         message: 'must include both letters and numbers and be in half-width characters.'
-         
-         # パスワードが更新された場合のみ、更新時にパスワードのバリデーションを実行
-         validates_format_of :password, with: PASSWORD_REGEX, on: :update, if: :encrypted_password_changed?,
-                                         message: 'must include both letters and numbers and be in half-width characters.'
+  # 新規作成時のみパスワードのバリデーションを実行
+  validates_format_of :password, with: PASSWORD_REGEX, on: :create,
+                                 message: 'must include both letters and numbers and be in half-width characters.'
+
+  # パスワードが更新された場合のみ、更新時にパスワードのバリデーションを実行
+  validates_format_of :password, with: PASSWORD_REGEX, on: :update, if: :encrypted_password_changed?,
+                                 message: 'must include both letters and numbers and be in half-width characters.'
 
   validates :nickname, presence: true
 

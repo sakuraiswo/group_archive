@@ -16,8 +16,9 @@
       <%# root_pathはroomページ実装後にroom_path(room)に置き換える %>
       <li>
         <%= link_to room.room_name, root_path %>
-        <% room.users.each do |user| %>
-        <%= user.nickname %><%= "," unless user == room.users.last %>
+        <% room_users = room.room_users.includes(:user).order('created_at ASC') %>
+        <% room_users.each do |room_user| %>
+        <%= room_user.user.nickname %><%= "," unless room_user == room_users.last %>
         <% end %>
       </li>
   <% end %>
