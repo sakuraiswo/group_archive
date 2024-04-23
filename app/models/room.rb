@@ -2,6 +2,7 @@ class Room < ApplicationRecord
 
   validates :room_name, presence: true
   validate :user_ids_must_be_unique
+  validate :must_have_exactly_three_users
 
   has_many :room_users
   has_many :users, through: :room_users, autosave: false
@@ -9,7 +10,6 @@ class Room < ApplicationRecord
   # has_many :question_sheets
   # has_many :memos
   # has_many :archives
-
 
 
 
@@ -21,5 +21,8 @@ class Room < ApplicationRecord
     end
   end
 
+  def must_have_exactly_three_users
+    errors.add(:users, 'must be exactly three users') unless users.size == 3
+  end
 
 end

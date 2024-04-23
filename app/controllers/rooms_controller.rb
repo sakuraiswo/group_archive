@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
    def create
      @room = Room.new(room_params)
      if @room.save
-       redirect_to root_path
+       redirect_to root_path, notice: 'Room was successfully created.'
      else
        render :new
      end
