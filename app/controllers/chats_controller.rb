@@ -4,7 +4,6 @@ class ChatsController < ApplicationController
 
   def index
     @chat = Chat.new
-    @room = Room.find(params[:room_id])
     @chats = @room.chats.includes(:user)
     @room_users = @room.room_users.includes(:user).order('created_at ASC')
   end
@@ -14,9 +13,26 @@ class ChatsController < ApplicationController
     if @chat.save
       redirect_to room_chats_path(@room), notice: 'Chat message was successfully posted.'
     else
-      redirect_to room_chats_path(@room), alert: 'Failed to post chat message.'
+      redirect_to room_chats_path(@room)
     end
   end
+
+  def upload_image
+    @chat = @room.chats.new(chat_params)
+    if @chat.save
+      redirect_to room_chats_path(@room), notice: 'Chat message was successfully posted.'
+    else
+      redirect_to room_chats_path(@room)
+    end
+  end
+
+  def destroy
+    @room = Room.find(params[:room_id])
+    chat = Chat.find(params[:id])
+    chat.destroy
+    redirect_to room_chats_path(@room)
+  end
+
 
   private
 

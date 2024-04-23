@@ -3,19 +3,45 @@
 ルーム名「<%= @room.room_name %>」
 </div>
 
-    <%= render partial: 'chat', collection: @chats %>
+  <div class="message-box">
+      <div class="current-user-box">
+        <%= current_user.nickname %>
+      </div>
+      <div class="user1-box">
+        <% if current_user.id == @room_users[0].user_id %>
+          <%= @room_users[1].user.nickname %>
+        <% else %>
+          <%= @room_users[0].user.nickname %>
+        <% end %>
+      </div>
+      <div class="user2-box">
+        <% if current_user.id == @room_users[2].user_id %>
+          <%= @room_users[1].user.nickname %>
+        <% else %>
+          <%= @room_users[2].user.nickname %>
+        <% end %>
+      </div>
+  </div>
 
+  <div class="message-big-box">
+    <%= render partial: 'chat', collection: @chats %>
+  </div>
+  
 <div class="chat-footer">
-  <%= form_with model: [@room, @chat], html: {class: "form"}, local: true do |f|%>
+  <%= form_with model: [@room, @chat], url: room_chats_path(@room), local: true do |f| %>
   <div class="chat-footer-form">
     <div  class="form-message">
     <%= f.text_field :message, class: 'message', placeholder: 'type a message' %>
+    <%= f.submit 'テキスト送信', class: 'form-submit-btn' %>
+  <% end %>
+  <%= form_with model: [@room, @chat], url: upload_image_room_chats_path(@room), html: { multipart: true }, local: true do |f| %>
      <label class="form-image">
-      <span class="image-file">画像</span>
-      <%= f.file_field :image, class: 'hidden' %>
+      <span class="image-file"></span>
+      <%= f.file_field :image, class: 'image-input' %>
+      <span class="image-file"></span>
     </label>
   </div>
-    <%= f.submit '送信', class: 'form-submit-btn' %>
- 
+    <%= f.submit '画像送信', class: 'form-submit-btn' %>
+
 <% end %>
 <%= link_to "戻る", root_path %>
