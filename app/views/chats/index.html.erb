@@ -1,0 +1,20 @@
+チャットルーム
+<div>
+ルーム名「<%= @room.room_name %>」
+</div>
+
+    <%= render partial: 'chat', collection: @chats %>
+
+<div class="chat-footer">
+  <%= form_with model: [@room, @chat], html: {class: "form"}, local: true do |f|%>
+  <div class="chat-footer-form">
+    <div  class="form-message">
+    <%= f.text_field :message, class: 'message', placeholder: 'type a message' %>
+     <label class="form-image">
+      <span class="image-file">画像</span>
+      <%= f.file_field :image, class: 'hidden' %>
+    </label>
+  </div>
+    <%= f.submit '送信', class: 'form-submit-btn' %>
+ 
+<% end %>

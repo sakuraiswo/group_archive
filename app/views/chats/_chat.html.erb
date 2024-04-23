@@ -1,0 +1,19 @@
+<div class="chat-flame">
+  <div class="chat-name-date">
+    <div class="chat-name">
+      <!-- 投稿したユーザー名情報を出力する -->
+      <%= chat.user.nickname %>
+    </div>
+    <div class="chat-date">
+      <!-- 投稿した時刻を出力する -->
+            <%= l chat.created_at %>
+    </div>
+  </div>
+  <div class="chat-message">
+    <div class="message-content">
+      <!-- 投稿したメッセージ内容を記述する -->
+      <%= chat.message %>
+    </div>
+    <%= image_tag chat.image.variant(resize: '500x500'), class: 'message-image' if chat.image.attached? %>
+  </div>
+</div>
