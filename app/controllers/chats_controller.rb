@@ -6,14 +6,15 @@ class ChatsController < ApplicationController
     @chat = Chat.new
     @room = Room.find(params[:room_id])
     @chats = @room.chats.includes(:user)
+    @room_users = @room.room_users.includes(:user).order('created_at ASC')
   end
 
   def create
     @chat = @room.chats.new(chat_params)
     if @chat.save
-      redirect_to rooms_path(@room), notice: 'Chat message was successfully posted.'
+      redirect_to room_chats_path(@room), notice: 'Chat message was successfully posted.'
     else
-      redirect_to rooms_path(@room), alert: 'Failed to post chat message.'
+      redirect_to room_chats_path(@room), alert: 'Failed to post chat message.'
     end
   end
 
