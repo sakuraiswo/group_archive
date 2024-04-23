@@ -14,7 +14,12 @@
 <ul>
   <% @rooms.each do |room| %>
       <%# root_pathはroomページ実装後にroom_path(room)に置き換える %>
-      <li><%= link_to room.room_name, root_path %></li>
+      <li>
+        <%= link_to room.room_name, root_path %>
+        <% room.users.each do |user| %>
+        <%= user.nickname %><%= "," unless user == room.users.last %>
+        <% end %>
+      </li>
   <% end %>
 </ul>
 
