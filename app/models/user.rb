@@ -9,8 +9,8 @@ class User < ApplicationRecord
                                  message: 'must include both letters and numbers and be in half-width characters.'
   validates :nickname, presence: true
 
-  has_many :rooms_users
-  has_many :rooms, through: :rooms_users
+  has_many :room_users
+  has_many :rooms, through: :room_users
   has_many :chats
   has_many :question_sheets_users
   has_many :question_sheets, through: :question_sheets_users
