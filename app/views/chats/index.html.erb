@@ -26,22 +26,19 @@
   <div class="message-big-box">
     <%= render partial: 'chat', collection: @chats %>
   </div>
-  
+
 <div class="chat-footer">
-  <%= form_with model: [@room, @chat], url: room_chats_path(@room), local: true do |f| %>
+  <%= form_with model: [@room, @chat], html: {class: "form"}, local: true do |f|%>
   <div class="chat-footer-form">
     <div  class="form-message">
     <%= f.text_field :message, class: 'message', placeholder: 'type a message' %>
-    <%= f.submit 'テキスト送信', class: 'form-submit-btn' %>
-  <% end %>
-  <%= form_with model: [@room, @chat], url: upload_image_room_chats_path(@room), html: { multipart: true }, local: true do |f| %>
      <label class="form-image">
-      <span class="image-file"></span>
-      <%= f.file_field :image, class: 'image-input' %>
-      <span class="image-file"></span>
+      <span class="image-file">画像</span>
+      <%= f.file_field :image, class: 'hidden' %>
     </label>
   </div>
-    <%= f.submit '画像送信', class: 'form-submit-btn' %>
-
+    <%= f.submit '送信', class: 'form-submit-btn' %>
+ 
 <% end %>
+ 
 <%= link_to "戻る", root_path %>

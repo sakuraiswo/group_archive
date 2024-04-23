@@ -17,14 +17,6 @@ class ChatsController < ApplicationController
     end
   end
 
-  def upload_image
-    @chat = @room.chats.new(chat_params)
-    if @chat.save
-      redirect_to room_chats_path(@room), notice: 'Chat message was successfully posted.'
-    else
-      redirect_to room_chats_path(@room)
-    end
-  end
 
   def destroy
     @room = Room.find(params[:room_id])
