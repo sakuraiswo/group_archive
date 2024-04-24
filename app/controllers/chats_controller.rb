@@ -2,6 +2,7 @@ class ChatsController < ApplicationController
   before_action :set_room
 
   def index
+    @archive = Archive.new
     @chat = Chat.new
     @chats = @room.chats.includes(:user)
     @room_users = @room.room_users.includes(:user).order('created_at ASC')

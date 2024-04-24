@@ -188,7 +188,7 @@
 .message-big-box{
   overflow-y: scroll;
   height: 60vh;
-  width:700px;
+  width:930px;
   margin-left: 25%;
 }
 
@@ -257,6 +257,15 @@
   transform: scale(2.5); /* 画像を2.5倍に拡大 */
 }
 
+
+.archive-capture{
+  display: block;
+  width: 300px;
+}
+
+.capture-button{
+  width:80px;
+}
 
 
 p {

@@ -4,11 +4,12 @@
 
 <div class="message-box">
 <% if chat.user_id == current_user.id %>
-  <div class="current-user-box">
+  <div class="archive-capture">
+    <div class="current-user-box" id="archive-capture-<%= chat.id %>">
       <div><%= l chat.created_at %></div>
       <div><%= chat.message %></div>
-      <div class="image0"><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
-      <div><%= link_to 'Delete', room_chat_path(@room, chat), data: { turbo_method: :delete } %></div>
+      <div><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
+    </div><div class="capture-button"><button onclick="capture(<%= chat.id %>)">Archive</button></div>
   </div>
   <div class="user1-box">
   </div>
@@ -17,14 +18,12 @@
 <% elsif (current_user.id == @room_users[0].user_id && chat.user_id == @room_users[1].user_id) || chat.user_id == @room_users[0].user_id %>
   <div class="current-user-box">
   </div>
-  <div class="user1-box">
+  <div class="archive-capture">
+  <div class="user1-box" id="archive-capture-<%= chat.id %>">
         <div><%= l chat.created_at %></div>
         <div><%= chat.message %></div>
-        <div class="image1">
-          <div>
-            <%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %>
-          </div>  
-        </div>
+        <div class="image1"><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
+  </div><button onclick="capture(<%= chat.id %>)">Archive</button>
   </div>
   <div class="user2-box">
   </div>
@@ -34,14 +33,35 @@
   </div>
   <div class="user1-box">
   </div>
-  <div class="user2-box">
+
+  <div class="archive-capture">
+  <div class="user2-box" id="archive-capture-<%= chat.id %>">
         <div><%= l chat.created_at %></div>
         <div><%= chat.message %></div>
         <div class="image2"><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
+  </div><button onclick="capture(<%= chat.id %>)">Archive</button>
   </div>
 <% end %>
 </div>
 
 
 
+
+
+
+<script>
+function capture(chatId) {
+    var elementId = "archive-capture-" + chatId;
+    html2canvas(document.getElementById(elementId)).then(canvas => {
+        // キャンバスを画面に表示するオプション（もし表示したい場合）
+        document.body.appendChild(canvas);
+
+        var image = canvas.toDataURL("image/png");
+        var link = document.createElement('a');
+        link.href = image;
+        link.download = 'capture-' + chatId + '.png'; // ファイル名にチャットIDを追加
+        link.click(); // 画像としてダウンロード
+    });
+}
+</script>
 
