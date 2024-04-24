@@ -1,4 +1,4 @@
-<h1>Group Archive</h1>
+<h1><p>Group Archive</p></h1>
 
 <% if user_signed_in? %>
   <div><%= current_user.nickname %></div>
@@ -10,7 +10,7 @@
     <%= link_to "新規ルーム作成", new_room_path %>
   </div>
 
-<h1>Your Rooms</h1>
+<h1><p>Your Rooms</p></h1>
 <ul>
   <% @rooms.each do |room| %>
       <li>

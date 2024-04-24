@@ -20,7 +20,11 @@
   <div class="user1-box">
         <div><%= l chat.created_at %></div>
         <div><%= chat.message %></div>
-        <div class="image1"><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
+        <div class="image1">
+          <div>
+            <%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %>
+          </div>  
+        </div>
   </div>
   <div class="user2-box">
   </div>

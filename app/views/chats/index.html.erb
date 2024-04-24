@@ -1,9 +1,36 @@
 チャットルーム
-<div>
+<div >
 ルーム名「<%= @room.room_name %>」
 </div>
 
-  <div class="message-box">
+<div id="content">
+    <!-- これがキャプチャされる内容 -->
+    <h1>キャプチャする内容</h1>
+    <p>これはhtml2canvasでキャプチャするデモです。</p>
+</div>
+<button onclick="capture()">キャプチャ</button>
+
+
+<script>
+function capture() {
+    html2canvas(document.querySelector("#content")).then(canvas => {
+        // キャンバスを画像として扱うための処理
+        // 例えば、キャンバスを画面に表示する
+        document.body.appendChild(canvas);
+
+        // または、画像としてダウンロードする
+        var image = canvas.toDataURL("image/png");
+        var link = document.createElement('a');
+        link.href = image;
+        link.download = 'capture.png';
+        link.click();
+    });
+}
+</script>
+
+
+  <div class="message-big-box", id = "list" >
+    <div class="message-name-box" >
       <div class="current-user-box">
         <%= current_user.nickname %>
       </div>
@@ -21,9 +48,8 @@
           <%= @room_users[2].user.nickname %>
         <% end %>
       </div>
-  </div>
+    </div>
 
-  <div class="message-big-box", id = "list" >
     <%= render partial: 'chat', collection: @chats %>
   </div>
   <br>

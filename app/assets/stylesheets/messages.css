@@ -187,14 +187,25 @@
 
 .message-big-box{
   overflow-y: scroll;
-  height: 75vh;
+  height: 60vh;
+  width:700px;
+  margin-left: 25%;
 }
+
+
 
 .message-box{
   display:flex;
-  justify-content: space-around;
+  justify-content: center;
   border:solid 1px orange;
 }
+
+.message-name-box{
+  display:flex;
+  justify-content: center;
+  height:100px;
+}
+
 
 .current-user-box{
   width: 300px;
@@ -211,12 +222,17 @@
   border:solid 1px green;
 }
 
+
 .image0{
+  display: flex;
+  justify-content: center;
   width: 150px;
   object-fit: contain;
 }
-.image0:hover{
-  transform-origin: top left;
+
+.image0:hover img{
+  border:double 3px lightblue;
+  transform-origin: left center;
   transform: scale(2.5); /* 画像を2.5倍に拡大 */
 }
 
@@ -224,8 +240,10 @@
   width: 150px;
   object-fit: contain;
 }
-.image1:hover{
-  transform-origin: top left;
+
+.image1:hover img{
+  border:double 3px lightblue;
+  transform-origin: center center;
   transform: scale(2.5); /* 画像を2.5倍に拡大 */
 }
 
@@ -233,7 +251,25 @@
   width: 150px;
   object-fit: contain;
 }
-.image2:hover{
-  transform-origin: top right;
+.image2:hover img{
+  border:double 3px lightblue;
+  transform-origin: center right;
   transform: scale(2.5); /* 画像を2.5倍に拡大 */
+}
+
+
+
+p {
+  animation-duration: 2s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 70%;
+  }
+
+  to {
+    margin-left: 0%;
+  }
 }
