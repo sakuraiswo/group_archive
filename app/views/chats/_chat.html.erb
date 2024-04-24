@@ -3,90 +3,39 @@
 
 
 <div class="message-box">
-
 <% if chat.user_id == current_user.id %>
   <div class="current-user-box">
-
-<div class="chat-flame">
-  <div class="chat-name-date">
-        <div class="chat-date">
-      <!-- 投稿した時刻を出力する -->
-            <%= l chat.created_at %>
-    </div>
-    <div class="chat-name">
-      <!-- 投稿したユーザー名情報を出力する -->
-      <%= chat.user.nickname %>
-    </div>
+      <div><%= l chat.created_at %></div>
+      <div><%= chat.message %></div>
+      <div><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
+      <div><%= link_to 'Delete', room_chat_path(@room, chat), data: { turbo_method: :delete } %></div>
   </div>
-  <div class="chat-message">
-    <div class="message-content">
-      <!-- 投稿したメッセージ内容を記述する -->
-      <%= chat.message %>
-    </div>
-    <%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %>
+  <div class="user1-box">
   </div>
-</div>
-<%= link_to 'Delete', room_chat_path(@room, chat), data: { turbo_method: :delete } %>
-</div>
-<div class="user1-box">
-</div>
-<div class="user2-box">
-</div>
+  <div class="user2-box">
+  </div>
 <% elsif (current_user.id == @room_users[0].user_id && chat.user_id == @room_users[1].user_id) || chat.user_id == @room_users[0].user_id %>
-<div class="current-user-box">
-</div>
-<div class="user1-box">
-  <div class="chat-flame">
-  <div class="chat-name-date">
-        <div class="chat-date">
-      <!-- 投稿した時刻を出力する -->
-            <span style="color: blue;"><%= l chat.created_at %></span>
-    </div>
-    <div class="chat-name">
-      <!-- 投稿したユーザー名情報を出力する -->
-      <span style="color: blue;"><%= chat.user.nickname %></span>
-    </div>
+  <div class="current-user-box">
   </div>
-  <div class="chat-message">
-    <div class="message-content">
-      <!-- 投稿したメッセージ内容を記述する -->
-      <span style="color: blue;"><%= chat.message %></span>
-    </div>
-    <%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %>
+  <div class="user1-box">
+        <div><%= l chat.created_at %></div>
+        <div><%= chat.message %></div>
+        <div><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
   </div>
-</div>
-</div>
-<div class="user2-box">
-</div>
+  <div class="user2-box">
+  </div>
 
 <% else %>
-<div class="current-user-box">
-</div>
-<div class="user1-box">
-</div>
-<div class="user2-box">
-<div class="chat-flame">
-  <div class="chat-name-date">
-        <div class="chat-date">
-      <!-- 投稿した時刻を出力する -->
-            <span style="color: green;"><%= l chat.created_at %></span>
-    </div>
-    <div class="chat-name">
-      <!-- 投稿したユーザー名情報を出力する -->
-      <span style="color: green;"><%= chat.user.nickname %></span>
-    </div>
+  <div class="current-user-box">
   </div>
-  <div class="chat-message">
-    <div class="message-content">
-      <!-- 投稿したメッセージ内容を記述する -->
-      <span style="color: green;"><%= chat.message %></span>
-    </div>
-    <%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %>
+  <div class="user1-box">
   </div>
-</div>
-</div>
+  <div class="user2-box">
+        <div><%= l chat.created_at %></div>
+        <div><%= chat.message %></div>
+        <div><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
+  </div>
 <% end %>
-
 </div>
 
 

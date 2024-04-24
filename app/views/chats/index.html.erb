@@ -23,22 +23,21 @@
       </div>
   </div>
 
-  <div class="message-big-box">
+  <div class="message-big-box", id = "list" >
     <%= render partial: 'chat', collection: @chats %>
   </div>
+  <br>
+<div>
+  <%= form_with model: [@room, @chat], method: :post, html: {class: "form", id: "form", "data-room-id": @room.id}, local: true do |f|%>
 
-<div class="chat-footer">
-  <%= form_with model: [@room, @chat], html: {class: "form"}, local: true do |f|%>
-  <div class="chat-footer-form">
-    <div  class="form-message">
-    <%= f.text_field :message, class: 'message', placeholder: 'type a message' %>
+    <%= f.text_field :message, class: 'message', id: "message", placeholder: 'type a message' %>
      <label class="form-image">
       <span class="image-file">画像</span>
-      <%= f.file_field :image, class: 'hidden' %>
+      <%= f.file_field :image, class: 'hidden' , id: "image" %>
     </label>
-  </div>
-    <%= f.submit '送信', class: 'form-submit-btn' %>
+
+    <%= f.submit '送信', class: 'form-submit-btn', id: "chat-submit" %>
  
 <% end %>
- 
+   </div>
 <%= link_to "戻る", root_path %>

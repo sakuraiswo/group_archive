@@ -11,7 +11,7 @@ class ChatsController < ApplicationController
   def create
     @chat = @room.chats.new(chat_params)
     if @chat.save
-      redirect_to room_chats_path(@room), notice: 'Chat message was successfully posted.'
+       render json:{ chat: @chat }
     else
       redirect_to room_chats_path(@room)
     end
@@ -19,7 +19,6 @@ class ChatsController < ApplicationController
 
 
   def destroy
-    @room = Room.find(params[:room_id])
     chat = Chat.find(params[:id])
     chat.destroy
     redirect_to room_chats_path(@room)

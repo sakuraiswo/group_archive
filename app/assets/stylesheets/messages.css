@@ -186,8 +186,8 @@
 
 
 .message-big-box{
-  overflow-y: auto;
-  height: 80vh;
+  overflow-y: scroll;
+  height: 75vh;
 }
 
 .message-box{
