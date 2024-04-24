@@ -1,0 +1,43 @@
+チャットルーム
+<div>
+ルーム名「<%= @room.room_name %>」
+</div>
+
+  <div class="message-box">
+      <div class="current-user-box">
+        <%= current_user.nickname %>
+      </div>
+      <div class="user1-box">
+        <% if current_user.id == @room_users[0].user_id %>
+          <%= @room_users[1].user.nickname %>
+        <% else %>
+          <%= @room_users[0].user.nickname %>
+        <% end %>
+      </div>
+      <div class="user2-box">
+        <% if current_user.id == @room_users[2].user_id %>
+          <%= @room_users[1].user.nickname %>
+        <% else %>
+          <%= @room_users[2].user.nickname %>
+        <% end %>
+      </div>
+  </div>
+
+  <div class="message-big-box", id = "list" >
+    <%= render partial: 'chat', collection: @chats %>
+  </div>
+  <br>
+<div>
+  <%= form_with model: [@room, @chat], method: :post, html: {class: "form", id: "form", "data-room-id": @room.id}, local: true do |f|%>
+
+    <%= f.text_field :message, class: 'message', id: "message", placeholder: 'type a message' %>
+     <label class="form-image">
+      <span class="image-file">画像</span>
+      <%= f.file_field :image, class: 'hidden' , id: "image" %>
+    </label>
+
+    <%= f.submit '送信', class: 'form-submit-btn', id: "chat-submit" %>
+ 
+<% end %>
+   </div>
+<%= link_to "戻る", root_path %>

@@ -5,7 +5,7 @@ class Room < ApplicationRecord
 
   has_many :room_users
   has_many :users, through: :room_users, autosave: false
-  # has_many :chats
+  has_many :chats
   # has_many :question_sheets
   # has_many :memos
   # has_many :archives
