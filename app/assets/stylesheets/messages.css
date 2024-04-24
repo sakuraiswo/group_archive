@@ -210,3 +210,12 @@
   width: 300px;
   border:solid 1px green;
 }
+
+.image{
+  object-fit: contain;
+}
+
+.image:hover{
+  transform-origin: top left;
+  transform: scale(2.5); /* 画像を2.5倍に拡大 */
+}

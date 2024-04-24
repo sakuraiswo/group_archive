@@ -1,5 +1,4 @@
 class ChatsController < ApplicationController
-
   before_action :set_room
 
   def index
@@ -11,19 +10,17 @@ class ChatsController < ApplicationController
   def create
     @chat = @room.chats.new(chat_params)
     if @chat.save
-       render json:{ chat: @chat }
+      render json: { chat: @chat }
     else
       redirect_to room_chats_path(@room)
     end
   end
-
 
   def destroy
     chat = Chat.find(params[:id])
     chat.destroy
     redirect_to room_chats_path(@room)
   end
-
 
   private
 
@@ -34,5 +31,4 @@ class ChatsController < ApplicationController
   def chat_params
     params.require(:chat).permit(:message, :image).merge(user_id: current_user.id)
   end
-
 end

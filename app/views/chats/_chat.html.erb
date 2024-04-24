@@ -7,7 +7,7 @@
   <div class="current-user-box">
       <div><%= l chat.created_at %></div>
       <div><%= chat.message %></div>
-      <div><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
+      <div class="image"><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
       <div><%= link_to 'Delete', room_chat_path(@room, chat), data: { turbo_method: :delete } %></div>
   </div>
   <div class="user1-box">
@@ -20,7 +20,7 @@
   <div class="user1-box">
         <div><%= l chat.created_at %></div>
         <div><%= chat.message %></div>
-        <div><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
+        <div class="image"><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
   </div>
   <div class="user2-box">
   </div>
@@ -33,7 +33,7 @@
   <div class="user2-box">
         <div><%= l chat.created_at %></div>
         <div><%= chat.message %></div>
-        <div><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
+        <div class="image"><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
   </div>
 <% end %>
 </div>
