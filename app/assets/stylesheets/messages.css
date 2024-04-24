@@ -211,11 +211,29 @@
   border:solid 1px green;
 }
 
-.image{
+.image0{
+  width: 150px;
   object-fit: contain;
 }
-
-.image:hover{
+.image0:hover{
   transform-origin: top left;
+  transform: scale(2.5); /* 画像を2.5倍に拡大 */
+}
+
+.image1{
+  width: 150px;
+  object-fit: contain;
+}
+.image1:hover{
+  transform-origin: top left;
+  transform: scale(2.5); /* 画像を2.5倍に拡大 */
+}
+
+.image2{
+  width: 150px;
+  object-fit: contain;
+}
+.image2:hover{
+  transform-origin: top right;
   transform: scale(2.5); /* 画像を2.5倍に拡大 */
 }
