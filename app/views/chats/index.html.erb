@@ -64,24 +64,36 @@
 
 <br><br>
 <div>
-<%= form_with model: @user do |form| %>
-  <%= form.check_box :agreement %>
-  <%= form.label :agreement, "利用規約に同意する" %>
+<h1>Question Sheets</h1>
+<ul>
+  <% @question_sheets.each do |question_sheet| %>
+    <li>
+      <h2><%= question_sheet.question %></h2>
+      <h3>Options:</h3>
+      <ul>
+        <% question_sheet.options.each do |option| %>
+          <li><%= option.title %></li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>
+</div>
+<br><br>
 
-  <%= form.submit "登録" %>
-<% end %>
-<br><br><br>
 
-<%= form_with model: @user do |form| %>
-  <% # 利用可能な興味のリスト %>
-  <% ['音楽', '映画', 'スポーツ', '旅行'].each do |interest| %>
-    <div>
-            <%= form.label :interests, interest %>
-      <%= form.check_box :interests, { multiple: true }, interest %>
 
+<br><br>
+<div>
+<%= form_with(model: [@room, @question_sheet], local: true) do |form| %>
+  <%= form.text_field :question, class: 'question', id: "question", placeholder: 'type a question' %>
+  <%= form.fields_for :options do |option_fields| %>
+    <div class="option">
+      <%= option_fields.text_field :title, placeholder: "オプションのタイトル" %>
+      <%= option_fields.check_box :_destroy %>
+      <%= option_fields.label :_destroy, "このオプションを削除" %>
     </div>
   <% end %>
-
   <%= form.submit "保存" %>
 <% end %>
 </div>

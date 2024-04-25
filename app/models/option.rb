@@ -1,9 +1,6 @@
 class Option < ApplicationRecord
-
-  validates :title, presence: true
-
  
-  has_many :answers
+  has_many :answers, dependent: :destroy
   belongs_to :question_sheet
 
 end
