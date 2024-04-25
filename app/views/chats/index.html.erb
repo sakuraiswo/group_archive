@@ -62,45 +62,41 @@
  
 <% end %>
 
-<br><br>
-<div>
-<h1>Question Sheets</h1>
-<ul>
-  <% @question_sheets.each do |question_sheet| %>
-    <li>
-      <h2><%= question_sheet.question %></h2>
-      <h3>Options:</h3>
-      <ul>
-        <% question_sheet.options.each do |option| %>
-          <li><%= option.title %></li>
-        <% end %>
-      </ul>
-    </li>
-  <% end %>
-</ul>
-</div>
-<br><br>
 
 
+ 
+<%# <% アンケートシート回答ページ ＞＞＞＞ %>
+<%# <div> %>
+<%# <br><br> %>
+<%# <%= link_to "Have an answer?", room_question_sheets_path(@room) %>
+<%# </div> %>
+<%# <br><br> %>
+<%# <% ＜＜＜＜ アンケートシート回答ページ %>
 
-<br><br>
-<div>
-<%= form_with(model: [@room, @question_sheet], local: true) do |form| %>
-  <%= form.text_field :question, class: 'question', id: "question", placeholder: 'type a question' %>
-  <%= form.fields_for :options do |option_fields| %>
-    <div class="option">
-      <%= option_fields.text_field :title, placeholder: "オプションのタイトル" %>
-      <%= option_fields.check_box :_destroy %>
-      <%= option_fields.label :_destroy, "このオプションを削除" %>
-    </div>
-  <% end %>
-  <%= form.submit "保存" %>
-<% end %>
-</div>
-<br><br>
+<%# <% アンケートシート作成フォーム ＞＞＞＞ %>
+<%# <br><br> %>
+<%# <div> %>
+<%# <%= form_with(model: [@room, @question_sheet], local: true) do |form| %>
+  <%# <%= form.text_field :question, class: 'question', id: "question", placeholder: 'type a question' %>
+  <%# <%= form.fields_for :options do |option_fields| %>
+    <%# <div class="option"> %>
+      <%# <%= option_fields.text_field :title, placeholder: "オプションのタイトル" %>
+      <%# <%= option_fields.check_box :_destroy %>
+      <%# <%= option_fields.label :_destroy, "このオプションを削除" %>
+    <%# </div> %>
+  <%# <% end %>
+  <%# <%= form.submit "保存" %>
+<%# <% end %>
+<%# </div> %>
+<%# <br><br> %>
+
+<%# <% ＜＜＜＜ アンケートシート作成フォーム %>
+
 </div 2-2>
 
 
+
+<%# アーカイブブロック ＞＞＞＞%>
 
 <div class="archive">
 <div class="archive-small" id="archive-small">
@@ -108,7 +104,7 @@
 </div>
 </div>
 
-
+<%# ＜＜＜＜ アーカイブブロック %>
 
 
 

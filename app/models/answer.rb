@@ -1,12 +1,18 @@
 class Answer < ApplicationRecord
  
-  validates :answer_text, presence: true, unless: -> { option_id.present? }
-  validates :option_id, presence: true, unless: -> { answer_text.present? }
-
-
   belongs_to :user
   belongs_to :question_sheet
   belongs_to :option, optional: true
+
+  validate :answer_text_or_option_id_present
+
+  private
+  
+  def answer_text_or_option_id_present
+    if answer_text.blank? && option_id.blank?
+      errors.add(:base, "Either answer_text or option_id must be present.")
+    end
+  end
 
 
 end

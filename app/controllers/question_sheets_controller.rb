@@ -2,6 +2,12 @@ class QuestionSheetsController < ApplicationController
 
   before_action :set_room
 
+  def index
+    @answer = Answer.new
+    @room = Room.find(params[:room_id])
+    @question_sheets = QuestionSheet.all
+  end
+
   def create
     @question_sheet = @room.question_sheets.new(question_sheet_params)
 
