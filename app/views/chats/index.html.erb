@@ -62,10 +62,30 @@
  
 <% end %>
 
+<br><br>
+<div>
+<%= form_with model: @user do |form| %>
+  <%= form.check_box :agreement %>
+  <%= form.label :agreement, "利用規約に同意する" %>
 
+  <%= form.submit "登録" %>
+<% end %>
+<br><br><br>
 
+<%= form_with model: @user do |form| %>
+  <% # 利用可能な興味のリスト %>
+  <% ['音楽', '映画', 'スポーツ', '旅行'].each do |interest| %>
+    <div>
+            <%= form.label :interests, interest %>
+      <%= form.check_box :interests, { multiple: true }, interest %>
 
+    </div>
+  <% end %>
 
+  <%= form.submit "保存" %>
+<% end %>
+</div>
+<br><br>
 </div 2-2>
 
 
