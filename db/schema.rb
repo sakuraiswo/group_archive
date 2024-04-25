@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_240_423_093_249) do
+ActiveRecord::Schema[7.0].define(version: 20_240_424_131_251) do
   create_table 'active_storage_attachments', charset: 'utf8', force: :cascade do |t|
     t.string 'name', null: false
     t.string 'record_type', null: false
@@ -38,6 +38,17 @@ ActiveRecord::Schema[7.0].define(version: 20_240_423_093_249) do
     t.bigint 'blob_id', null: false
     t.string 'variation_digest', null: false
     t.index %w[blob_id variation_digest], name: 'index_active_storage_variant_records_uniqueness', unique: true
+  end
+
+  create_table 'archives', charset: 'utf8', force: :cascade do |t|
+    t.string 'supplement'
+    t.float 'display_order', null: false
+    t.bigint 'user_id', null: false
+    t.bigint 'room_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['room_id'], name: 'index_archives_on_room_id'
+    t.index ['user_id'], name: 'index_archives_on_user_id'
   end
 
   create_table 'chats', charset: 'utf8', force: :cascade do |t|
@@ -82,6 +93,8 @@ ActiveRecord::Schema[7.0].define(version: 20_240_423_093_249) do
 
   add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
   add_foreign_key 'active_storage_variant_records', 'active_storage_blobs', column: 'blob_id'
+  add_foreign_key 'archives', 'rooms'
+  add_foreign_key 'archives', 'users'
   add_foreign_key 'chats', 'rooms'
   add_foreign_key 'chats', 'users'
   add_foreign_key 'room_users', 'rooms'

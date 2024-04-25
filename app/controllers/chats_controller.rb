@@ -2,7 +2,9 @@ class ChatsController < ApplicationController
   before_action :set_room
 
   def index
+    @archive = Archive.new
     @chat = Chat.new
+    @archives = @room.archives.includes(:user)
     @chats = @room.chats.includes(:user)
     @room_users = @room.room_users.includes(:user).order('created_at ASC')
   end
@@ -10,7 +12,8 @@ class ChatsController < ApplicationController
   def create
     @chat = @room.chats.new(chat_params)
     if @chat.save
-      render json: { chat: @chat }
+      redirect_to room_chats_path(@room)
+      # render json: { chat: @chat }
     else
       redirect_to room_chats_path(@room)
     end

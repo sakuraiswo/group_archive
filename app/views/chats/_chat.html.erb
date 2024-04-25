@@ -1,14 +1,16 @@
 
 
 
-
+<div id="apple" data-room-id="<%= @room.id %>"></div>
 <div class="message-box">
 <% if chat.user_id == current_user.id %>
-  <div class="current-user-box">
+  <div class="archive-capture">
+    <div class="current-user-box" id="archive-capture-<%= chat.id %>">
       <div><%= l chat.created_at %></div>
       <div><%= chat.message %></div>
       <div class="image0"><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
-      <div><%= link_to 'Delete', room_chat_path(@room, chat), data: { turbo_method: :delete } %></div>
+    </div><button onclick="capture(<%= chat.id %>)" class="capture-button">Archive</button>
+  <div><%= link_to 'Delete', room_chat_path(@room, chat), data: { turbo_method: :delete } %></div>
   </div>
   <div class="user1-box">
   </div>
@@ -17,10 +19,12 @@
 <% elsif (current_user.id == @room_users[0].user_id && chat.user_id == @room_users[1].user_id) || chat.user_id == @room_users[0].user_id %>
   <div class="current-user-box">
   </div>
-  <div class="user1-box">
+  <div class="archive-capture">
+  <div class="user1-box" id="archive-capture-<%= chat.id %>">
         <div><%= l chat.created_at %></div>
         <div><%= chat.message %></div>
         <div class="image1"><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
+  </div><button onclick="capture(<%= chat.id %>)" class="capture-button">Archive</button>
   </div>
   <div class="user2-box">
   </div>
@@ -30,13 +34,72 @@
   </div>
   <div class="user1-box">
   </div>
-  <div class="user2-box">
+
+  <div class="archive-capture">
+  <div class="user2-box" id="archive-capture-<%= chat.id %>">
         <div><%= l chat.created_at %></div>
         <div><%= chat.message %></div>
         <div class="image2"><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
+   </div><button onclick="capture(<%= chat.id %>)" class="capture-button">Archive</button>
   </div>
 <% end %>
 </div>
+
+
+
+
+<%# <script>
+function capture(chatId) {
+    var elementId = "archive-capture-" + chatId;
+    html2canvas(document.getElementById(elementId)).then(canvas => {
+        // キャンバスを画面に表示するオプション（もし表示したい場合）
+        document.body.appendChild(canvas);
+
+        var image = canvas.toDataURL("image/png");
+        var link = document.createElement('a');
+        link.href = image;
+        link.download = 'capture-' + chatId + '.png'; // ファイル名にチャットIDを追加
+        link.click(); // 画像としてダウンロード
+    });
+}
+</script> %>
+
+
+
+
+
+
+
+
+
+<script>
+function capture(chatId) {
+    var elementId = "archive-capture-" + chatId;
+    html2canvas(document.getElementById(elementId)).then(canvas => {
+        var image = canvas.toDataURL("image/png"); // 画像をBase64文字列として取得
+        const roomElement = document.getElementById('apple');
+        const roomId = roomElement.dataset.roomId;
+        // Fetch APIを使用してサーバーにPOSTリクエストを送信
+        fetch(`/rooms/${roomId}/save-image`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // CSRFトークンを追加
+             },
+            body: JSON.stringify({
+                image: image,
+                supplement: '',  // サンプル値
+                display_order: 1  // サンプル値
+            })
+        })
+        .then(response => response.json())
+        .then(data => console.log('Success:', data))
+        .catch((error) => console.error('Error:', error));
+    });
+}
+</script>
+
+
 
 
 
