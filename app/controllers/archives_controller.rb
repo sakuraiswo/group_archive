@@ -3,13 +3,13 @@ class ArchivesController < ApplicationController
 
   def create
     @archive = @room.archives.new(archive_params)
-  
+
     if params[:image].present?
       # Base64エンコードされた画像データをデコードし、Active Storageにアタッチする
-      data = params[:image].sub(/^data:image\/\w+;base64,/, '')
+      data = params[:image].sub(%r{^data:image/\w+;base64,}, '')
       decoded_data = Base64.decode64(data)
       image_io = StringIO.new(decoded_data)
-      image_file = { io: image_io, filename: "archive_image.png", content_type: 'image/png' }
+      image_file = { io: image_io, filename: 'archive_image.png', content_type: 'image/png' }
       @archive.image.attach(image_file)
     end
 
