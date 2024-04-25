@@ -19,7 +19,9 @@ const buildHTML = (XHR) => {
 
 function chat (){
   const messageContainer = document.getElementById('list');
+  const archiveContainer = document.getElementById('archive-small');
   messageContainer.scrollTop = messageContainer.scrollHeight;
+  archiveContainer.scrollTop = messageContainer.scrollHeight;
   const form = document.getElementById("form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -41,6 +43,7 @@ function chat (){
       list.insertAdjacentHTML("beforeend", buildHTML(XHR));
         formText.value = "";
       messageContainer.scrollTop = messageContainer.scrollHeight;
+      archiveContainer.scrollTop = messageContainer.scrollHeight;
     };
   });
  };

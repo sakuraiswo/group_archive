@@ -26,6 +26,7 @@
 .room{
   display: flex;
   justify-content: space-around;
+  padding: 1%;
 }
 
 
@@ -127,14 +128,42 @@
 
 
 .archive{
-  height: 90vh;
+  overflow: visible;
+  height: 80vh;
+  width: 200px;
+  border:solid 1px green;
+  /* position: relative; */
+}
+
+.archive-small{
+  overflow-y: scroll;
+  height: 80vh;
   width: 200px;
   border:solid 1px green;
 }
 
 
-.archive-image{
-  height:50px;
-  width:50px;
-  border:solid 1px blue;
+.archive-small:hover {
+  overflow: visible;
+  /* position: absolute; */
+  bottom: 250px;
+}
+
+.archive-image {
+  width: 200px;
+  border: solid 1px blue;
+  position: relative; /* 相対位置を設定 */
+}
+
+.archive-image img {
+  transition: transform 0.5s ease; /* スムーズなアニメーション効果 */
+  width: 100%; /* 画像がコンテナに合わせて調整 */
+  position: relative; /* 位置調整の基準点 */
+  right: 50; /* 初期位置 */
+}
+
+.archive-image:hover img {
+  box-shadow: 10px 5px 5px darkslategray;
+  transform: scale(2) translateX(-100%) translatey(-20%); /* 画像を1.5倍に拡大し、X軸方向に左に50%移動 */
+  transform-origin: center left; /* 拡大の原点を左側中央に設定 */
 }
