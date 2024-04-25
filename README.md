@@ -102,7 +102,7 @@
 | Column                  | Type       | Options     |
 | ----------------------- | ---------- | ----------- |
 | title                   | text       | null: false |
-| question_sheets_id      | references | null: false, foreign_key: true |
+| question_sheet_id       | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -114,10 +114,10 @@
 
 | Column                  | Type       | Options     |
 | ----------------------- | ---------- | ----------- |
-| answer                  | text       | null: false |
+| answer_text             | text
 | user_id                 | references | null: false, foreign_key: true |
-| question_sheets_id      | references | null: false, foreign_key: true |
-| option_id               | references | null: false, foreign_key: true |
+| question_sheet_id       | references | null: false, foreign_key: true |
+| option_id               | references | null: true, foreign_key: true  |
 
 ### Association
 
