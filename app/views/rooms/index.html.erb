@@ -1,4 +1,10 @@
-<h1><p>Group Archive</p></h1>
+
+
+
+<div class="anime">Group Archive</div>
+
+
+
 
 <% if user_signed_in? %>
   <div><%= current_user.nickname %></div>
@@ -10,7 +16,7 @@
     <%= link_to "新規ルーム作成", new_room_path %>
   </div>
 
-<h1><p>Your Rooms</p></h1>
+<div class="anime">Your Rooms</div>
 <ul>
   <% @rooms.each do |room| %>
       <li>

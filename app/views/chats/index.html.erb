@@ -1,8 +1,18 @@
+<div class="room">
+
+
+<div class="2-1">
+
 チャットルーム
-<div >
+<div class="anime">
 ルーム名「<%= @room.room_name %>」
 </div>
+<%= link_to "戻る", root_path %>
 
+</div 2-1>
+
+
+<div class="2-2">
 
 
   <div class="message-big-box", id = "list" >
@@ -42,4 +52,32 @@
  
 <% end %>
    </div>
-<%= link_to "戻る", root_path %>
+
+<%= form_with model: [@room, @archive], method: :post, html: {class: "form", id: "form", "data-room-id": @room.id}, local: true do |f|%>
+     <label class="form-image">
+      <span class="image-file">画像</span>
+      <%= f.file_field :image, class: 'hidden' , id: "archive-image-field" %>
+    </label>
+    <%= f.submit '送信', class: 'form-submit-btn', id: "chat-submit" %>
+ 
+<% end %>
+
+
+
+
+
+</div 2-2>
+
+
+
+<div class="archive">
+
+  <%= render partial: 'archives/archive', collection: @archives %>
+</div>
+
+
+
+
+
+
+</div 1>

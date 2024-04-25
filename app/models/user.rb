@@ -19,8 +19,8 @@ class User < ApplicationRecord
   has_many :room_users
   has_many :rooms, through: :room_users
   has_many :chats
-  # has_many :question_sheets_users
-  # has_many :question_sheets, through: :question_sheets_users
-  # has_many :memos
-  # has_many :archives
+  has_many :question_sheets_users
+  has_many :question_sheets, through: :question_sheets_users
+  has_many :memos
+  has_many :archives
 end

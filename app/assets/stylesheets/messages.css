@@ -1,195 +1,42 @@
 
-.wrapper{
+
+
+
+.anime {
+  margin-left: 2%;
+  font-size: 200%;
+  animation-duration: 2s;
+  animation-name: slidein;
+  color: black;
+}
+
+@keyframes slidein {
+  from {
+    color: transparent;
+    margin-left: 70%;
+  }
+  to {
+    margin-left: 2%;
+    color: black;
+  }
+}
+
+
+
+.room{
   display: flex;
-}
-
-
-/* サイドバー */
-
-
-.side_bar{
-  background-color: #253141;
-  width:300px;
-  height: 100vh;
-}
-
-.side-header{
-  background-color: #253141;
-  height: 100px;
-  width: 300px;
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.side-header-user a{
-  color:#fafafa;
-  font-size: 16px;
-  text-decoration: none;
-}
-
-.side-header-btn a{
-  color: deepskyblue;
-  font-size: 10px;
-  border:1px solid lightblue;
-  padding: 14px;
-  text-decoration: none;
-}
-
-.side-main{
-  background-color: #2f3e51;
-  height: calc(100vh - 100px);
-  width: 300px;
-  padding: 0 20px;
-  overflow: auto;
-}
-
-.side-main-room{
-  padding: 20px 0 40px;
-}
-
-.side-main-roomname a{
-  color: white;
-  text-decoration: none;
+  justify-content: space-around;
 }
 
 
 
-/* メインチャット */
-
-.main_chat{
-  background-color: #ffffff;
-  width:calc(100vw - 300px);
-  height: 100vh;
-}
-
-
-.chat-header{
-  background-color: #ffffff;
-  width:calc(100vw - 300px);
-  height: 100px;
-  padding: 0 40px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.chat-title{
-  font-size: 24px;
-  color: #333;
-  margin-top: 36px;
-}
-
-.chat-finish{
-  border: 1px solid darkred;
-  padding: 20px;
-  margin: 20px 0 auto;
-}
-
-.chat-finish-btn a{
-  color: darkred;
-  font-size: 14px;
-  text-decoration: none;
-}
-
-
-.chat-center{
-  background-color: #fafafa;
-  width:calc(100vw - 300px);
-  height: calc(100vh - 100px - 90px);
-  padding: 46px 40px 0;
-  overflow: auto;
-}
-
-.chat-flame{
-  margin-bottom: 40px;
-}
-
-.chat-name-date{
-  display: flex;
-}
-
-.chat-name{
-  font-size: 16px;
-  color: #434a54;
-  margin-top: 10px;
-}
-
-.chat-date{
-  font-size: 12px;
-  color: #999;
-  margin: 10px 0 0 10px;
-}
-.chat-message{
-  font-size: 14px;
-  color: #434a54;
-  margin-top: 10px;
-}
-
-
-
-
-.chat-footer{
-  background-color: #dddddd;
-  width:calc(100vw - 300px);
-  height: 90px;
-  padding: 20px 40px;
-}
-
-
-.chat-footer-form{
-  height: 50px;
-  display: flex;
-}
-
-.form-message{
-  height: 50px;
-  background-color: white;
-  border: none;
-  width: 100%;
-  display: flex;
-}
-
-.message{
-  height: 50px;
-  padding-left: 10px;
-  background-color: white;
-  border: none;
-  width: 100%;
-}
-
-.form-image {
-  font-size: 12px;
-  background-color: lightblue;
-  color: white;
-  padding: 12px;
-  width: 60px;
-  margin: 5px 10px;
-  text-align: center;
-}
-
-.hidden {
-  display: none;
-}
-
-
-.form-submit-btn{
-  height: 50px;
-  background-color: #38aef0 ;
-  font-size: 16px;
-  color: white;
-  padding: 0 20px;
-  margin-left: 15px;
-  border: none;
-}
-
+/* ----------------チャットブロック------------------- */
 
 
 .message-big-box{
   overflow-y: scroll;
   height: 60vh;
   width:930px;
-  margin-left: 25%;
 }
 
 
@@ -257,28 +104,37 @@
   transform: scale(2.5); /* 画像を2.5倍に拡大 */
 }
 
-
 .archive-capture{
   display: block;
   width: 300px;
 }
 
-.capture-button{
-  width:80px;
+.capture-button {
+  width:60px;
+  background-color: white;
+  color:black;
+  transition: color 0.5s, background-color 0.5s;
+}
+
+.capture-button:hover {
+  background-color: lightgreen;
+  color:white;
 }
 
 
-p {
-  animation-duration: 2s;
-  animation-name: slidein;
+
+/* ----------------アーカイブブロック------------------- */
+
+
+.archive{
+  height: 90vh;
+  width: 200px;
+  border:solid 1px green;
 }
 
-@keyframes slidein {
-  from {
-    margin-left: 70%;
-  }
 
-  to {
-    margin-left: 0%;
-  }
+.archive-image{
+  height:50px;
+  width:50px;
+  border:solid 1px blue;
 }
