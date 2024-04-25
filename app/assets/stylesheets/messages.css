@@ -2,24 +2,7 @@
 
 
 
-.anime {
-  margin-left: 2%;
-  font-size: 200%;
-  animation-duration: 2s;
-  animation-name: slidein;
-  color: black;
-}
-
-@keyframes slidein {
-  from {
-    color: transparent;
-    margin-left: 70%;
-  }
-  to {
-    margin-left: 2%;
-    color: black;
-  }
-}
+/* ----------------ルームブロック（大枠）------------------- */
 
 
 
@@ -28,17 +11,129 @@
   justify-content: space-around;
   padding: 1%;
   overflow: scroll;
+  font-family: "Bree Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+  height:100vh;
+  background: linear-gradient(to top,lightgray, white)
+}
+
+
+a{
+  text-decoration: none;
+  color: inherit;
 }
 
 
 
-/* ----------------チャットブロック------------------- */
+/* ----------------レフトブロック------------------- */
 
+
+.left-block{
+  height:800px;
+  width: 200px;
+  /* border: solid 1px blue; */
+}
+
+.inside-room-name{
+  font-size:160%;
+  color:white;
+  text-shadow:
+    5px 5px 5px rgba(0, 0, 255, 0.7),
+    -3px -3px 0px rgba(0, 0, 255, 0.7);
+  height:180px;
+  width: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 0.5px rgba(0, 0, 255, 0.5);
+  margin: 10px 10px 10px;
+  border-radius: 10px;
+}
+
+.my-memo-box{
+  height:580px;
+  width: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  margin: 10px 10px 10px;
+  border-radius: 10px;
+}
+
+
+
+
+/* ----------------センターブロック------------------- */
+
+.center-block{
+  height:800px;
+  width:780px;
+  /* border: solid 1px blue; */
+}
+
+
+
+          /* ----------------共有メモブロック------------------- */
+
+
+.all-memo{
+  height: 100px;
+  width: 780px;
+  text-align: center;
+  font-size: 130%;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  border-radius: 10px;
+}
+
+
+
+
+          /* ----------------チャットブロック------------------- */
+
+.message-name-box{
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  height:100px;
+  width: 780px;
+  padding-right: 20px;
+}
+
+
+.current-user-name-box{
+  color:gray;
+  font-size: 200%;
+  height:90px;
+  width: 240px;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  text-align: center;
+  border-radius: 10px;
+}
+.user1-name-box{
+  color:gray;
+  font-size: 200%;
+  height:90px;
+  width: 240px;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  text-align: center;
+  border-radius: 10px;
+}
+.user2-name-box{
+  color:gray;
+  font-size: 200%;
+  height:90px;
+  width: 240px;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  text-align: center;
+  border-radius: 10px;
+}
 
 .message-big-box{
   overflow-y: scroll;
-  height: 60vh;
-  width:930px;
+  height: 450px;
+  width: 780px;
 }
 
 
@@ -46,35 +141,47 @@
 .message-box{
   display:flex;
   justify-content: center;
-  border:solid 1px orange;
-}
-
-.message-name-box{
-  display:flex;
-  justify-content: center;
-  height:100px;
+  /* border:solid 1px orange; */
 }
 
 
 .current-user-box{
-  width: 300px;
-  border:solid 1px black;
+  width: 250px;
+  /* border:solid 1px blue; */
 }
 
 .user1-box{
-  width: 300px;
-  border:solid 1px blue;
+  width: 250px;
+  /* border:solid 1px blue; */
 }
 
 .user2-box{
-  width: 300px;
-  border:solid 1px green;
+  width: 250px;
+  /* border:solid 1px green; */
+}
+
+
+.message-flame{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom:solid 1px green;
+  margin-top: 10px;
+}
+
+
+.created-date{
+  font-size: 80%;
+  /* border:solid 1px green; */
+}
+
+.all-messages-box{
+  /* border:solid 1px green; */
 }
 
 
 .image0{
-  display: flex;
-  justify-content: center;
   width: 150px;
   object-fit: contain;
 }
@@ -99,6 +206,7 @@
 .image2{
   width: 150px;
   object-fit: contain;
+  transition: transform 0.5s ease;
 }
 .image2:hover img{
   border:double 3px lightblue;
@@ -106,31 +214,151 @@
   transform: scale(2.5); /* 画像を2.5倍に拡大 */
 }
 
+
+
+.message-bottom-box{
+ display: flex;
+ justify-content: space-between;
+}
+
+.message-bottom-box-user1{
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.message-bottom-box-user2{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete-button{
+  text-align: center;
+  width:60px;
+  color:black;
+  transition: color 0.3s, background-color 0.3s;
+  border: none;
+  border-radius: 5px;
+
+}
+.delete-button:hover {
+  background-color: rgba(245, 40, 40, 0.699);
+  color:white;
+  margin-right: 0%;
+}
+
+
 .archive-capture{
-  display: block;
-  width: 300px;
+  display: column;
+  width: 250px;
 }
 
 .capture-button {
   width:60px;
-  background-color: white;
   color:black;
-  transition: color 0.5s, background-color 0.5s;
+  transition: color 0.3s, background-color 0.3s;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
 }
-
 .capture-button:hover {
   background-color: lightgreen;
   color:white;
+  margin-right: 0%;
 }
 
 
 
-/* ----------------アーカイブブロック------------------- */
+
+          /* ----------------センターボトムブロック------------------- */
+
+
+.center-bottom-box{
+  height:150px;
+  width: 780px;
+  /* border:solid 1px blue; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-right: 20px;
+}
+
+.message-form-box{
+  height:130px;
+  width: 240px;
+  /* border:solid 1px blue; */
+}
+
+.message {
+  font-size: 16px;          /* フォントサイズ */
+  padding: 10px;            /* 内側の余白 */
+  border: 2px solid #3d56e2;   /* 境界線のスタイル */
+  border-radius: 10px;       /* 境界線の角を丸くする */
+  width: 240px;             /* 幅の設定 */
+  height: 100px;
+  background: linear-gradient(to top,lightblue, white)
+}
+
+.message:focus {
+  border-color: #66afe9;    /* フォーカス時の境界線の色 */
+  outline: none;            /* フォーカス時のアウトラインを消す */
+}
+
+.form-box-bottom{
+  display: flex;
+  justify-content: space-between;
+  /* border: solid 1px blue; */
+}
+
+.form-image{
+
+}
+
+.image{
+  color:blue;
+  width:200px;
+  font-size:60%;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+}
+
+.form-submit-btn{
+  color:blue;
+  width:40px;
+  font-size:70%;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+}
+
+.form-submit-btn:hover {
+  background-color: #3246b9a8;
+  width:40px;
+  font-size:72%;
+}
+
+
+
+.user1-memo-box{
+  height:130px;
+  width: 240px;
+  border:solid 1px blue;
+  border-radius: 10px;
+}
+
+.user2-memo-box{
+  height:130px;
+  width: 240px;
+  border:solid 1px blue;
+  border-radius: 10px;
+}
+
+
+
+
+/* ----------------ライトブロック・アーカイブブロック------------------- */
 
 
 .archive{
   overflow: visible;
-  height: 80vh;
+  height: 800px;
   width: 200px;
   border:solid 1px green;
   /* position: relative; */
@@ -138,9 +366,10 @@
 
 .archive-small{
   overflow-y: scroll;
-  height: 80vh;
+  height: 800px;
   width: 200px;
-  border:solid 1px green;
+  /* border:solid 1px green; */
+  border-radius: 10px;
 }
 
 
@@ -152,8 +381,9 @@
 
 .archive-image {
   width: 200px;
-  border: solid 1px blue;
+  /* border: solid 1px blue; */
   position: relative; /* 相対位置を設定 */
+  border-radius: 5px;
 }
 
 .archive-image img {
@@ -161,10 +391,79 @@
   width: 100%; /* 画像がコンテナに合わせて調整 */
   position: relative; /* 位置調整の基準点 */
   right: 50; /* 初期位置 */
+  border-radius: 5px;
 }
 
 .archive-image:hover img {
-  box-shadow: 10px 5px 5px darkslategray;
-  transform: scale(2) translateX(-100%) translatey(-20%); /* 画像を1.5倍に拡大し、X軸方向に左に50%移動 */
+  box-shadow: 10px 5px 5px rgba(2, 2, 71, 0.719);
+  transform: scale(2.5) translateX(-100%) translatey(-20%); /* 画像を1.5倍に拡大し、X軸方向に左に50%移動 */
   transform-origin: center left; /* 拡大の原点を左側中央に設定 */
+}
+
+
+
+
+
+
+/* --------------------トップページ----------------- */
+
+
+
+.anime {
+  margin-left: 2%;
+  font-size: 200%;
+  animation-duration: 2s;
+  animation-name: slidein;
+  color: black;
+}
+
+@keyframes slidein {
+  from {
+    color: transparent;
+    margin-left: 70%;
+  }
+  to {
+    margin-left: 2%;
+    color: black;
+  }
+}
+
+
+.anime2 {
+  margin-left: 2%;
+  font-size: 100%;
+  animation-duration: 2s;
+  animation-name: appear;
+  color: black;
+}
+
+@keyframes appear {
+  from {
+    color: transparent;
+  }
+  to {
+    color: black;
+  }
+}
+
+
+
+.second{
+padding-left: 3%;
+}
+
+
+.forth{
+  padding-left: 3%;
+  display: flex;
+}
+
+
+.room-name-index{
+
+}
+
+
+.li{
+ font-size: 20px;
 }

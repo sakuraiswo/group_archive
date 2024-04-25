@@ -4,14 +4,27 @@
 <div id="apple" data-room-id="<%= @room.id %>"></div>
 <div class="message-box">
 <% if chat.user_id == current_user.id %>
-      <div class="current-user-box" id="archive-capture-<%= chat.id %>">
-      <div class="archive-capture">
-      <div><%= l chat.created_at %></div>
-      <div><%= chat.message %></div>
-      <div class="image0"><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
-    </div><button onclick="capture(<%= chat.id %>)" class="capture-button">Archive</button>
-  <div><%= link_to 'Delete', room_chat_path(@room, chat), data: { turbo_method: :delete } %></div>
-  </div>
+    <div class="archive-capture">
+      <div class="current-user-box">
+        <div class="message-flame" id="archive-capture-<%= chat.id %>">
+          <div class="created-date">
+            <%= l chat.created_at %>
+          </div>
+          <div class="all-messages-box">
+            <%= chat.message %>
+          </div>
+          <div class="image0">
+            <%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %>
+          </div>
+        </div>
+      </div>
+      <div class="message-bottom-box">
+        <div class="delete-button">
+          <%= link_to 'Delete', room_chat_path(@room, chat), data: { turbo_method: :delete } %>
+        </div>
+        <button onclick="capture(<%= chat.id %>)" class="capture-button">Archive</button>
+      </div>
+    </div>
   <div class="user1-box">
   </div>
   <div class="user2-box">
@@ -19,12 +32,13 @@
 <% elsif (current_user.id == @room_users[0].user_id && chat.user_id == @room_users[1].user_id) || chat.user_id == @room_users[0].user_id %>
   <div class="current-user-box">
   </div>
-  <div class="user1-box" id="archive-capture-<%= chat.id %>">
-        <div class="archive-capture">
-        <div><%= l chat.created_at %></div>
-        <div><%= chat.message %></div>
+  <div class="archive-capture">
+  <div class="user1-box">
+        <div class="message-flame" id="archive-capture-<%= chat.id %>">
+        <div class="created-date"><%= l chat.created_at %></div>
+        <div class="all-messages-box"><%= chat.message %></div>
         <div class="image1"><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
-  </div><button onclick="capture(<%= chat.id %>)" class="capture-button">Archive</button>
+  </div></div><div class="message-bottom-box-user1"><button onclick="capture(<%= chat.id %>)" class="capture-button">Archive</button></div>
   </div>
   <div class="user2-box">
   </div>
@@ -35,12 +49,13 @@
   <div class="user1-box">
   </div>
 
-  <div class="user2-box" id="archive-capture-<%= chat.id %>">
-        <div class="archive-capture">
-        <div><%= l chat.created_at %></div>
-        <div><%= chat.message %></div>
+  <div class="archive-capture">
+  <div class="user2-box">
+          <div class="message-flame" id="archive-capture-<%= chat.id %>">
+        <div class="created-date"><%= l chat.created_at %></div>
+        <div class="all-messages-box"><%= chat.message %></div>
         <div class="image2"><%= image_tag chat.image.variant(resize: '150x150'), class: 'message-image' if chat.image.attached? %></div>
-   </div><button onclick="capture(<%= chat.id %>)" class="capture-button">Archive</button>
+   </div></div><div class="message-bottom-box-user2"><button onclick="capture(<%= chat.id %>)" class="capture-button">Archive</button></div>
   </div>
 <% end %>
 </div>
