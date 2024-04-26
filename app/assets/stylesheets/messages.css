@@ -171,6 +171,14 @@ a{
 }
 
 
+.name-and-created-date{
+  display: flex;
+}
+
+.message-user-name{
+  font-size: 80%;
+}
+
 .created-date{
   font-size: 80%;
   /* border:solid 1px green; */
