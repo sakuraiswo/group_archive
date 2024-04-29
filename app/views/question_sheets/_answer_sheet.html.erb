@@ -1,6 +1,7 @@
 
 <% @question_sheets.each do |question_sheet| %>
 
+<div class="question_sheet_capture" id="question-archive-capture-<%= question_sheet.id %>">
     <div class="question_text">　・<%= question_sheet.question %></div>
     <div class="question-box">
 
@@ -216,13 +217,46 @@
       </div>
 
 
-
-
-
-
-
-
-
   </div>
+  </div><div class="message-bottom-box-user2"><button onclick="capture(<%= question_sheet.id %>)" class="capture-button">Archive</button></div>
+
   <br><br>
   <% end %>
+
+
+
+
+<%# ---------------アンケート アーカイブアクション-------- %>
+<div id="apple" data-room-id="<%= @room.id %>"></div>
+  <script>
+function capture(questionSheetId) {
+    var elementId = "question-archive-capture-" + questionSheetId;
+    html2canvas(document.getElementById(elementId)).then(canvas => {
+        var image = canvas.toDataURL("image/png"); // 画像をBase64文字列として取得
+        const roomElement = document.getElementById('apple');
+        const roomId = roomElement.dataset.roomId;
+        // Fetch APIを使用してサーバーにPOSTリクエストを送信
+        fetch(`/rooms/${roomId}/save-image`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // CSRFトークンを追加
+             },
+            body: JSON.stringify({
+                image: image,
+                supplement: '',  // サンプル値
+                display_order: 1  // サンプル値
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            location.reload();
+            })
+        .catch((error) => {
+            console.error('Error:', error);
+            location.reload();
+        });
+    });
+}
+</script>
