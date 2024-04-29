@@ -218,18 +218,18 @@
 
 
   </div>
-  </div><div class="message-bottom-box-user2"><button onclick="capture(<%= question_sheet.id %>)" class="capture-button">Archive</button></div>
+  </div><div class="message-bottom-box-user2"><button onclick="captureQuestionSheet(<%= question_sheet.id %>)" class="capture-button">Archive</button></div>
 
-  <br><br>
+  <br>
   <% end %>
 
 
 
 
 <%# ---------------アンケート アーカイブアクション-------- %>
-<div id="apple" data-room-id="<%= @room.id %>"></div>
+
   <script>
-function capture(questionSheetId) {
+function captureQuestionSheet(questionSheetId) {
     var elementId = "question-archive-capture-" + questionSheetId;
     html2canvas(document.getElementById(elementId)).then(canvas => {
         var image = canvas.toDataURL("image/png"); // 画像をBase64文字列として取得

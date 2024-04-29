@@ -452,7 +452,7 @@ a{
 
 .archive-image:hover img {
   box-shadow: 10px 5px 5px rgba(2, 2, 71, 0.719);
-  transform: scale(2.5) translateX(-100%) translatey(-20%); /* 画像を1.5倍に拡大し、X軸方向に左に50%移動 */
+  transform: scale(3) translateX(-100%) translatey(-20%); /* 画像を1.5倍に拡大し、X軸方向に左に50%移動 */
   transform-origin: center left; /* 拡大の原点を左側中央に設定 */
 }
 
