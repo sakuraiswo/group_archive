@@ -3,4 +3,13 @@
 
 
 
-<div class="archive-image"><%= image_tag archive.image if archive.image.attached? %></div>
+<%# <div class="archive-image"> %>
+  <%# <%= image_tag archive.image if archive.image.attached? %>
+  <%# </div> %>
+
+<div class="archive-image">
+  <%= image_tag(archive.image, data: { fullsize: url_for(archive.image) }) if archive.image.attached? %>
+</div>
+<div id="preview-pane" style="display: none;">
+  <img src="" alt="Preview Image">
+</div>
