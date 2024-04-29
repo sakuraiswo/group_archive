@@ -1,9 +1,8 @@
 
 <% @question_sheets.each do |question_sheet| %>
-
 <div class="question_sheet_capture" id="question-archive-capture-<%= question_sheet.id %>">
   <div class="question-text-and-created">
-    <div class="question_text">　・<%= question_sheet.question %></div>　<div class="question-created-date">(<%= l question_sheet.created_at %>)</div>
+    <div class="question_text">　・<%= question_sheet.question %></div>　<div class="question-created-date">(<%= l question_sheet.created_at %>　<%= question_sheet.user.nickname %>)</div>
   </div>
     <div class="question-box">
 
