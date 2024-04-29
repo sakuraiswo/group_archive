@@ -3,6 +3,9 @@ class AnswersController < ApplicationController
   before_action :set_question_sheet, only: [:create]
 
   def create
+    option_id = params.dig(:answer, :option_id)
+    return redirect_to room_chats_path(@room), alert: "Invalid option." unless option_id
+
     # ユーザーが選択したオプションを取得
     @option = Option.find(params[:answer][:option_id])
 

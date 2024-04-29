@@ -176,7 +176,7 @@ a{
 }
 
 .message-user-name{
-  font-size: 80%;
+  font-size: 70%;
 }
 
 .created-date{
@@ -359,6 +359,54 @@ a{
 }
 
 
+/* -----------------------アンケートブロック------------------------- */
+
+
+
+.question_sheets_box{
+   overflow-y: scroll;
+   height: 240px;
+   width: 780px;
+   border:solid 1px blue;
+   border-radius: 10px;
+ }
+
+ .question-box{
+  display:flex;
+  justify-content: space-around;
+  /* border:solid 1px orange; */
+}
+
+.question_text{
+  font-size:110%;
+  font-weight: bold;
+}
+
+.selected-item{
+  width: 240px;
+  border:solid 1px blue;
+  border-radius: 10px;
+}
+
+.answer-user-name{
+  font-size: 80%;
+}
+
+.option-and-check-box{
+  display: flex;
+  justify-content: space-between;
+}
+
+.answer-option{
+  padding: 0px 10px;
+}
+
+.check-mark{
+  padding: 0px 10px;
+}
+
+
+
 
 
 /* ----------------ライトブロック・アーカイブブロック------------------- */
@@ -440,7 +488,7 @@ a{
 .anime2 {
   margin-left: 2%;
   font-size: 100%;
-  animation-duration: 2s;
+  animation-duration: 3s;
   animation-name: appear;
   color: black;
 }

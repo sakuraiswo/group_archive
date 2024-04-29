@@ -1,17 +1,1 @@
-<% @question_sheets.each do |question_sheet| %>
-  <div class="message-box">
-    <h2><%= question_sheet.question %></h2>
-    <%= form_with(model: Answer.new, url: room_question_sheet_answers_path(@room, question_sheet), local: true) do |form| %>
-      <h3>Options:</h3>
-      <ul>
-        <% question_sheet.options.each do |option| %>
-          <li>
-            <%= form.radio_button :option_id, option.id %>
-            <%= form.label :option_id, option.title, value: option.id %>
-          </li>
-        <% end %>
-      </ul>
-      <%= form.submit "Submit Answer" %>
-    <% end %>
-  </div>
-<% end %>
+<%= render partial: 'answer_sheet', locals: { question_sheets: @question_sheets, room: @room } %>

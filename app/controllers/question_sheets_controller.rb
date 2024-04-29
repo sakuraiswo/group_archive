@@ -4,8 +4,6 @@ class QuestionSheetsController < ApplicationController
 
   def index
     @answer = Answer.new
-    @room = Room.find(params[:room_id])
-    @question_sheets = QuestionSheet.all
   end
 
   def create

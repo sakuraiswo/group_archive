@@ -1,0 +1,228 @@
+
+<% @question_sheets.each do |question_sheet| %>
+
+    <div class="question_text">　・<%= question_sheet.question %></div>
+    <div class="question-box">
+
+
+<%# ---------カレントユーザー----------- %>
+    <% answer00 = Answer.find_by(user_id: current_user.id, question_sheet_id: question_sheet.id) %>
+    <% unless answer00 %>
+      <%= form_with(model: Answer.new, url: room_question_sheet_answers_path(@room, question_sheet), local: true) do |form| %>
+        <div class="selected-item">
+          <div class="answer-user-name"><%= current_user.nickname %>　未回答</div>
+          Options
+
+          
+          <% question_sheet.options.each do |option| %>
+            <ul>
+            <li>
+            <div class="option-and-check-box">
+              <div class="answer-option">
+              <%= form.label :option_id, option.title, value: option.id %>
+              </div>
+              <div class="check-mark">
+              <%= form.radio_button :option_id, option.id %>
+              </div>
+            </div>
+          <% end %>
+
+        </ul>
+        <%= form.submit "Submit Answer" %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="selected-item">
+        <div class="answer-user-name">
+          <%= current_user.nickname %>　回答済
+        </div>
+        Options
+        <% question_sheet.options.each do |option| %>
+        <ul>
+          <li>
+          <div class="option-and-check-box">
+            <div class="answer-option">
+            <%= option.title %>
+            </div>
+            <div class="check-mark">
+              <% if option.id == answer00.option_id%>
+              ○
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </ul>
+      </div>
+      <% end %>
+
+
+
+
+<%# ---------ファーストユーザー----------- %>
+      <div class="selected-item">
+          <% if current_user.id == @room_users[0].user_id %>
+            <% answer01 = Answer.find_by(user_id: @room_users[1].user_id, question_sheet_id: question_sheet.id) %>
+              <% unless answer01 %>
+              <div class="answer-user-name"><%= @room_users[1].user.nickname %>　未回答</div>
+                  Options
+                <% question_sheet.options.each do |option| %>
+                    <ul>
+                      <li>
+                      <div class="option-and-check-box">
+                        <div class="answer-option">
+                        <%= option.title %>
+                        </div>
+                        <div class="check-mark">
+                        </div>
+                      </div>
+                    </ul>
+                <% end %>
+            <% else %>
+              <div class="answer-user-name"><%= @room_users[1].user.nickname %>　回答済！</div>
+                  Options
+                <% question_sheet.options.each do |option| %>
+                    <ul>
+                      <li>
+                      <div class="option-and-check-box">
+                        <div class="answer-option">
+                        <%= option.title %>
+                        </div>
+                        <div class="check-mark">
+                          <% if option.id == answer01.option_id %>
+                          ○
+                          <% end %>
+                        </div>
+                      </div>
+                    </ul>
+                <% end %>
+            <% end %>
+
+        <% else %>
+            <% answer01 = Answer.find_by(user_id: @room_users[0].user_id, question_sheet_id: question_sheet.id) %>
+            <% unless answer01 %>
+              <div class="answer-user-name"><%= @room_users[0].user.nickname %>　未回答</div>
+                  Options
+                <% question_sheet.options.each do |option| %>
+                    <ul>
+                      <li>
+                      <div class="option-and-check-box">
+                        <div class="answer-option">
+                        <%= option.title %>
+                        </div>
+                        <div class="check-mark">
+                        </div>
+                      </div>
+                    </ul>
+                <% end %>
+            <% else %>
+              <div class="answer-user-name"><%= @room_users[0].user.nickname %>　回答済！</div>
+                  Options
+                <% question_sheet.options.each do |option| %>
+                    <ul>
+                      <li>
+                      <div class="option-and-check-box">
+                        <div class="answer-option">
+                        <%= option.title %>
+                        </div>
+                        <div class="check-mark">
+                          <% if option.id == answer01.option_id %>
+                          ○
+                          <% end %>
+                        </div>
+                      </div>
+                    </ul>
+                <% end %>
+            <% end %>
+        <% end %>
+      </div>
+
+
+<%# ---------セカンドユーザー----------- %>
+      <div class="selected-item">
+          <% if current_user.id == @room_users[2].user_id %>
+            <% answer = Answer.find_by(user_id: @room_users[1].user_id, question_sheet_id: question_sheet.id) %>
+              <% unless answer %>
+              <div class="answer-user-name"><%= @room_users[1].user.nickname %>　未回答</div>
+                  Options
+                <% question_sheet.options.each do |option| %>
+                    <ul>
+                      <li>
+                      <div class="option-and-check-box">
+                        <div class="answer-option">
+                        <%= option.title %>
+                        </div>
+                        <div class="check-mark">
+                        </div>
+                      </div>
+                    </ul>
+                <% end %>
+            <% else %>
+              <div class="answer-user-name"><%= @room_users[1].user.nickname %>　回答済！</div>
+                  Options
+                <% question_sheet.options.each do |option| %>
+                    <ul>
+                      <li>
+                      <div class="option-and-check-box">
+                        <div class="answer-option">
+                        <%= option.title %>
+                        </div>
+                        <div class="check-mark">
+                          <% if option.id == answer.option_id %>
+                          ○
+                          <% end %>
+                        </div>
+                      </div>
+                    </ul>
+                <% end %>
+            <% end %>
+
+        <% else %>
+            <% answer = Answer.find_by(user_id: @room_users[2].user_id, question_sheet_id: question_sheet.id) %>
+              <% unless answer %>
+              <div class="answer-user-name"><%= @room_users[2].user.nickname %>　未回答</div>
+                  Options
+                <% question_sheet.options.each do |option| %>
+                    <ul>
+                      <li>
+                      <div class="option-and-check-box">
+                        <div class="answer-option">
+                        <%= option.title %>
+                        </div>
+                        <div class="check-mark">
+                        </div>
+                      </div>
+                    </ul>
+                <% end %>
+            <% else %>
+              <div class="answer-user-name"><%= @room_users[2].user.nickname %>　回答済！</div>
+                  Options
+                <% question_sheet.options.each do |option| %>
+                    <ul>
+                      <li>
+                      <div class="option-and-check-box">
+                        <div class="answer-option">
+                        <%= option.title %>
+                        </div>
+                        <div class="check-mark">
+                          <% if option.id == answer.option_id %>
+                          ○
+                          <% end %>
+                        </div>
+                      </div>
+                    </ul>
+                <% end %>
+            <% end %>
+        <% end %>
+      </div>
+
+
+
+
+
+
+
+
+
+  </div>
+  <br><br>
+  <% end %>

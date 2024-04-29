@@ -82,30 +82,31 @@
 
  
 <%# <% アンケートシート回答ページ ＞＞＞＞ %>
-<%# <div> %>
-<%# <br><br> %>
-<%# <%= link_to "Have an answer?", room_question_sheets_path(@room) %>
-<%# </div> %>
-<%# <br><br> %>
+<div>
+<br><br>
+<div>Have an answer?</div>
+<div class="question_sheets_box">
+<%= render partial: 'question_sheets/answer_sheet', locals: { question_sheets: @question_sheets, room: @room } %>
+</div>
+</div>
+<br>
 <%# <% ＜＜＜＜ アンケートシート回答ページ %>
 
 <%# <% アンケートシート作成フォーム ＞＞＞＞ %>
-<%# <br><br> %>
-<%# <div> %>
-<%# <%= form_with(model: [@room, @question_sheet], local: true) do |form| %>
-  <%# <%= form.text_field :question, class: 'question', id: "question", placeholder: 'type a question' %>
-  <%# <%= form.fields_for :options do |option_fields| %>
-    <%# <div class="option"> %>
-      <%# <%= option_fields.text_field :title, placeholder: "オプションのタイトル" %>
-      <%# <%= option_fields.check_box :_destroy %>
-      <%# <%= option_fields.label :_destroy, "このオプションを削除" %>
-    <%# </div> %>
-  <%# <% end %>
-  <%# <%= form.submit "保存" %>
-<%# <% end %>
-<%# </div> %>
-<%# <br><br> %>
-
+<div>
+<div>アンケートシート作成フォーム</div>
+<%= form_with(model: [@room, @question_sheet], local: true) do |form| %>
+<%= form.text_field :question, class: 'question', id: "question", placeholder: 'type a question' %>
+<%= form.fields_for :options do |option_fields| %>
+<div class="option">
+<%= option_fields.text_field :title, placeholder: "オプションのタイトル" %>
+<%= option_fields.check_box :_destroy %>
+<%= option_fields.label :_destroy, "このオプションを削除" %>
+</div>
+<% end %>
+<%= form.submit "保存" %>
+<% end %>
+</div>
 <%# <% ＜＜＜＜ アンケートシート作成フォーム %>
 
 </div>
