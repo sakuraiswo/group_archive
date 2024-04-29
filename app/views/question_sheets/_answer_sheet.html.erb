@@ -2,7 +2,9 @@
 <% @question_sheets.each do |question_sheet| %>
 
 <div class="question_sheet_capture" id="question-archive-capture-<%= question_sheet.id %>">
-    <div class="question_text">　・<%= question_sheet.question %></div>
+  <div class="question-text-and-created">
+    <div class="question_text">　・<%= question_sheet.question %></div>　<div class="question-created-date">(<%= l question_sheet.created_at %>)</div>
+  </div>
     <div class="question-box">
 
 
@@ -35,7 +37,7 @@
     <% else %>
       <div class="selected-item">
         <div class="answer-user-name">
-          <%= current_user.nickname %>　回答済
+          <%= current_user.nickname %>　回答済！
         </div>
         Options
         <% question_sheet.options.each do |option| %>
