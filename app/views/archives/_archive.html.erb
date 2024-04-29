@@ -3,4 +3,4 @@
 
 
 
-<div class="archive-image"><%= image_tag archive.image.variant(resize: '300x300') if archive.image.attached? %></div>
+<div class="archive-image"><%= image_tag archive.image if archive.image.attached? %></div>
