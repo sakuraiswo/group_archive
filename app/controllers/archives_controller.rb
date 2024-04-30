@@ -21,6 +21,13 @@ class ArchivesController < ApplicationController
     end
   end
 
+  def destroy
+    archive = Archive.find(params[:id])
+    archive.destroy
+    redirect_to room_chats_path(@room)
+  end
+
+
   private
 
   def set_room
