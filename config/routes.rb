@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'rooms#index'
 
-  resources :rooms, only: %i[index new create show] do
+  resources :rooms, only: %i[index new create update show] do
     resources :question_sheets, only: %i[index create destroy show] do
       resources :answers, only: [:create]
       resources :options

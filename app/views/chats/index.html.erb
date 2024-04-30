@@ -23,8 +23,13 @@
 
 <div class="center-block">
 
-  <div class="all-memo">
-    共有メモ
+  <div class="group-memo-block">
+    <div class="group-memo-box">
+      <%= form_with model: @room, url: room_path(@room), local: true do |f| %>
+        <%= f.text_area :group_memo, class: 'group_memo_form', id: "group_memo_form", placeholder: '共有メモボード' %>
+        <%= f.submit '更新', class: 'group-memo-submit', id: "group-memo-submit" %>
+      <% end %>
+    </div>
   </div>
 
 

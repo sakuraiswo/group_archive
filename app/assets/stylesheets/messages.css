@@ -49,6 +49,7 @@ a{
   border: solid 0.5px rgba(0, 0, 255, 0.5);
   margin: 10px 10px 10px;
   border-radius: 10px;
+  background-color: lightblue;
 }
 
 .my-memo-box{
@@ -60,6 +61,7 @@ a{
   border: solid 0.5px rgba(0, 0, 255, 0.473);
   margin: 10px 10px 10px;
   border-radius: 10px;
+  background-color: lightblue;
 }
 
 
@@ -78,15 +80,59 @@ a{
           /* ----------------共有メモブロック------------------- */
 
 
-.all-memo{
+.group-memo-block{
   height: 100px;
   width: 780px;
-  text-align: center;
+}
+
+.group-memo-box{
+  height: 100px;
+  width: 780px;
+  font-size: 130%;
+  border: none;
+  position: relative;  
+}
+
+.group_memo_form{
+  height: 100px;
+  width: 780px;
   font-size: 130%;
   border: solid 0.5px rgba(0, 0, 255, 0.473);
   border-radius: 10px;
+  position: absolute;
+  font-weight: bold;
+  color: white;
+  text-shadow:
+  3px 3px 5px blue,
+  -1px -1px 0px blue;
+  background-color: lightblue;
 }
 
+.group_memo_form:focus {
+  border-color: rgb(245, 69, 69);    /* フォーカス時の境界線の色 */
+  outline: none;            /* フォーカス時のアウトラインを消す */
+}
+
+
+.group-memo-submit{
+  height: 15px;
+  width: 15px;
+  font-size: 0px;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  border-radius: 10px;
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  transition: color 0.3s, background-color 0.3s, width 0.3s;
+}
+
+.group-memo-submit:hover {
+  background-color: blue;
+  height: 15px;
+  width: 40px;
+  font-size: 9px;
+  color: white;
+}
 
 
 
@@ -201,10 +247,10 @@ a{
   max-height: 100%;
   height: auto;
   width: auto;
+  transition: transform 0.5s, transform-origin 0.5s;
 }
 
 .image0:hover img{
-  border:double 3px lightblue;
   transform-origin: left bottom;
   transform: scale(2);
 }
@@ -221,10 +267,10 @@ a{
   max-height: 100%;
   height: auto;
   width: auto;
+  transition: transform 0.5s, transform-origin 0.5s;
 }
 
 .image1:hover img{
-  border:double 3px lightblue;
   transform-origin: bottom center;
   transform: scale(2);
 }
@@ -241,10 +287,10 @@ a{
   max-height: 100%;
   height: auto;
   width: auto;
+  transition: transform 0.5s, transform-origin 0.5s;
 }
 
 .image2:hover img{
-  border:double 3px lightblue;
   transform-origin: bottom right;
   transform: scale(2);
 }
@@ -269,17 +315,20 @@ a{
 
 .delete-button{
   text-align: center;
-  width:60px;
+  width: 60px;
+  background-color: transparent;
   color:black;
-  transition: color 0.3s, background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
   border: none;
-  border-radius: 5px;
-
+  border-radius: 10px;
+  font-size: 90%;
 }
+
+
 .delete-button:hover {
   background-color: rgba(245, 40, 40, 0.699);
-  color:white;
   margin-right: 0%;
+  color:white;
 }
 
 
@@ -289,17 +338,18 @@ a{
 }
 
 .capture-button {
-  width:60px;
-  color:black;
-  transition: color 0.3s, background-color 0.3s;
+  width: 60px;
+  background-color: transparent;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
   border: none;
+  border-radius: 10px;
   font-weight: bold;
-  border-radius: 5px;
 }
 .capture-button:hover {
   background-color: lightgreen;
-  color:white;
   margin-right: 0%;
+  color: white;
 }
 
 
@@ -366,7 +416,6 @@ a{
 .form-submit-btn:hover {
   background-color: #3246b9a8;
   width:40px;
-  font-size:72%;
 }
 
 
@@ -443,6 +492,7 @@ a{
 
 .check-mark{
   padding: 0px 10px;
+  color:blue;
 }
 
 .answer_text-box{
@@ -460,6 +510,7 @@ a{
 
 .after-answer-text{
   padding: 10px;
+  color: blue;
 }
 
 .answer-button-box{
@@ -488,14 +539,14 @@ a{
 }
 
 .question_sheet-delete-button{
-  font-size: 80%;
   text-align: center;
-  width:40px;
-  height: 20px;
-  color:black;
+  width: 60px;
+  background-color: transparent;
+  color: black;
   transition: color 0.3s, background-color 0.3s;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
+  font-size: 90%;
 }
 .question_sheet-delete-button:hover {
   background-color: rgba(245, 40, 40, 0.699);
