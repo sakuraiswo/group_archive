@@ -15,7 +15,9 @@
   font-weight: 400;
   font-style: normal;
   height:100vh;
-  background: linear-gradient(to top,lightgray, white)
+  background: linear-gradient(to top,lightgray, white);
+  height: 98vh;
+  width: 98vw;
 }
 
 
@@ -52,18 +54,52 @@ a{
   background-color: lightblue;
 }
 
-.my-memo-box{
+.my-memo-block{
   height:580px;
   width: 180px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: solid 0.5px rgba(0, 0, 255, 0.473);
   margin: 10px 10px 10px;
+  position: relative;
+}
+
+.my_memo_form{
+  height:580px;
+  width: 180px;
+  font-size: 130%;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
   border-radius: 10px;
+  position: absolute;
+  font-weight: bold;
+  color: white;
+  text-shadow:
+  3px 3px 5px blue,
+  -1px -1px 0px blue;
   background-color: lightblue;
 }
 
+.my_memo_form:focus {
+  border-color: rgb(245, 69, 69);    /* フォーカス時の境界線の色 */
+  outline: none;            /* フォーカス時のアウトラインを消す */
+}
+
+.my-memo-submit{
+  height: 15px;
+  width: 15px;
+  font-size: 0px;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  border-radius: 10px;
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  transition: color 0.3s, background-color 0.3s, width 0.3s;
+}
+
+.my-memo-submit:hover {
+  background-color: blue;
+  height: 15px;
+  width: 40px;
+  font-size: 9px;
+  color: white;
+}
 
 
 
@@ -148,15 +184,70 @@ a{
 }
 
 
-.current-user-name-box{
-  color:gray;
-  font-size: 200%;
+
+.my-icon-block{
   height:90px;
   width: 240px;
-  border: solid 0.5px rgba(0, 0, 255, 0.473);
-  text-align: center;
   border-radius: 10px;
+  position: relative;
 }
+
+.my-icon_form{
+  height:90px;
+  width: 240px;
+  font-size: 100%;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  border-radius: 10px;
+  position: absolute;
+  font-weight: bold;
+  color: white;
+  text-shadow:
+  3px 3px 5px blue,
+  -1px -1px 0px blue;
+  background-color: lightblue;
+}
+
+.my-icon_form:focus {
+  border-color: rgb(245, 69, 69);    /* フォーカス時の境界線の色 */
+  outline: none;            /* フォーカス時のアウトラインを消す */
+}
+
+.my-icon-submit{
+  height: 15px;
+  width: 15px;
+  font-size: 0px;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  border-radius: 10px;
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  transition: color 0.3s, background-color 0.3s, width 0.3s;
+}
+
+.my-icon-submit:hover {
+  background-color: blue;
+  height: 15px;
+  width: 40px;
+  font-size: 9px;
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .user1-name-box{
   color:gray;
   font-size: 200%;
@@ -355,6 +446,8 @@ a{
 
 
 
+
+
           /* ----------------センターボトムブロック------------------- */
 
 
@@ -419,20 +512,59 @@ a{
 }
 
 
-
-.user1-memo-box{
+.user-memo-block{
   height:130px;
   width: 240px;
   border:solid 1px blue;
   border-radius: 10px;
+  position: relative;
 }
 
-.user2-memo-box{
+.user_memo_form{
   height:130px;
   width: 240px;
-  border:solid 1px blue;
+  font-size: 100%;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
   border-radius: 10px;
+  position: absolute;
+  font-weight: bold;
+  color: white;
+  text-shadow:
+  3px 3px 5px blue,
+  -1px -1px 0px blue;
+  background-color: lightblue;
 }
+
+.user_memo_form:focus {
+  border-color: rgb(245, 69, 69);    /* フォーカス時の境界線の色 */
+  outline: none;            /* フォーカス時のアウトラインを消す */
+}
+
+.user-memo-submit{
+  height: 15px;
+  width: 15px;
+  font-size: 0px;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  border-radius: 10px;
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  transition: color 0.3s, background-color 0.3s, width 0.3s;
+}
+
+.user-memo-submit:hover {
+  background-color: blue;
+  height: 15px;
+  width: 40px;
+  font-size: 9px;
+  color: white;
+}
+
+
+
+
+
+
 
 
 /* -----------------------アンケートブロック------------------------- */
@@ -574,6 +706,7 @@ a{
   height: 800px;
   width: 200px;
   border-radius: 10px;
+  margin: 10px;
 }
 
 .archive-image-box{

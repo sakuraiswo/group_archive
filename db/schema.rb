@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_25_091627) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_30_133311) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -72,6 +72,19 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_25_091627) do
     t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
+  create_table "memos", charset: "utf8", force: :cascade do |t|
+    t.text "my_memo"
+    t.text "my_icon"
+    t.text "user1_memo"
+    t.text "user2_memo"
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_memos_on_room_id"
+    t.index ["user_id"], name: "index_memos_on_user_id"
+  end
+
   create_table "options", charset: "utf8", force: :cascade do |t|
     t.text "title"
     t.bigint "question_sheet_id", null: false
@@ -129,6 +142,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_25_091627) do
   add_foreign_key "archives", "users"
   add_foreign_key "chats", "rooms"
   add_foreign_key "chats", "users"
+  add_foreign_key "memos", "rooms"
+  add_foreign_key "memos", "users"
   add_foreign_key "options", "question_sheets"
   add_foreign_key "question_sheets", "rooms"
   add_foreign_key "question_sheets", "users"
