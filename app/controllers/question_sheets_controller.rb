@@ -17,6 +17,12 @@ class QuestionSheetsController < ApplicationController
     end
   end
 
+  def destroy
+    question_sheet = QuestionSheet.find(params[:id])
+    question_sheet.destroy
+    redirect_to room_chats_path(@room)
+  end
+
 
   private
 

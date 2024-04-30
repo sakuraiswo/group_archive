@@ -405,12 +405,13 @@ a{
 }
 
  .question_text{
-  font-size:130%;
+  font-size:120%;
   font-weight: bold;
 }
 
 .question-created-date{
   font-size:80%;
+  min-width: 220px;
 }
 
  .question-box{
@@ -442,6 +443,64 @@ a{
 
 .check-mark{
   padding: 0px 10px;
+}
+
+.answer_text-box{
+  display: flex;
+  justify-content: right;
+}
+
+.answer_text{
+  height:25px;
+  width:230px;
+  border: solid 0.1px black;
+  border-radius: 5px;
+}
+
+
+.after-answer-text{
+  padding: 10px;
+}
+
+.answer-button-box{
+  display: flex;
+  justify-content: right;
+  height: 30px;
+  align-items: flex-end;
+}
+.answer-button{
+  line-height: 20px;
+  font-size: 80%;
+  border-radius: 5px;
+  border: solid 0.1px black;
+
+}
+
+.answer-button:hover {
+  background-color: lightblue;
+  color:white;
+}
+
+
+.question_sheet-delete-button-and-archive-button{
+  display: flex;
+  justify-content: space-between;
+}
+
+.question_sheet-delete-button{
+  font-size: 80%;
+  text-align: center;
+  width:40px;
+  height: 20px;
+  color:black;
+  transition: color 0.3s, background-color 0.3s;
+  border: none;
+  border-radius: 5px;
+}
+.question_sheet-delete-button:hover {
+  background-color: rgba(245, 40, 40, 0.699);
+  color:white;
+  margin-right: 0%;
 }
 
 

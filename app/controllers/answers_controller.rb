@@ -4,14 +4,19 @@ class AnswersController < ApplicationController
 
   def create
     option_id = params.dig(:answer, :option_id)
-    return redirect_to room_chats_path(@room), alert: "Invalid option." unless option_id
+    answer_text = params.dig(:answer, :answer_text)
+
+    # オプションIDまたは回答テキストが提供されていない場合、エラーとする
+    unless option_id.present? || answer_text.present?
+      return redirect_to room_chats_path(@room), alert: "You must provide either an option or a text response."
+    end
 
     # ユーザーが選択したオプションを取得
-    @option = Option.find(params[:answer][:option_id])
+   @option = Option.find(option_id) if option_id.present?
 
     # 新しい回答のインスタンスを作成し、選択されたオプションと質問票を関連付ける
     @answer = @question_sheet.answers.new(answer_params)
-    @answer.option = @option
+    @answer.option = @option if @option.present?
 
     if @answer.save
       redirect_to room_chats_path(@room), notice: 'Your answer was successfully submitted.'
