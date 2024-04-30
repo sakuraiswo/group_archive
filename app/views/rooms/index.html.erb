@@ -4,34 +4,42 @@
 <div class="anime">Group Archive</div>
 
 
-
-
+<br>
+<div class="second">
+    <div class="anime2">
 <% if user_signed_in? %>
   <div><%= current_user.nickname %></div>
   <div><%= current_user.profile %></div>
-  <div>
-    <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
+  <div><br>
+    <%= link_to "- ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
   </div>
   <div>
-    <%= link_to "新規ルーム作成", new_room_path %>
+    <%= link_to "- 新規ルーム作成", new_room_path %>
   </div>
-
+</div>
+</div>
+<br>
 <div class="anime">Your Rooms</div>
+
+<br>
+<div class="forth">
+  <div class="anime2">
 <ul>
   <% @rooms.each do |room| %>
-      <li>
-        <%= link_to room.room_name, room_chats_path(room) %>
+      <li class="li">
+        -<%= link_to room.room_name, room_chats_path(room) %>
         <% room_users = room.room_users.includes(:user).order('created_at ASC') %>
         <% room_users.each do |room_user| %>
           <% if current_user.id != room_user.user.id %>
-          <%= room_user.user.nickname %><%= "," unless room_user == room_users.last %>
+          [<%= room_user.user.nickname %><%= "" unless room_user == room_users.last %>]
           <% else %>
           <% end %>
         <% end %>
       </li>
   <% end %>
 </ul>
-
+</div>
+</div>
 
 
 

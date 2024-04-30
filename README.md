@@ -29,8 +29,8 @@
 - has_many :room_users
 - has_many :rooms, through: :room_users
 - has_many :chats
-- has_many :question_sheets_users
-- has_many :question_sheets, through: :question_sheets_users
+- has_many :question_sheets
+- has_many :answers
 - has_many :memos
 - has_many :archives
 
@@ -85,30 +85,45 @@
 
 | Column            | Type       | Options     |
 | ----------------- | ---------- | ----------- |
-| message           | string     
-| answer1           | string
-| answer2           | string
-| answer3           | string
+| question          | text       | null: false |
+| user_id           | references | null: false, foreign_key: true |
 | room_id           | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_many :question_sheets_users
-- has_many :users, through: :question_sheets_users
+- has_many :options
+- has_many :answers
+- belongs_to :user
 - belongs_to :room
 
 
-## question_sheets_users テーブル
+## options テーブル
 
-| Column            | Type       | Options     |
-| ----------------- | ---------- | ----------- |
-| room_id           | references | null: false, foreign_key: true |
-| question_sheets_users_id       | references | null: false, foreign_key: true |
+| Column                  | Type       | Options     |
+| ----------------------- | ---------- | ----------- |
+| title                   | text       | null: false |
+| question_sheet_id       | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :question_sheet
+- has_many :answers
+
+
+## answers テーブル
+
+| Column                  | Type       | Options     |
+| ----------------------- | ---------- | ----------- |
+| answer_text             | text
+| user_id                 | references | null: false, foreign_key: true |
+| question_sheet_id       | references | null: false, foreign_key: true |
+| option_id               | references | null: true, foreign_key: true  |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :question_sheet
+- belongs_to :option
 
 
 ## memos テーブル

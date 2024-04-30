@@ -14,11 +14,19 @@ class ArchivesController < ApplicationController
     end
 
     if @archive.save
+      redirect_to room_chats_path(@room)
       render json: { status: 'success', archive: @archive }, status: :created
     else
       render json: { status: 'error', errors: @archive.errors.full_messages }, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    archive = Archive.find(params[:id])
+    archive.destroy
+    redirect_to room_chats_path(@room)
+  end
+
 
   private
 

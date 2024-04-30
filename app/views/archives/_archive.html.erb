@@ -3,4 +3,18 @@
 
 
 
-<div class="archive-image"><%= image_tag archive.image.variant(resize: '200x200') if archive.image.attached? %></div>
+<%# <div class="archive-image"> %>
+  <%# <%= image_tag archive.image if archive.image.attached? %>
+  <%# </div> %>
+<div class="archive-image-box"> 
+<div class="archive-image">
+  <%= image_tag(archive.image, data: { fullsize: url_for(archive.image) }) if archive.image.attached? %>
+</div>
+<div class="archive-delete-button">
+  <%= link_to 'Delete', room_archive_path(@room, archive), data: { turbo_method: :delete } %>
+</div>
+</div>
+
+<div id="preview-pane" style="display: none;">
+  <img src="" alt="Preview Image">
+</div>
