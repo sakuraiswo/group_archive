@@ -18,6 +18,14 @@ class RoomsController < ApplicationController
     end
   end
 
+  def update
+    @room = Room.find(params[:id])
+    if @room.update(room_params)
+      redirect_to room_chats_path(@room)
+    else
+    end
+  end
+
   private
 
   def room_params
