@@ -190,36 +190,63 @@ a{
 
 
 .image0{
-  width: 150px;
-  object-fit: contain;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image0 img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
 }
 
 .image0:hover img{
   border:double 3px lightblue;
-  transform-origin: left center;
-  transform: scale(2.5); /* 画像を2.5倍に拡大 */
+  transform-origin: left bottom;
+  transform: scale(2);
 }
 
 .image1{
-  width: 150px;
-  object-fit: contain;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image1 img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
 }
 
 .image1:hover img{
   border:double 3px lightblue;
-  transform-origin: center center;
-  transform: scale(2.5); /* 画像を2.5倍に拡大 */
+  transform-origin: bottom center;
+  transform: scale(2);
 }
 
 .image2{
-  width: 150px;
-  object-fit: contain;
-  transition: transform 0.5s ease;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.image2 img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
+}
+
 .image2:hover img{
   border:double 3px lightblue;
-  transform-origin: center right;
-  transform: scale(2.5); /* 画像を2.5倍に拡大 */
+  transform-origin: bottom right;
+  transform: scale(2);
 }
 
 

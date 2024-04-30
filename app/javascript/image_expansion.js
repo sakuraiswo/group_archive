@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+window.addEventListener('turbo:load', function() {
   const images = document.querySelectorAll('.archive-image img');
   const previewPane = document.getElementById('preview-pane');
   const previewImage = previewPane.querySelector('img');
@@ -17,3 +17,4 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
+

@@ -100,8 +100,6 @@
 <%= form.fields_for :options do |option_fields| %>
 <div class="option">
 <%= option_fields.text_field :title, placeholder: "オプションのタイトル" %>
-<%= option_fields.check_box :_destroy %>
-<%= option_fields.label :_destroy, "このオプションを削除" %>
 </div>
 <% end %>
 <%= form.submit "保存" %>
