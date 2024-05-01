@@ -171,7 +171,7 @@
  
 <%# <% アンケートシート回答ページ ＞＞＞＞ %>
 <div>
-<br><br>
+<br>
 <div>Have an answer?</div>
 <div class="question_sheets_box">
 <%= render partial: 'question_sheets/answer_sheet', locals: { question_sheets: @question_sheets, room: @room } %>
@@ -190,7 +190,7 @@
 <%= option_fields.text_field :title, placeholder: "オプションのタイトル" %>
 </div>
 <% end %>
-<%= form.submit "保存" %>
+<%= form.submit "作成" %>
 <% end %>
 </div>
 <%# <% ＜＜＜＜ アンケートシート作成フォーム %>

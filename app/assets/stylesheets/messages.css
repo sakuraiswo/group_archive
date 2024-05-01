@@ -9,15 +9,13 @@
 .room{
   display: flex;
   justify-content: space-around;
-  padding: 1%;
-  overflow: scroll;
+  padding: 1px;
   font-family: "Bree Serif", serif;
   font-weight: 400;
   font-style: normal;
-  height:100vh;
   background: linear-gradient(to top,lightgray, white);
-  height: 98vh;
-  width: 98vw;
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 
@@ -32,8 +30,8 @@ a{
 
 
 .left-block{
-  height:800px;
-  width: 200px;
+  height:700px;
+  width: 150px;
   /* border: solid 1px blue; */
 }
 
@@ -43,13 +41,13 @@ a{
   text-shadow:
     5px 5px 5px rgba(0, 0, 255, 0.7),
     -3px -3px 0px rgba(0, 0, 255, 0.7);
-  height:180px;
-  width: 180px;
+  height:150px;
+  width: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: solid 0.5px rgba(0, 0, 255, 0.5);
-  margin: 10px 10px 10px;
+  margin: 0px 10px 10px;
   border-radius: 10px;
   background-color: lightblue;
   box-shadow: 
@@ -58,15 +56,15 @@ a{
 }
 
 .my-memo-block{
-  height:580px;
-  width: 180px;
+  height:500px;
+  width: 150px;
   margin: 10px 10px 10px;
   position: relative;
 }
 
 .my_memo_form{
-  height:580px;
-  width: 180px;
+  height:500px;
+  width: 150px;
   font-size: 100%;
   border: solid 0.5px rgba(0, 0, 255, 0.473);
   border-radius: 10px;
@@ -113,7 +111,7 @@ a{
 .center-block{
   height:800px;
   width:780px;
-  /* border: solid 1px blue; */
+  margin-left: 10px;
 }
 
 
@@ -122,15 +120,16 @@ a{
 
 
 .group-memo-block{
-  height: 100px;
+  height: 80px;
   width: 780px;
-  font-size: 120%;
+  font-size: 100%;
   border: none;
-  position: relative;  
+  position: relative;
+  margin-left: 5px;
 }
 
 .group_memo_form{
-  height: 100px;
+  height: 80px;
   width: 780px;
   font-size: 100%;
   border: solid 0.5px rgba(0, 0, 255, 0.473);
@@ -185,24 +184,24 @@ a{
   display:flex;
   justify-content: space-around;
   align-items: center;
-  height:100px;
+  height:80px;
   width: 780px;
   padding-right: 20px;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 
 
 .my-icon-block{
-  height:90px;
-  width: 240px;
+  height:80px;
+  width: 230px;
   border: solid 0.5px rgba(0, 0, 255, 0.473);
   border-radius: 10px;
   display: flex;
 }
 
 .chat-top-name-and-icon-text{
-  height:90px;
+  height:80px;
   width: 150px;
   border-radius: 10px 0 0 10px;
 }
@@ -217,16 +216,16 @@ a{
 }
 
 .chat-top-icon-text{
-  height:70px;
+  height:60px;
   width: 150px;
   border-radius: 0 0 0 10px;
   position: relative;
-  padding: 3px;
+  padding: 0px 0px 0px;
   font-size: 90%;
 }
 
 .my-icon_form{
-  height:68px;
+  height:60px;
   width: 150px;
   border: none;
   border-radius: 0 0 0 10px;
@@ -254,7 +253,7 @@ a{
   border-radius: 10px;
   position: absolute;
   right: 2px;
-  bottom: 2px;
+  bottom: 1px;
   transition: color 0.3s, background-color 0.3s, width 0.3s;
   z-index: 3;
 }
@@ -269,8 +268,8 @@ a{
 
 
 .chat-top-user-image{
-  height:90px;
-  width: 90px;
+  height:80px;
+  width: 80px;
   border: none;
   border-radius: 10px;
   position: relative;
@@ -328,35 +327,21 @@ a{
   color: white;
 }
 
-
-.my-icon-block{
-  height:90px;
-  width: 240px;
-  border: solid 0.5px rgba(0, 0, 255, 0.473);
-  border-radius: 10px;
-  display: flex;
-}
-
 .user-icon-block{
-  height:90px;
-  width: 240px;
+  height:80px;
+  width: 230px;
   border: solid 0.5px rgba(0, 0, 255, 0.473);
   border-radius: 10px;
   display: flex;
 }
-.user-icon-block{
-  height:90px;
-  width: 240px;
-  border: solid 0.5px rgba(0, 0, 255, 0.473);
-  border-radius: 10px;
-  display: flex;
-}
+
 
 
 .message-big-box{
   overflow-y: scroll;
-  height: 450px;
+  height: 360px;
   width: 780px;
+  margin-top: 10px;
 }
 
 
@@ -424,7 +409,7 @@ a{
 
 .image0:hover img{
   transform-origin: left bottom;
-  transform: scale(2);
+  transform: scale(1.8);
 }
 
 .image1{
@@ -444,7 +429,7 @@ a{
 
 .image1:hover img{
   transform-origin: bottom center;
-  transform: scale(2);
+  transform: scale(1.8);
 }
 
 .image2{
@@ -464,7 +449,7 @@ a{
 
 .image2:hover img{
   transform-origin: bottom right;
-  transform: scale(2);
+  transform: scale(1.8);
 }
 
 
@@ -543,22 +528,22 @@ a{
 }
 
 .message-form-box{
-  height:130px;
+  height:110px;
   width: 240px;
   /* border:solid 1px blue; */
 }
 
 .message {
   font-size: 16px;
-  padding: 10px;
+  padding: 2px 10px;
   border: 2px solid #3d56e2;
   border-radius: 10px;
   width: 240px;
-  height: 100px;
+  height: 80px;
   background: linear-gradient(to top,lightblue, white);
   font-family: "Bree Serif", serif;
   font-style: normal;
-  font-size: 90%;
+  font-size: 100%;
 }
 
 .message:focus {
@@ -593,7 +578,7 @@ a{
 
 
 .user-memo-block{
-  height:130px;
+  height:110px;
   width: 240px;
   border:solid 1px blue;
   border-radius: 10px;
@@ -601,7 +586,7 @@ a{
 }
 
 .user_memo_form{
-  height:130px;
+  height:110px;
   width: 240px;
   font-size: 100%;
   border: solid 0.5px rgba(0, 0, 255, 0.473);
@@ -655,7 +640,7 @@ a{
 
 .question_sheets_box{
    overflow-y: scroll;
-   height: 360px;
+   height: 250px;
    width: 780px;
    border:solid 1px blue;
    border-radius: 10px;
@@ -776,14 +761,14 @@ a{
 
 
 .archive-block{
-  height: 800px;
+  height: 670px;
   width: 200px;
 }
 
 .archive-title{
   height: 50px;
   width: 180px;
-  margin: 0 0 0 20px ;
+  margin: 0 0 0 10px ;
   text-align: center;
   font-size: 200%;
   border: solid 0.5px rgba(0, 0, 255, 0.473);
@@ -792,12 +777,14 @@ a{
   box-shadow: 
   10px 10px 5px rgba(0,0,0,0.5),        /* 外側の影 */
   inset 0 0 0px rgba(0,0,0,0.2);  /* 内側の影 */
+  position: relative;
+  z-index: 3;
 }
 
 
 .archive-small{
   overflow-y: scroll;
-  height: 750px;
+  height: 620px;
   width: 200px;
   border-radius: 10px;
   margin: 10px;
@@ -939,11 +926,6 @@ padding-left: 3%;
 .forth{
   padding-left: 3%;
   display: flex;
-}
-
-
-.room-name-index{
-
 }
 
 
