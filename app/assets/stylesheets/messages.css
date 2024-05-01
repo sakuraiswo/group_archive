@@ -9,13 +9,13 @@
 .room{
   display: flex;
   justify-content: space-around;
-  padding: 1%;
-  overflow: scroll;
+  padding: 1px;
   font-family: "Bree Serif", serif;
   font-weight: 400;
   font-style: normal;
-  height:100vh;
-  background: linear-gradient(to top,lightgray, white)
+  background: linear-gradient(to top,lightgray, white);
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 
@@ -30,8 +30,8 @@ a{
 
 
 .left-block{
-  height:800px;
-  width: 200px;
+  height:700px;
+  width: 150px;
   /* border: solid 1px blue; */
 }
 
@@ -41,29 +41,68 @@ a{
   text-shadow:
     5px 5px 5px rgba(0, 0, 255, 0.7),
     -3px -3px 0px rgba(0, 0, 255, 0.7);
-  height:180px;
-  width: 180px;
+  height:150px;
+  width: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: solid 0.5px rgba(0, 0, 255, 0.5);
-  margin: 10px 10px 10px;
+  margin: 0px 10px 10px;
   border-radius: 10px;
   background-color: lightblue;
+  box-shadow: 
+  10px 10px 5px rgba(0,0,0,0.5),        /* 外側の影 */
+  inset 0 0 0px rgba(0,0,0,0.2);  /* 内側の影 */
 }
 
-.my-memo-box{
-  height:580px;
-  width: 180px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.my-memo-block{
+  height:500px;
+  width: 150px;
+  margin: 10px 10px 10px;
+  position: relative;
+}
+
+.my_memo_form{
+  height:500px;
+  width: 150px;
+  font-size: 100%;
   border: solid 0.5px rgba(0, 0, 255, 0.473);
-  margin: 10px 10px 10px;
   border-radius: 10px;
-  background-color: lightblue;
+  position: absolute;
+  color: black;
+  background-color: rgb(148, 186, 197);
+  padding: 10px 0 0 10px;
+  box-shadow: 
+  0 0 10px rgba(0,0,0,0.5),
+  inset 10px 10px 5px rgba(0,0,0,0.5);
+  font-family: "Bree Serif", serif;
+  font-style: normal;
 }
 
+.my_memo_form:focus {
+  border-color: rgb(245, 69, 69);    /* フォーカス時の境界線の色 */
+  outline: none;            /* フォーカス時のアウトラインを消す */
+}
+
+.my-memo-submit{
+  height: 15px;
+  width: 15px;
+  font-size: 0px;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  border-radius: 10px;
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  transition: color 0.3s, background-color 0.3s, width 0.3s;
+}
+
+.my-memo-submit:hover {
+  background-color: blue;
+  height: 15px;
+  width: 40px;
+  font-size: 9px;
+  color: white;
+}
 
 
 
@@ -72,7 +111,7 @@ a{
 .center-block{
   height:800px;
   width:780px;
-  /* border: solid 1px blue; */
+  margin-left: 10px;
 }
 
 
@@ -81,31 +120,33 @@ a{
 
 
 .group-memo-block{
-  height: 100px;
+  height: 80px;
   width: 780px;
-}
-
-.group-memo-box{
-  height: 100px;
-  width: 780px;
-  font-size: 130%;
+  font-size: 100%;
   border: none;
-  position: relative;  
+  position: relative;
+  margin-left: 5px;
 }
 
 .group_memo_form{
-  height: 100px;
+  height: 80px;
   width: 780px;
-  font-size: 130%;
+  font-size: 100%;
   border: solid 0.5px rgba(0, 0, 255, 0.473);
   border-radius: 10px;
   position: absolute;
-  font-weight: bold;
   color: white;
   text-shadow:
   3px 3px 5px blue,
   -1px -1px 0px blue;
   background-color: lightblue;
+  box-shadow: 
+  10px 10px 5px rgba(0,0,0,0.5),        /* 外側の影 */
+  inset 0 0 0px rgba(0,0,0,0.2);  /* 内側の影 */
+  z-index: 1;
+  font-family: "Bree Serif", serif;
+  font-weight: 200;
+  font-style: normal;
 }
 
 .group_memo_form:focus {
@@ -124,6 +165,7 @@ a{
   right: 2px;
   bottom: 2px;
   transition: color 0.3s, background-color 0.3s, width 0.3s;
+  z-index: 2;
 }
 
 .group-memo-submit:hover {
@@ -142,44 +184,164 @@ a{
   display:flex;
   justify-content: space-around;
   align-items: center;
-  height:100px;
+  height:80px;
   width: 780px;
   padding-right: 20px;
+  margin-top: 10px;
 }
 
 
-.current-user-name-box{
-  color:gray;
-  font-size: 200%;
-  height:90px;
-  width: 240px;
+
+.my-icon-block{
+  height:80px;
+  width: 230px;
   border: solid 0.5px rgba(0, 0, 255, 0.473);
+  border-radius: 10px;
+  display: flex;
+}
+
+.chat-top-name-and-icon-text{
+  height:80px;
+  width: 150px;
+  border-radius: 10px 0 0 10px;
+}
+
+.chat-top-name{
+  height:20px;
+  width: 150px;
+  border-radius: 10px 0 0 0;
   text-align: center;
+  font-weight: bold;
+  font-size: 110%;
+}
+
+.chat-top-icon-text{
+  height:60px;
+  width: 150px;
+  border-radius: 0 0 0 10px;
+  position: relative;
+  padding: 0px 0px 0px;
+  font-size: 90%;
+}
+
+.my-icon_form{
+  height:60px;
+  width: 150px;
+  border: none;
+  border-radius: 0 0 0 10px;
+  background-color: transparent;
+  position: absolute;
+  z-index: 2;
+  left: 0px;
+  bottom: 0px;
+  font-family: "Bree Serif", serif;
+  font-style: normal;
+  font-size: 100%;
+}
+
+.my-icon_form:focus {
+  border: solid 0.5px rgb(245, 69, 69);
+  outline: none;
   border-radius: 10px;
 }
-.user1-name-box{
-  color:gray;
-  font-size: 200%;
-  height:90px;
-  width: 240px;
+
+.my-icon-submit{
+  height: 15px;
+  width: 15px;
+  font-size: 0px;
   border: solid 0.5px rgba(0, 0, 255, 0.473);
-  text-align: center;
   border-radius: 10px;
+  position: absolute;
+  right: 2px;
+  bottom: 1px;
+  transition: color 0.3s, background-color 0.3s, width 0.3s;
+  z-index: 3;
 }
-.user2-name-box{
-  color:gray;
-  font-size: 200%;
-  height:90px;
-  width: 240px;
+
+.my-icon-submit:hover {
+  background-color: blue;
+  height: 15px;
+  width: 40px;
+  font-size: 9px;
+  color: white;
+}
+
+
+.chat-top-user-image{
+  height:80px;
+  width: 80px;
+  border: none;
+  border-radius: 10px;
+  position: relative;
+  object-fit: cover;
+}
+
+.my-icon-image-label{
+  height:15px;
+  width: 15px;
+  font-size: 50%;
+  border-radius: 10px;
+  position: absolute;
+  right: 20px;
+  bottom: 1px;
+  background-color: rgba(255, 255, 255, 0.75);
+  color: transparent;
   border: solid 0.5px rgba(0, 0, 255, 0.473);
-  text-align: center;
-  border-radius: 10px;
 }
+
+.my-icon-image-form{
+  height:15px;
+  width: 15px;
+  font-size: 50%;
+  border: none;
+  border-radius: 10px;
+  background-color: transparent;
+  position: absolute;
+  right: 20px;
+  bottom: 2px;
+  border: none;
+  font-weight: bold;
+  color: transparent;
+  opacity: 0;
+}
+
+
+.my-icon-image-submit{
+  height: 15px;
+  width: 15px;
+  font-size: 0px;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  border-radius: 10px;
+  position: absolute;
+  right: 2px;
+  bottom: 1px;
+  transition: color 0.3s, background-color 0.3s, width 0.3s;
+  z-index: 3;
+}
+
+.my-icon-image-submit:hover {
+  background-color: blue;
+  height: 15px;
+  width: 40px;
+  font-size: 9px;
+  color: white;
+}
+
+.user-icon-block{
+  height:80px;
+  width: 230px;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  border-radius: 10px;
+  display: flex;
+}
+
+
 
 .message-big-box{
   overflow-y: scroll;
-  height: 450px;
+  height: 360px;
   width: 780px;
+  margin-top: 10px;
 }
 
 
@@ -230,11 +392,6 @@ a{
   /* border:solid 1px green; */
 }
 
-.all-messages-box{
-  /* border:solid 1px green; */
-}
-
-
 .image0{
   width: 250px;
   display: flex;
@@ -252,7 +409,7 @@ a{
 
 .image0:hover img{
   transform-origin: left bottom;
-  transform: scale(2);
+  transform: scale(1.8);
 }
 
 .image1{
@@ -272,7 +429,7 @@ a{
 
 .image1:hover img{
   transform-origin: bottom center;
-  transform: scale(2);
+  transform: scale(1.8);
 }
 
 .image2{
@@ -292,7 +449,7 @@ a{
 
 .image2:hover img{
   transform-origin: bottom right;
-  transform: scale(2);
+  transform: scale(1.8);
 }
 
 
@@ -355,6 +512,8 @@ a{
 
 
 
+
+
           /* ----------------センターボトムブロック------------------- */
 
 
@@ -369,19 +528,22 @@ a{
 }
 
 .message-form-box{
-  height:130px;
+  height:110px;
   width: 240px;
   /* border:solid 1px blue; */
 }
 
 .message {
-  font-size: 16px;          /* フォントサイズ */
-  padding: 10px;            /* 内側の余白 */
-  border: 2px solid #3d56e2;   /* 境界線のスタイル */
-  border-radius: 10px;       /* 境界線の角を丸くする */
-  width: 240px;             /* 幅の設定 */
-  height: 100px;
-  background: linear-gradient(to top,lightblue, white)
+  font-size: 16px;
+  padding: 2px 10px;
+  border: 2px solid #3d56e2;
+  border-radius: 10px;
+  width: 240px;
+  height: 80px;
+  background: linear-gradient(to top,lightblue, white);
+  font-family: "Bree Serif", serif;
+  font-style: normal;
+  font-size: 100%;
 }
 
 .message:focus {
@@ -393,10 +555,6 @@ a{
   display: flex;
   justify-content: space-between;
   /* border: solid 1px blue; */
-}
-
-.form-image{
-
 }
 
 .image{
@@ -419,20 +577,61 @@ a{
 }
 
 
-
-.user1-memo-box{
-  height:130px;
+.user-memo-block{
+  height:110px;
   width: 240px;
   border:solid 1px blue;
   border-radius: 10px;
+  position: relative;
 }
 
-.user2-memo-box{
-  height:130px;
+.user_memo_form{
+  height:110px;
   width: 240px;
-  border:solid 1px blue;
+  font-size: 100%;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
   border-radius: 10px;
+  position: absolute;
+  color: black;
+  background-color: rgb(148, 186, 197);
+  padding: 10px 0 0 10px;
+  box-shadow: 
+  0 0 10px rgba(0,0,0,0.5),
+  inset 10px 10px 5px rgba(0,0,0,0.5);
+  font-family: "Bree Serif", serif;
+  font-style: normal;
 }
+
+.user_memo_form:focus {
+  border-color: rgb(245, 69, 69);    /* フォーカス時の境界線の色 */
+  outline: none;            /* フォーカス時のアウトラインを消す */
+}
+
+.user-memo-submit{
+  height: 15px;
+  width: 15px;
+  font-size: 0px;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  border-radius: 10px;
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  transition: color 0.3s, background-color 0.3s, width 0.3s;
+}
+
+.user-memo-submit:hover {
+  background-color: blue;
+  height: 15px;
+  width: 40px;
+  font-size: 9px;
+  color: white;
+}
+
+
+
+
+
+
 
 
 /* -----------------------アンケートブロック------------------------- */
@@ -441,7 +640,7 @@ a{
 
 .question_sheets_box{
    overflow-y: scroll;
-   height: 240px;
+   height: 250px;
    width: 780px;
    border:solid 1px blue;
    border-radius: 10px;
@@ -561,19 +760,34 @@ a{
 /* ----------------ライトブロック・アーカイブブロック------------------- */
 
 
-/* .archive{
-  overflow: visible;
-  height: 800px;
+.archive-block{
+  height: 670px;
   width: 200px;
-  border:solid 1px green; */
-  /* position: relative; */
-/* } */
+}
+
+.archive-title{
+  height: 50px;
+  width: 180px;
+  margin: 0 0 0 10px ;
+  text-align: center;
+  font-size: 200%;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  border-radius: 10px;
+  background-color: lightblue;
+  box-shadow: 
+  10px 10px 5px rgba(0,0,0,0.5),        /* 外側の影 */
+  inset 0 0 0px rgba(0,0,0,0.2);  /* 内側の影 */
+  position: relative;
+  z-index: 3;
+}
+
 
 .archive-small{
   overflow-y: scroll;
-  height: 800px;
+  height: 620px;
   width: 200px;
   border-radius: 10px;
+  margin: 10px;
 }
 
 .archive-image-box{
@@ -712,11 +926,6 @@ padding-left: 3%;
 .forth{
   padding-left: 3%;
   display: flex;
-}
-
-
-.room-name-index{
-
 }
 
 

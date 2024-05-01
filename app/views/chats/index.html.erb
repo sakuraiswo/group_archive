@@ -11,9 +11,15 @@
     </div>
 
 
-      <div class="my-memo-box">
-      <%= link_to "メモ用スペース", root_path %>
+      <div class="my-memo-block">
+          <div class="my-memo-box">
+            <%= form_with model: [@room, @memo], local: true do |f| %>
+              <%= f.text_area :my_memo, class: 'my_memo_form', id: "my_memo_form", placeholder: 'ここに書いたメモは自分以外のユーザーには表示されません' %>
+              <%= f.submit '更新', class: 'my-memo-submit', id: "my-memo-submit" %>
+            <% end %>
+          </div>
       </div>
+      <%= link_to "my page", root_path %>
   </div>
 
 
@@ -24,33 +30,97 @@
 <div class="center-block">
 
   <div class="group-memo-block">
-    <div class="group-memo-box">
-      <%= form_with model: @room, url: room_path(@room), local: true do |f| %>
-        <%= f.text_area :group_memo, class: 'group_memo_form', id: "group_memo_form", placeholder: '共有メモボード' %>
-        <%= f.submit '更新', class: 'group-memo-submit', id: "group-memo-submit" %>
-      <% end %>
-    </div>
+    <%= form_with model: @room, url: room_path(@room), local: true do |f| %>
+      <%= f.text_area :group_memo, class: 'group_memo_form', id: "group_memo_form", placeholder: 'ここに書いたメモはユーザー全員に表示されます' %>
+      <%= f.submit '更新', class: 'group-memo-submit', id: "group-memo-submit" %>
+    <% end %>
   </div>
 
 
   <div class="message-name-box" >
-      <div class="current-user-name-box">
-        <%= current_user.nickname %>
+      <div class="my-icon-block">
+        <div class="chat-top-name-and-icon-text">
+          <div class="chat-top-name">
+            <%= current_user.nickname %>
+          </div>
+          <div class="chat-top-icon-text">
+            <%= form_with model: [@room, @memo], local: true do |f| %>
+              <%= f.text_area :my_icon, class: 'my-icon_form', id: "my-icon_form", placeholder: 'ここに書いたメモはユーザー全員に表示されます' %>
+              <%= f.submit '更新', class: 'my-icon-submit', id: "my-icon-submit" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="chat-top-user-image">
+          <%= image_tag @memo.image, class: 'chat-top-user-image' if @memo && @memo.image.attached? %>
+          <%= form_with model: [@room, @memo], local: true do |f| %>
+            <div class="my-icon-image-label">ボ</div>
+            <%= f.file_field :image, class: 'my-icon-image-form' , id: "my-icon-image-form" %>
+            <%= f.submit '更新', class: 'my-icon-image-submit', id: "my-icon-image-submit" %>
+          <% end %>
+        </div>
       </div>
-      <div class="user1-name-box">
         <% if current_user.id == @room_users[0].user_id %>
-          <%= @room_users[1].user.nickname %>
+        <div class="user-icon-block">
+          <div class="chat-top-name-and-icon-text">
+            <div class="chat-top-name">
+            <%= @room_users[1].user.nickname %>
+            </div>
+            <% memo01 = @room_users[1].user.memos.find_by(room_id: @room.id) %>
+            <div class="chat-top-icon-text">
+            <%= memo01.my_icon if memo01 %>
+            </div>
+          </div>
+          <div class="chat-top-user-image">
+            <%= image_tag memo01.image, class: 'chat-top-user-image' if memo01 && memo01.image.attached? %>
+          </div>
+        </div>
         <% else %>
-          <%= @room_users[0].user.nickname %>
+        <div class="user-icon-block">
+          <div class="chat-top-name-and-icon-text">
+            <div class="chat-top-name">
+            <%= @room_users[0].user.nickname %>
+            </div>
+            <% memo00 = @room_users[0].user.memos.find_by(room_id: @room.id) %>
+            <div class="chat-top-icon-text">
+            <%= memo00.my_icon if memo00 %>
+            </div>
+          </div>
+          <div class="chat-top-user-image">
+            <%= image_tag memo00.image, class: 'chat-top-user-image' if memo00 && memo00.image.attached? %>
+          </div>
+        </div>
         <% end %>
-      </div>
-      <div class="user2-name-box">
         <% if current_user.id == @room_users[2].user_id %>
-          <%= @room_users[1].user.nickname %>
+        <div class="user-icon-block">
+          <div class="chat-top-name-and-icon-text">
+            <div class="chat-top-name">
+            <%= @room_users[1].user.nickname %>
+            </div>
+            <% memo01 = @room_users[1].user.memos.find_by(room_id: @room.id) %>
+            <div class="chat-top-icon-text">
+            <%= memo01.my_icon if memo01 %>
+            </div>
+          </div>
+          <div class="chat-top-user-image">
+            <%= image_tag memo01.image, class: 'chat-top-user-image' if memo01 && memo01.image.attached? %>
+          </div>
+        </div>
         <% else %>
-          <%= @room_users[2].user.nickname %>
+        <div class="user-icon-block">
+          <div class="chat-top-name-and-icon-text">
+            <div class="chat-top-name">
+            <%= @room_users[2].user.nickname %>
+            </div>
+            <% memo02 = @room_users[2].user.memos.find_by(room_id: @room.id) %>
+            <div class="chat-top-icon-text">
+            <%= memo02.my_icon if memo02 %>
+            </div>
+          </div>
+          <div class="chat-top-user-image">
+            <%= image_tag memo02.image, class: 'chat-top-user-image' if memo02 && memo02.image.attached? %>
+          </div>
+        </div>
         <% end %>
-      </div>
   </div>
 
 
@@ -75,11 +145,24 @@
       <% end %>
     </div>
 
-    <div class="user1-memo-box">
-    </div>
 
-    <div class="user2-memo-box">
-    </div>
+      <div class="user-memo-block">
+          <div class="user-memo-box">
+            <%= form_with model: [@room, @memo], local: true do |f| %>
+              <%= f.text_area :user1_memo, class: 'user_memo_form', id: "user1_memo_form", placeholder: 'ここに書いたメモは自分以外のユーザーには表示されません' %>
+              <%= f.submit '更新', class: 'user-memo-submit', id: "user1-memo-submit" %>
+            <% end %>
+          </div>
+      </div>
+
+      <div class="user-memo-block">
+          <div class="user-memo-box">
+            <%= form_with model: [@room, @memo], local: true do |f| %>
+              <%= f.text_area :user2_memo, class: 'user_memo_form', id: "user2_memo_form", placeholder: 'ここに書いたメモは自分以外のユーザーには表示されません' %>
+              <%= f.submit '更新', class: 'user-memo-submit', id: "user2-memo-submit" %>
+            <% end %>
+          </div>
+      </div>
 
 
   </div>
@@ -88,7 +171,7 @@
  
 <%# <% アンケートシート回答ページ ＞＞＞＞ %>
 <div>
-<br><br>
+<br>
 <div>Have an answer?</div>
 <div class="question_sheets_box">
 <%= render partial: 'question_sheets/answer_sheet', locals: { question_sheets: @question_sheets, room: @room } %>
@@ -107,7 +190,7 @@
 <%= option_fields.text_field :title, placeholder: "オプションのタイトル" %>
 </div>
 <% end %>
-<%= form.submit "保存" %>
+<%= form.submit "作成" %>
 <% end %>
 </div>
 <%# <% ＜＜＜＜ アンケートシート作成フォーム %>
@@ -120,10 +203,13 @@
 
 <%# アーカイブブロック ＞＞＞＞%>
 
-<div class="archive">
-<div class="archive-small" id="archive-small">
-  <%= render partial: 'archives/archive', collection: @archives %>
-</div>
+<div class="archive-block">
+  <div class="archive-title">
+    Archive
+  </div>
+  <div class="archive-small" id="archive-small">
+    <%= render partial: 'archives/archive', collection: @archives %>
+  </div>
 </div>
 
 <%# ＜＜＜＜ アーカイブブロック %>
