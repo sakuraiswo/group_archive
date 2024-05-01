@@ -82,7 +82,7 @@
             </div>
             <% memo00 = @room_users[0].user.memos.find_by(room_id: @room.id) %>
             <div class="chat-top-icon-text">
-            <%= memo00.my_icon if memo01 %>
+            <%= memo00.my_icon if memo00 %>
             </div>
           </div>
           <div class="chat-top-user-image">
@@ -203,10 +203,13 @@
 
 <%# アーカイブブロック ＞＞＞＞%>
 
-<div class="archive">
-<div class="archive-small" id="archive-small">
-  <%= render partial: 'archives/archive', collection: @archives %>
-</div>
+<div class="archive-block">
+  <div class="archive-title">
+    Archive
+  </div>
+  <div class="archive-small" id="archive-small">
+    <%= render partial: 'archives/archive', collection: @archives %>
+  </div>
 </div>
 
 <%# ＜＜＜＜ アーカイブブロック %>

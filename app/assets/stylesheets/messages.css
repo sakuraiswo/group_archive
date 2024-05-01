@@ -67,20 +67,18 @@ a{
 .my_memo_form{
   height:580px;
   width: 180px;
-  font-size: 130%;
+  font-size: 100%;
   border: solid 0.5px rgba(0, 0, 255, 0.473);
   border-radius: 10px;
   position: absolute;
-  font-weight: bold;
-  color: white;
-  text-shadow:
-  3px 3px 5px blue,
-  -1px -1px 0px blue;
+  color: black;
   background-color: rgb(148, 186, 197);
   padding: 10px 0 0 10px;
   box-shadow: 
   0 0 10px rgba(0,0,0,0.5),
   inset 10px 10px 5px rgba(0,0,0,0.5);
+  font-family: "Bree Serif", serif;
+  font-style: normal;
 }
 
 .my_memo_form:focus {
@@ -134,11 +132,10 @@ a{
 .group_memo_form{
   height: 100px;
   width: 780px;
-  font-size: 130%;
+  font-size: 110%;
   border: solid 0.5px rgba(0, 0, 255, 0.473);
   border-radius: 10px;
   position: absolute;
-  font-weight: bold;
   color: white;
   text-shadow:
   3px 3px 5px blue,
@@ -148,6 +145,9 @@ a{
   10px 10px 5px rgba(0,0,0,0.5),        /* 外側の影 */
   inset 0 0 0px rgba(0,0,0,0.2);  /* 内側の影 */
   z-index: 1;
+  font-family: "Bree Serif", serif;
+  font-weight: 200;
+  font-style: normal;
 }
 
 .group_memo_form:focus {
@@ -208,7 +208,7 @@ a{
 }
 
 .chat-top-name{
-  height:30px;
+  height:20px;
   width: 150px;
   border-radius: 10px 0 0 0;
   text-align: center;
@@ -217,7 +217,7 @@ a{
 }
 
 .chat-top-icon-text{
-  height:60px;
+  height:70px;
   width: 150px;
   border-radius: 0 0 0 10px;
   position: relative;
@@ -226,15 +226,18 @@ a{
 }
 
 .my-icon_form{
-  font-size: 120%;
-  height:60px;
+  height:68px;
   width: 150px;
   border: none;
   border-radius: 0 0 0 10px;
   background-color: transparent;
   position: absolute;
   z-index: 2;
-  padding: 2px;
+  left: 0px;
+  bottom: 0px;
+  font-family: "Bree Serif", serif;
+  font-style: normal;
+  font-size: 100%;
 }
 
 .my-icon_form:focus {
@@ -404,11 +407,6 @@ a{
   /* border:solid 1px green; */
 }
 
-.all-messages-box{
-  /* border:solid 1px green; */
-}
-
-
 .image0{
   width: 250px;
   display: flex;
@@ -551,13 +549,16 @@ a{
 }
 
 .message {
-  font-size: 16px;          /* フォントサイズ */
-  padding: 10px;            /* 内側の余白 */
-  border: 2px solid #3d56e2;   /* 境界線のスタイル */
-  border-radius: 10px;       /* 境界線の角を丸くする */
-  width: 240px;             /* 幅の設定 */
+  font-size: 16px;
+  padding: 10px;
+  border: 2px solid #3d56e2;
+  border-radius: 10px;
+  width: 240px;
   height: 100px;
-  background: linear-gradient(to top,lightblue, white)
+  background: linear-gradient(to top,lightblue, white);
+  font-family: "Bree Serif", serif;
+  font-style: normal;
+  font-size: 90%;
 }
 
 .message:focus {
@@ -569,10 +570,6 @@ a{
   display: flex;
   justify-content: space-between;
   /* border: solid 1px blue; */
-}
-
-.form-image{
-
 }
 
 .image{
@@ -610,16 +607,14 @@ a{
   border: solid 0.5px rgba(0, 0, 255, 0.473);
   border-radius: 10px;
   position: absolute;
-  font-weight: bold;
-  color: white;
-  text-shadow:
-  3px 3px 5px blue,
-  -1px -1px 0px blue;
+  color: black;
   background-color: rgb(148, 186, 197);
   padding: 10px 0 0 10px;
   box-shadow: 
   0 0 10px rgba(0,0,0,0.5),
   inset 10px 10px 5px rgba(0,0,0,0.5);
+  font-family: "Bree Serif", serif;
+  font-style: normal;
 }
 
 .user_memo_form:focus {
@@ -780,17 +775,29 @@ a{
 /* ----------------ライトブロック・アーカイブブロック------------------- */
 
 
-/* .archive{
-  overflow: visible;
+.archive-block{
   height: 800px;
   width: 200px;
-  border:solid 1px green; */
-  /* position: relative; */
-/* } */
+}
+
+.archive-title{
+  height: 50px;
+  width: 180px;
+  margin: 0 0 0 20px ;
+  text-align: center;
+  font-size: 200%;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  border-radius: 10px;
+  background-color: lightblue;
+  box-shadow: 
+  10px 10px 5px rgba(0,0,0,0.5),        /* 外側の影 */
+  inset 0 0 0px rgba(0,0,0,0.2);  /* 内側の影 */
+}
+
 
 .archive-small{
   overflow-y: scroll;
-  height: 800px;
+  height: 750px;
   width: 200px;
   border-radius: 10px;
   margin: 10px;
