@@ -52,6 +52,9 @@ a{
   margin: 10px 10px 10px;
   border-radius: 10px;
   background-color: lightblue;
+  box-shadow: 
+  10px 10px 5px rgba(0,0,0,0.5),        /* 外側の影 */
+  inset 0 0 0px rgba(0,0,0,0.2);  /* 内側の影 */
 }
 
 .my-memo-block{
@@ -73,7 +76,11 @@ a{
   text-shadow:
   3px 3px 5px blue,
   -1px -1px 0px blue;
-  background-color: lightblue;
+  background-color: rgb(148, 186, 197);
+  padding: 10px 0 0 10px;
+  box-shadow: 
+  0 0 10px rgba(0,0,0,0.5),
+  inset 10px 10px 5px rgba(0,0,0,0.5);
 }
 
 .my_memo_form:focus {
@@ -119,11 +126,6 @@ a{
 .group-memo-block{
   height: 100px;
   width: 780px;
-}
-
-.group-memo-box{
-  height: 100px;
-  width: 780px;
   font-size: 130%;
   border: none;
   position: relative;  
@@ -142,6 +144,10 @@ a{
   3px 3px 5px blue,
   -1px -1px 0px blue;
   background-color: lightblue;
+  box-shadow: 
+  10px 10px 5px rgba(0,0,0,0.5),        /* 外側の影 */
+  inset 0 0 0px rgba(0,0,0,0.2);  /* 内側の影 */
+  z-index: 1;
 }
 
 .group_memo_form:focus {
@@ -160,6 +166,7 @@ a{
   right: 2px;
   bottom: 2px;
   transition: color 0.3s, background-color 0.3s, width 0.3s;
+  z-index: 2;
 }
 
 .group-memo-submit:hover {
@@ -181,6 +188,7 @@ a{
   height:100px;
   width: 780px;
   padding-right: 20px;
+  margin-top: 5px;
 }
 
 
@@ -188,28 +196,51 @@ a{
 .my-icon-block{
   height:90px;
   width: 240px;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
   border-radius: 10px;
+  display: flex;
+}
+
+.chat-top-name-and-icon-text{
+  height:90px;
+  width: 150px;
+  border-radius: 10px 0 0 10px;
+}
+
+.chat-top-name{
+  height:30px;
+  width: 150px;
+  border-radius: 10px 0 0 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 110%;
+}
+
+.chat-top-icon-text{
+  height:60px;
+  width: 150px;
+  border-radius: 0 0 0 10px;
   position: relative;
+  padding: 3px;
+  font-size: 90%;
 }
 
 .my-icon_form{
-  height:90px;
-  width: 240px;
-  font-size: 100%;
-  border: solid 0.5px rgba(0, 0, 255, 0.473);
-  border-radius: 10px;
+  font-size: 120%;
+  height:60px;
+  width: 150px;
+  border: none;
+  border-radius: 0 0 0 10px;
+  background-color: transparent;
   position: absolute;
-  font-weight: bold;
-  color: white;
-  text-shadow:
-  3px 3px 5px blue,
-  -1px -1px 0px blue;
-  background-color: lightblue;
+  z-index: 2;
+  padding: 2px;
 }
 
 .my-icon_form:focus {
-  border-color: rgb(245, 69, 69);    /* フォーカス時の境界線の色 */
-  outline: none;            /* フォーカス時のアウトラインを消す */
+  border: solid 0.5px rgb(245, 69, 69);
+  outline: none;
+  border-radius: 10px;
 }
 
 .my-icon-submit{
@@ -222,6 +253,7 @@ a{
   right: 2px;
   bottom: 2px;
   transition: color 0.3s, background-color 0.3s, width 0.3s;
+  z-index: 3;
 }
 
 .my-icon-submit:hover {
@@ -233,39 +265,90 @@ a{
 }
 
 
+.chat-top-user-image{
+  height:90px;
+  width: 90px;
+  border: none;
+  border-radius: 10px;
+  position: relative;
+  object-fit: cover;
+}
+
+.my-icon-image-label{
+  height:15px;
+  width: 15px;
+  font-size: 50%;
+  border-radius: 10px;
+  position: absolute;
+  right: 20px;
+  bottom: 1px;
+  background-color: rgba(255, 255, 255, 0.75);
+  color: transparent;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+}
+
+.my-icon-image-form{
+  height:15px;
+  width: 15px;
+  font-size: 50%;
+  border: none;
+  border-radius: 10px;
+  background-color: transparent;
+  position: absolute;
+  right: 20px;
+  bottom: 2px;
+  border: none;
+  font-weight: bold;
+  color: transparent;
+  opacity: 0;
+}
 
 
+.my-icon-image-submit{
+  height: 15px;
+  width: 15px;
+  font-size: 0px;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  border-radius: 10px;
+  position: absolute;
+  right: 2px;
+  bottom: 1px;
+  transition: color 0.3s, background-color 0.3s, width 0.3s;
+  z-index: 3;
+}
+
+.my-icon-image-submit:hover {
+  background-color: blue;
+  height: 15px;
+  width: 40px;
+  font-size: 9px;
+  color: white;
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-.user1-name-box{
-  color:gray;
-  font-size: 200%;
+.my-icon-block{
   height:90px;
   width: 240px;
   border: solid 0.5px rgba(0, 0, 255, 0.473);
-  text-align: center;
   border-radius: 10px;
+  display: flex;
 }
-.user2-name-box{
-  color:gray;
-  font-size: 200%;
+
+.user-icon-block{
   height:90px;
   width: 240px;
   border: solid 0.5px rgba(0, 0, 255, 0.473);
-  text-align: center;
   border-radius: 10px;
+  display: flex;
 }
+.user-icon-block{
+  height:90px;
+  width: 240px;
+  border: solid 0.5px rgba(0, 0, 255, 0.473);
+  border-radius: 10px;
+  display: flex;
+}
+
 
 .message-big-box{
   overflow-y: scroll;
@@ -532,7 +615,11 @@ a{
   text-shadow:
   3px 3px 5px blue,
   -1px -1px 0px blue;
-  background-color: lightblue;
+  background-color: rgb(148, 186, 197);
+  padding: 10px 0 0 10px;
+  box-shadow: 
+  0 0 10px rgba(0,0,0,0.5),
+  inset 10px 10px 5px rgba(0,0,0,0.5);
 }
 
 .user_memo_form:focus {
@@ -573,7 +660,7 @@ a{
 
 .question_sheets_box{
    overflow-y: scroll;
-   height: 240px;
+   height: 360px;
    width: 780px;
    border:solid 1px blue;
    border-radius: 10px;
