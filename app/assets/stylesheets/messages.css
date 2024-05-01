@@ -124,7 +124,7 @@ a{
 .group-memo-block{
   height: 100px;
   width: 780px;
-  font-size: 130%;
+  font-size: 120%;
   border: none;
   position: relative;  
 }
@@ -132,7 +132,7 @@ a{
 .group_memo_form{
   height: 100px;
   width: 780px;
-  font-size: 110%;
+  font-size: 100%;
   border: solid 0.5px rgba(0, 0, 255, 0.473);
   border-radius: 10px;
   position: absolute;
