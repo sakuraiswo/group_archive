@@ -1,5 +1,4 @@
 class QuestionSheetsController < ApplicationController
-
   before_action :set_room
 
   def index
@@ -23,7 +22,6 @@ class QuestionSheetsController < ApplicationController
     redirect_to room_chats_path(@room)
   end
 
-
   private
 
   def set_room
@@ -32,8 +30,7 @@ class QuestionSheetsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def question_sheet_params
-    params.require(:question_sheet).permit(:question, options_attributes: [:id, :title, :_destroy]).merge(user_id: current_user.id)
+    params.require(:question_sheet).permit(:question,
+                                           options_attributes: %i[id title _destroy]).merge(user_id: current_user.id)
   end
-
-
 end

@@ -2,11 +2,11 @@ class ChatsController < ApplicationController
   before_action :set_room
 
   def index
-    if @room.memos.find_by(user_id: current_user.id).present?
-      @memo = @room.memos.find_by(user_id: current_user.id)
-    else
-      @memo = Memo.new
-    end
+    @memo = if @room.memos.find_by(user_id: current_user.id).present?
+              @room.memos.find_by(user_id: current_user.id)
+            else
+              Memo.new
+            end
     @question_sheet = QuestionSheet.new
     5.times { @question_sheet.options.build }
     @archive = Archive.new
@@ -41,7 +41,7 @@ class ChatsController < ApplicationController
 
   def set_room
     @room = Room.find(params[:room_id])
-   end
+  end
 
   def chat_params
     params.require(:chat).permit(:message, :image).merge(user_id: current_user.id)
