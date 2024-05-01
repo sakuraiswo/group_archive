@@ -23,4 +23,5 @@ class User < ApplicationRecord
   has_many :question_sheets, through: :question_sheets_users
   has_many :memos
   has_many :archives
+  has_many :answers
 end

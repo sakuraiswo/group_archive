@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
     post 'save-image', to: 'archives#create', as: 'save_image'
     resources :archives, only: %i[create destroy]
+    resources :memos, only: %i[create update]
     resources :chats, only: %i[index create destroy] do
       member do
         get 'stream'
