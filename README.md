@@ -6,24 +6,27 @@
 Group Archive（グループ アーカイブ）
 
 # アプリケーション概要
-画像だけじゃなく、「言葉」も思い出として残すことができる。
+画像だけじゃなく、「言葉」も思い出として残すことができる。  
 嬉しい言葉、笑える言葉、大事な言葉、すべて画像で残して共有できる。
 
 # URL
 https://group-archive.onrender.com
 
 # テスト用アカウント
-・Basic認証ID：admin
-・Basic認証パスワード：1111
-ユーザー1
-・メールアドレス：a@a
-・パスワード：aaa111
-ユーザー2
-・メールアドレス：b@b
-・パスワード：aaa111
-ユーザー3
-・メールアドレス：c@c
-・パスワード：aaa111
+・Basic認証ID：admin  
+・Basic認証パスワード：1111  
+
+ユーザー1  
+・メールアドレス：a@a  
+・パスワード：aaa111  
+
+ユーザー2  
+・メールアドレス：b@b  
+・パスワード：aaa111  
+
+ユーザー3  
+・メールアドレス：c@c  
+・パスワード：aaa111  
 
 
 # 利用方法
@@ -40,165 +43,50 @@ https://group-archive.onrender.com
 ・アンケート機能
 
 # アプリケーションを作成した背景
+家族や友達がチャットで送ってくれた言葉を、ときには思い出の写真と同じように大切にしたいときがあります。また、大切な相手であれば、相手の好みや趣味、記念日などを覚えていたいと思ったりします。ですが、大切にしたい言葉や情報も、いずれ普段のチャットのやり取りの中に埋もれてしまいます。そこで、記録に残したいと思ったときにすぐに、アルバムの中にしまうようなイメージで、保存できるチャットアプリを開発することにしました。
 
 # 洗い出した要件
+https://docs.google.com/spreadsheets/d/1I-EgpxF6DWjk98mKD3zFlLVFD0y9m8Qu9XVqvRaqRi0/edit#gid=982722306
 
 # 実装した機能についての画像やGIFおよびその説明
 
 # 実装予定の機能
+アーカイブ編集機能（アーカイブ画像の表示順の入替、補足情報付与などの機能）
+アルバム機能（アーカイブ画像をフォルダ毎に分けることのできる機能）
+リマインダー機能（連絡の予定などが通知される機能）
+カレンダー機能（予定が書き込める機能）
+スタンプ機能（スタンプを送ることのできる機能）
+リアクション機能（相手の投稿にリアクションを付けることのできる機能）
+壁紙着せ替え機能（チャットルーム毎に自由に壁紙を変えることのできる機能）
+特別演出機能（登録した日、例えば、誰かの誕生日などに特定の演出が起こる機能）
+MyMap作成機能（GoogleMapとの連携、Maps JavaScript APIの利用。GoogleMap上にマークやテキストを載せることができ、Archive機能で保存できる機能）
+ルーレット機能（決められない事柄を運が決めてくれる機能）
+ChatGPT API導入（機能の概要は考え中）
+その他（フレンド管理機能、フレンド検索機能、非同期通信の実装、ルーム削除機能などの基本機能）
 
 # データベース設計
+![Logo](images/entity_relationship_diagram.png)
 
 # 画面遷移図
 ![Logo](images/screen_transition_diagram.png)
 
-<br>
+# 開発環境
+・フロントエンド HTML,CSS,JavaScript
+・バックエンド Ruby, Ruby on Rails
+・インフラ Linux,Render
+・テスト Rspec
+・テキストエディタ VScode
+・タスク管理 GitHub
 
-## ER図
-![Logo](images/entity_relationship_diagram.png)
+# ローカルでの動作方法
+以下のコマンドを順に実行。
+% git clone https://github.com/sakuraiswo/group_archive.git
+% cd group_archive
+% bundle install
+% yarn install
 
-<br><br>
-
-# テーブル設計
-
-## users テーブル
-
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| email              | string | null: false, unique: true |
-| encrypted_password | string | null: false |
-| nickname           | string | null: false |
-| profile            | string | null: false |
-
-### Association
-
-- has_many :room_users
-- has_many :rooms, through: :room_users
-- has_many :chats
-- has_many :question_sheets
-- has_many :answers
-- has_many :memos
-- has_many :archives
-
-
-## rooms テーブル
-
-| Column            | Type    | Options     |
-| ----------------- | ------- | ----------- |
-| room_name         | string  | null: false |
-| group_memo        | text    | null: false |
-
-### Association
-
-- has_many :room_users
-- has_many :users, through: :room_users
-- has_many :chats
-- has_many :question_sheets
-- has_many :memos
-- has_many :archives
-
-
-## room_users テーブル
-
-| Column            | Type    | Options     |
-| ----------------- | ------- | ----------- |
-| user_id           | references | null: false, foreign_key: true |
-| room_id           | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :user
-- belongs_to :room
+# 工夫したポイント
 
 
 
-## chats テーブル
 
-| Column            | Type       | Options     |
-| ----------------- | ---------- | ----------- |
-| message           | text       | null: false |
-| user_id           | references | null: false, foreign_key: true |
-| room_id           | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :user
-- belongs_to :room
-- has_one_attached :image
-
-
-## question_sheets テーブル
-
-| Column            | Type       | Options     |
-| ----------------- | ---------- | ----------- |
-| question          | text       | null: false |
-| user_id           | references | null: false, foreign_key: true |
-| room_id           | references | null: false, foreign_key: true |
-
-### Association
-
-- has_many :options
-- has_many :answers
-- belongs_to :user
-- belongs_to :room
-
-
-## options テーブル
-
-| Column                  | Type       | Options     |
-| ----------------------- | ---------- | ----------- |
-| title                   | text       | null: false |
-| question_sheet_id       | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :question_sheet
-- has_many :answers
-
-
-## answers テーブル
-
-| Column                  | Type       | Options     |
-| ----------------------- | ---------- | ----------- |
-| answer_text             | text
-| user_id                 | references | null: false, foreign_key: true |
-| question_sheet_id       | references | null: false, foreign_key: true |
-| option_id               | references | null: true, foreign_key: true  |
-
-### Association
-
-- belongs_to :user
-- belongs_to :question_sheet
-- belongs_to :option
-
-
-## memos テーブル
-
-| Column            | Type       | Options     |
-| ----------------- | ---------- | ----------- |
-| my_memo           | text       
-| user1_memo        | text       
-| user2_memo        | text       
-| user_id           | references | null: false, foreign_key: true |
-| room_id           | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :user
-- belongs_to :room
-
-
-## archives テーブル
-
-| Column            | Type       | Options     |
-| ----------------- | ---------- | ----------- |
-| supplement        | string       
-| display_order     | float      | null: false |
-| user_id           | references | null: false, foreign_key: true |
-| room_id           | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :user
-- belongs_to :room
-- has_one_attached :image
