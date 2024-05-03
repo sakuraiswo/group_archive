@@ -19,7 +19,7 @@
             <% end %>
           </div>
       </div>
-      <%= link_to "my page", root_path %>
+      　<%= link_to "my page", root_path %>
   </div>
 
 
@@ -51,7 +51,11 @@
           </div>
         </div>
         <div class="chat-top-user-image">
-          <%= image_tag @memo.image, class: 'chat-top-user-image' if @memo && @memo.image.attached? %>
+          <% if @memo&.image&.attached? %>
+            <%= image_tag @memo.image, class: 'chat-top-user-image' %>
+          <% else %>
+            <%= image_tag 'icon-silhouette.png', class: 'chat-top-user-image' %>
+          <% end %>
           <%= form_with model: [@room, @memo], local: true do |f| %>
             <div class="my-icon-image-label">ボ</div>
             <%= f.file_field :image, class: 'my-icon-image-form' , id: "my-icon-image-form" %>
@@ -71,7 +75,11 @@
             </div>
           </div>
           <div class="chat-top-user-image">
-            <%= image_tag memo01.image, class: 'chat-top-user-image' if memo01 && memo01.image.attached? %>
+            <% if memo01&.image&.attached? %>
+              <%= image_tag memo01.image, class: 'chat-top-user-image' %>
+            <% else %>
+              <%= image_tag 'icon-silhouette.png', class: 'chat-top-user-image' %>
+            <% end %>
           </div>
         </div>
         <% else %>
@@ -86,7 +94,11 @@
             </div>
           </div>
           <div class="chat-top-user-image">
-            <%= image_tag memo00.image, class: 'chat-top-user-image' if memo00 && memo00.image.attached? %>
+            <% if memo00&.image&.attached? %>
+              <%= image_tag memo00.image, class: 'chat-top-user-image' %>
+            <% else %>
+              <%= image_tag 'icon-silhouette.png', class: 'chat-top-user-image' %>
+            <% end %>
           </div>
         </div>
         <% end %>
@@ -102,7 +114,11 @@
             </div>
           </div>
           <div class="chat-top-user-image">
-            <%= image_tag memo01.image, class: 'chat-top-user-image' if memo01 && memo01.image.attached? %>
+            <% if memo01&.image&.attached? %>
+              <%= image_tag memo01.image, class: 'chat-top-user-image' %>
+            <% else %>
+              <%= image_tag 'icon-silhouette.png', class: 'chat-top-user-image' %>
+            <% end %>
           </div>
         </div>
         <% else %>
@@ -117,7 +133,11 @@
             </div>
           </div>
           <div class="chat-top-user-image">
-            <%= image_tag memo02.image, class: 'chat-top-user-image' if memo02 && memo02.image.attached? %>
+            <% if memo02&.image&.attached? %>
+              <%= image_tag memo02.image, class: 'chat-top-user-image' %>
+            <% else %>
+              <%= image_tag 'icon-silhouette.png', class: 'chat-top-user-image' %>
+            <% end %>
           </div>
         </div>
         <% end %>

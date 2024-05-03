@@ -3,7 +3,7 @@ class Room < ApplicationRecord
   validate :user_ids_must_be_unique
   validate :must_have_exactly_three_users
 
-  has_many :room_users
+  has_many :room_users, dependent: :destroy
   has_many :users, through: :room_users, autosave: false
   has_many :chats
   has_many :question_sheets

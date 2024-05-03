@@ -409,7 +409,7 @@ a{
 
 .image0:hover img{
   transform-origin: left bottom;
-  transform: scale(1.8);
+  transform: scale(1.7);
 }
 
 .image1{
@@ -429,7 +429,7 @@ a{
 
 .image1:hover img{
   transform-origin: bottom center;
-  transform: scale(1.8);
+  transform: scale(1.7);
 }
 
 .image2{
@@ -449,7 +449,7 @@ a{
 
 .image2:hover img{
   transform-origin: bottom right;
-  transform: scale(1.8);
+  transform: scale(1.7);
 }
 
 
