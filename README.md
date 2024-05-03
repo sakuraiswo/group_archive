@@ -48,9 +48,18 @@ https://docs.google.com/spreadsheets/d/1I-EgpxF6DWjk98mKD3zFlLVFD0y9m8Qu9XVqvRaq
 
 # 実装した機能についての画像やGIFおよびその説明
 ## チャット機能
+文章と画像の投稿動画  
+[![Image from Gyazo](https://i.gyazo.com/555a8600cc04effebfcd4188e83b9dd0.gif)](https://gyazo.com/555a8600cc04effebfcd4188e83b9dd0)
 ## アーカイブ機能  
-## アンケート機能
-
+投稿文章のアーカイブ動画  
+[![Image from Gyazo](https://i.gyazo.com/9a533d3eaf1807909d45d5ac27e2577b.gif)](https://gyazo.com/9a533d3eaf1807909d45d5ac27e2577b)
+## アンケート機能  
+アンケートシート作成動画  
+[![Image from Gyazo](https://i.gyazo.com/b64a95d0fc549f7d701ee506cc87f81f.gif)](https://gyazo.com/b64a95d0fc549f7d701ee506cc87f81f)
+アンケート回答動画  
+[![Image from Gyazo](https://i.gyazo.com/f26ae3b7f1a5e1b142e1bc478c0c0bc9.gif)](https://gyazo.com/f26ae3b7f1a5e1b142e1bc478c0c0bc9)
+アンケートアーカイブ動画  
+[![Image from Gyazo](https://i.gyazo.com/88d806586fd14868234297466b233de4.gif)](https://gyazo.com/88d806586fd14868234297466b233de4)
 
 # 実装予定の機能
 アーカイブ編集機能（アーカイブ画像の表示順の入替、補足情報付与などの機能）  
@@ -67,10 +76,10 @@ ChatGPT API利用（機能の概要は考え中）
 その他（フレンド管理機能、フレンド検索機能、非同期通信の実装、ルーム削除機能などの基本機能）
 
 # データベース設計
-![Logo](images/entity_relationship_diagram.png)
+[![Image from Gyazo](https://i.gyazo.com/b128a08d200499869f6df6811c43627f.png)](https://gyazo.com/b128a08d200499869f6df6811c43627f)
 
 # 画面遷移図
-![Logo](images/screen_transition_diagram.png)
+[![Image from Gyazo](https://i.gyazo.com/863e7156bd3e11487e22547444aa648c.png)](https://gyazo.com/863e7156bd3e11487e22547444aa648c)
 
 # 開発環境
 ・フロントエンド HTML,CSS,JavaScript  
@@ -81,10 +90,10 @@ ChatGPT API利用（機能の概要は考え中）
 ・タスク管理 GitHub  
 
 # ローカルでの動作方法
-以下のコマンドを順に実行。
-% git clone https://github.com/sakuraiswo/group_archive.git
-% cd group_archive
-% bundle install
+以下のコマンドを順に実行。  
+% git clone https://github.com/sakuraiswo/group_archive.git  
+% cd group_archive  
+% bundle install  
 % yarn install
 
 # 工夫したポイント
