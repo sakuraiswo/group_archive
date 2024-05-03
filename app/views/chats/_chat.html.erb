@@ -17,7 +17,7 @@
         </div>
           </div>
           <div class="all-messages-box">
-            <%= chat.message %>
+            <%= simple_format(chat.message) %>
           </div>
           <div class="image0">
             <%= image_tag chat.image, class: 'message-image' if chat.image.attached? %>
@@ -52,7 +52,7 @@
           <% end %>
           </div>
         </div>
-        <div class="all-messages-box"><%= chat.message %></div>
+        <div class="all-messages-box"><%= simple_format(chat.message) %></div>
         <div class="image1"><%= image_tag chat.image, class: 'message-image' if chat.image.attached? %></div>
   </div></div><div class="message-bottom-box-user1"><button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button></div>
   </div>
@@ -79,7 +79,7 @@
           <% end %>
           </div>
         </div>
-        <div class="all-messages-box"><%= chat.message %></div>
+        <div class="all-messages-box"><%= simple_format(chat.message) %></div>
         <div class="image2"><%= image_tag chat.image, class: 'message-image' if chat.image.attached? %></div>
    </div></div><div class="message-bottom-box-user2"><button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button></div>
   </div>

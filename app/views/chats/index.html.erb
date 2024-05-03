@@ -6,7 +6,7 @@
   <div class="left-block">
     <div class="inside-room-name">
       <div>
-      <%= @room.room_name %>
+        <%= simple_format(@room.room_name) %>
       </div>
     </div>
 
@@ -71,7 +71,7 @@
             </div>
             <% memo01 = @room_users[1].user.memos.find_by(room_id: @room.id) %>
             <div class="chat-top-icon-text">
-            <%= memo01.my_icon if memo01 %>
+            <%= simple_format(memo01.my_icon) if memo01 %>
             </div>
           </div>
           <div class="chat-top-user-image">
@@ -90,7 +90,7 @@
             </div>
             <% memo00 = @room_users[0].user.memos.find_by(room_id: @room.id) %>
             <div class="chat-top-icon-text">
-            <%= memo00.my_icon if memo00 %>
+              <%= simple_format(memo00.my_icon) if memo00 %>
             </div>
           </div>
           <div class="chat-top-user-image">
@@ -106,11 +106,11 @@
         <div class="user-icon-block">
           <div class="chat-top-name-and-icon-text">
             <div class="chat-top-name">
-            <%= @room_users[1].user.nickname %>
+              <%= @room_users[1].user.nickname %>
             </div>
             <% memo01 = @room_users[1].user.memos.find_by(room_id: @room.id) %>
             <div class="chat-top-icon-text">
-            <%= memo01.my_icon if memo01 %>
+              <%= simple_format(memo01.my_icon) if memo01 %>
             </div>
           </div>
           <div class="chat-top-user-image">
@@ -125,11 +125,11 @@
         <div class="user-icon-block">
           <div class="chat-top-name-and-icon-text">
             <div class="chat-top-name">
-            <%= @room_users[2].user.nickname %>
+              <%= @room_users[2].user.nickname %>
             </div>
             <% memo02 = @room_users[2].user.memos.find_by(room_id: @room.id) %>
             <div class="chat-top-icon-text">
-            <%= memo02.my_icon if memo02 %>
+              <%= simple_format(memo02.my_icon) if memo02 %>
             </div>
           </div>
           <div class="chat-top-user-image">

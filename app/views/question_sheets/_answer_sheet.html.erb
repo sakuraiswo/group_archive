@@ -61,7 +61,7 @@
       </ul>
     <% if answer00.answer_text.present? %>
       <div class="after-answer-text">
-        <%= answer00.answer_text %>
+        <%= simple_format(answer00.answer_text) %>
       </div>
     <% end %>
       </div>
@@ -109,7 +109,7 @@
                 <% end %>
               <% if answer01.answer_text.present? %>
                 <div class="after-answer-text">
-                  <%= answer01.answer_text %>
+                  <%= simple_format(answer01.answer_text) %>
                 </div>
               <% end %>
             <% end %>
@@ -151,7 +151,7 @@
                 <% end %>
               <% if answer01.answer_text.present? %>
                 <div class="after-answer-text">
-                  <%= answer01.answer_text %>
+                  <%= simple_format(answer01.answer_text) %>
                 </div>
               <% end %>
             <% end %>
@@ -198,7 +198,7 @@
                 <% end %>
                <% if answer02.answer_text.present? %>
                 <div class="after-answer-text">
-                  <%= answer02.answer_text %>
+                  <%= simple_format(answer02.answer_text) %>
                 </div>
               <% end %>
             <% end %>
@@ -240,7 +240,7 @@
                 <% end %>
               <% if answer02.answer_text.present? %>
                 <div class="after-answer-text">
-                  <%= answer02.answer_text %>
+                  <%= simple_format(answer02.answer_text) %>
                 </div>
               <% end %>
             <% end %>
