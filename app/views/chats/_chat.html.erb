@@ -95,7 +95,7 @@ function captureChat(chatId) {
     // useCORS: true を設定して、CORSを考慮した画像の取り扱いを有効にする
     html2canvas(document.getElementById(elementId), { useCORS: true }).then(canvas => {
         // キャンバスから画像をJPEG形式でBase64エンコーディングされた文字列として取得
-        var image = canvas.toDataURL("image/png");
+        var image = canvas.toDataURL("image/jpeg");
         let roomElement = document.getElementById('apple');
         let roomId = roomElement.dataset.roomId;
         // Fetch APIを使用してサーバーにPOSTリクエストを送信
