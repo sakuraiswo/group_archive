@@ -14,9 +14,10 @@ class ArchivesController < ApplicationController
     end
 
     if @archive.save
-      redirect_to room_chats_path(@room)
-      render json: { status: 'success', archive: @archive }, status: :created
+      # 成功した場合はリダイレクト
+      redirect_to room_chats_path(@room) and return
     else
+      # 保存が失敗した場合はエラーメッセージを含めてJSONを返す
       render json: { status: 'error', errors: @archive.errors.full_messages }, status: :unprocessable_entity
     end
   end
@@ -26,7 +27,6 @@ class ArchivesController < ApplicationController
     archive.destroy
     redirect_to room_chats_path(@room)
   end
-
 
   private
 
