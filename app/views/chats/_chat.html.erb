@@ -93,7 +93,7 @@
 function captureChat(chatId) {
     var elementId = "archive-capture-" + chatId;
     html2canvas(document.getElementById(elementId), { useCORS: true }).then(canvas => {
-        var image = canvas.toDataURL("image/png"); // 画像をBase64文字列として取得
+        var image = canvas.toDataURL("image/jpeg"); // 画像をBase64文字列として取得
         let roomElement = document.getElementById('apple');
         let roomId = roomElement.dataset.roomId;
         // Fetch APIを使用してサーバーにPOSTリクエストを送信
