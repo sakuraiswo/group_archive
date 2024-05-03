@@ -92,9 +92,7 @@
 <script>
 function captureChat(chatId) {
     var elementId = "archive-capture-" + chatId;
-    html2canvas(document.getElementById(elementId), {
-        useCORS: true  // CORSを考慮した画像の読み込みを許可
-    }).then(canvas => {
+    html2canvas(document.getElementById(elementId), { useCORS: true }).then(canvas => {
         var image = canvas.toDataURL("image/png"); // 画像をBase64文字列として取得
         let roomElement = document.getElementById('apple');
         let roomId = roomElement.dataset.roomId;
