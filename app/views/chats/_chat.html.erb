@@ -92,69 +92,35 @@
 <script>
 function captureChat(chatId) {
     var elementId = "archive-capture-" + chatId;
-    var element = document.getElementById(elementId);
-    var images = element.getElementsByTagName('img');
-    var loadedImagesCount = 0;
-
-    // 画像URLからBlobを取得して、Blob URLを元の画像のsrcに設定
-    function fetchAndReplaceImage(imageElement) {
-        fetch(imageElement.src)
-            .then(response => response.blob())
-            .then(blob => {
-                const blobUrl = URL.createObjectURL(blob);
-                imageElement.src = blobUrl;
-                loadedImagesCount++;
-                if (loadedImagesCount === images.length) {
-                    captureCanvas();
-                }
-            }).catch(error => {
-                console.error('Error fetching image:', error);
-                loadedImagesCount++;
-                if (loadedImagesCount === images.length) {
-                    captureCanvas();
-                }
-            });
-    }
-
-    // すべての画像がBlobとして再設定された後にhtml2canvasを実行
-    function captureCanvas() {
-        html2canvas(element, { useCORS: true }).then(canvas => {
-            var image = canvas.toDataURL("image/jpeg");
-            let roomElement = document.getElementById('apple');
-            let roomId = roomElement.dataset.roomId;
-
-            fetch(`/rooms/${roomId}/save-image`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                },
-                body: JSON.stringify({
-                    image: image,
-                    supplement: '',  // サンプル値
-                    display_order: 1  // サンプル値
-                })
+    // useCORS: true を設定して、CORSを考慮した画像の取り扱いを有効にする
+    html2canvas(document.getElementById(elementId), { useCORS: true }).then(canvas => {
+        // キャンバスから画像をJPEG形式でBase64エンコーディングされた文字列として取得
+        var image = canvas.toDataURL("image/jpeg");
+        let roomElement = document.getElementById('apple');
+        let roomId = roomElement.dataset.roomId;
+        // Fetch APIを使用してサーバーにPOSTリクエストを送信
+        fetch(`/rooms/${roomId}/save-image`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            body: JSON.stringify({
+                image: image,
+                supplement: '',  // サンプル値
+                display_order: 1  // サンプル値
             })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                location.reload(); // 成功したらページをリロード
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                location.reload(); // エラーが発生した場合もページをリロード
-            });
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            location.reload(); // 成功したらページをリロード
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            location.reload(); // エラーが発生した場合もページをリロード
         });
-    }
-
-    // すべての画像に対してBlob取得と置き換えを実行
-    if (images.length === 0) {
-        captureCanvas(); // 画像がなければ直接Canvasをキャプチャ
-    } else {
-        for (let img of images) {
-            fetchAndReplaceImage(img);
-        }
-    }
+    });
 }
 </script>
 
