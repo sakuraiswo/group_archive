@@ -88,7 +88,6 @@
 
 
 
-
 <script>
 function captureChat(chatId) {
     var elementId = "archive-capture-" + chatId;
@@ -96,30 +95,16 @@ function captureChat(chatId) {
         useCORS: true  // CORSを考慮した画像の読み込みを許可
     }).then(canvas => {
         var image = canvas.toDataURL("image/png"); // 画像をBase64文字列として取得
-        let roomElement = document.getElementById('apple');
-        let roomId = roomElement.dataset.roomId;
-        // Fetch APIを使用してサーバーにPOSTリクエストを送信
-        fetch(`/rooms/${roomId}/save-image`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // CSRFトークンを追加
-             },
-            body: JSON.stringify({
-                image: image,
-                supplement: '',  // サンプル値
-                display_order: 1  // サンプル値
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            location.reload();
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            location.reload();
-        });
+        
+        // 画像をダウンロードするためのリンクを作成
+        var link = document.createElement('a');
+        link.href = image;  // リンク先にBase64画像データを設定
+        link.download = 'chat-' + chatId + '.png';  // ダウンロードするファイルの名前を設定
+        document.body.appendChild(link);  // リンクをドキュメントに追加
+        link.click();  // リンクをプログラムによりクリック
+        document.body.removeChild(link);  // 使用後のリンクを削除
+    }).catch(error => {
+        console.error('Error capturing chat:', error);
     });
 }
 </script>
