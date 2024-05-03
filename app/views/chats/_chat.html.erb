@@ -20,7 +20,7 @@
             <%= simple_format(chat.message) %>
           </div>
           <div class="image0">
-            <%= image_tag(chat.image, class: 'message-image', crossorigin: 'anonymous') if chat.image.attached? %>
+            <%= image_tag(chat.image, class: 'message-image', crossOrigin: 'anonymous') if chat.image.attached? %>
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@
           </div>
         </div>
         <div class="all-messages-box"><%= simple_format(chat.message) %></div>
-        <div class="image1"><%= image_tag(chat.image, class: 'message-image', crossorigin: 'anonymous') if chat.image.attached? %></div>
+        <div class="image1"><%= image_tag(chat.image, class: 'message-image', crossOrigin: 'anonymous') if chat.image.attached? %></div>
   </div></div><div class="message-bottom-box-user1"><button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button></div>
   </div>
   <div class="user2-box">
@@ -80,7 +80,7 @@
           </div>
         </div>
         <div class="all-messages-box"><%= simple_format(chat.message) %></div>
-        <div class="image2"><%= image_tag(chat.image, class: 'message-image', crossorigin: 'anonymous') if chat.image.attached? %></div>
+        <div class="image2"><%= image_tag(chat.image, class: 'message-image', crossOrigin: 'anonymous') if chat.image.attached? %></div>
    </div></div><div class="message-bottom-box-user2"><button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button></div>
   </div>
 <% end %>
@@ -92,8 +92,10 @@
 <script>
 function captureChat(chatId) {
     var elementId = "archive-capture-" + chatId;
+    // useCORS: true を設定して、CORSを考慮した画像の取り扱いを有効にする
     html2canvas(document.getElementById(elementId), { useCORS: true }).then(canvas => {
-        var image = canvas.toDataURL("image/jpeg"); // 画像をBase64文字列として取得
+        // キャンバスから画像をJPEG形式でBase64エンコーディングされた文字列として取得
+        var image = canvas.toDataURL("image/png");
         let roomElement = document.getElementById('apple');
         let roomId = roomElement.dataset.roomId;
         // Fetch APIを使用してサーバーにPOSTリクエストを送信
@@ -101,8 +103,8 @@ function captureChat(chatId) {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // CSRFトークンを追加
-             },
+              'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
             body: JSON.stringify({
                 image: image,
                 supplement: '',  // サンプル値
@@ -112,11 +114,11 @@ function captureChat(chatId) {
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            location.reload();
+            location.reload(); // 成功したらページをリロード
         })
         .catch((error) => {
             console.error('Error:', error);
-            location.reload();
+            location.reload(); // エラーが発生した場合もページをリロード
         });
     });
 }
