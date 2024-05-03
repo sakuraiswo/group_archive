@@ -94,32 +94,33 @@ function captureChat(chatId) {
     var elementId = "archive-capture-" + chatId;
     // useCORS: true を設定して、CORSを考慮した画像の取り扱いを有効にする
     html2canvas(document.getElementById(elementId), { useCORS: true }).then(canvas => {
-        // キャンバスから画像をJPEG形式でBase64エンコーディングされた文字列として取得
-        var image = canvas.toDataURL("image/jpeg");
-        let roomElement = document.getElementById('apple');
-        let roomId = roomElement.dataset.roomId;
-        // Fetch APIを使用してサーバーにPOSTリクエストを送信
-        fetch(`/rooms/${roomId}/save-image`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            },
-            body: JSON.stringify({
-                image: image,
-                supplement: '',  // サンプル値
-                display_order: 1  // サンプル値
+        // キャンバスから画像をBlob形式で取得
+        canvas.toBlob(function(blob) {
+            let roomElement = document.getElementById('apple');
+            let roomId = roomElement.dataset.roomId;
+            let formData = new FormData();
+            formData.append('image', blob, 'chat_image.png'); // Blobを追加し、ファイル名を指定
+            formData.append('supplement', ''); // サンプル値
+            formData.append('display_order', 1); // サンプル値
+
+            // Fetch APIを使用してサーバーにPOSTリクエストを送信
+            fetch(`/rooms/${roomId}/save-image`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                },
+                body: formData  // JSON.stringifyを使用せず、FormDataを直接送信
             })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            location.reload(); // 成功したらページをリロード
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            location.reload(); // エラーが発生した場合もページをリロード
-        });
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                location.reload(); // 成功したらページをリロード
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                location.reload(); // エラーが発生した場合もページをリロード
+            });
+        }, 'image/png');  // Blobの形式をPNGに指定
     });
 }
 </script>
