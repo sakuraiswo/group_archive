@@ -84,3 +84,5 @@ gem 'mini_magick'
 gem 'pry-rails'
 
 gem "aws-sdk-s3", require: false
+
+gem 'rack-cors'
