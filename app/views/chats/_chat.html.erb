@@ -93,38 +93,35 @@
 function captureChat(chatId) {
     var elementId = "archive-capture-" + chatId;
     html2canvas(document.getElementById(elementId), { useCORS: true }).then(canvas => {
-        // toDataURLの代わりにtoBlobを使用し、Blobオブジェクトを取得
-        canvas.toBlob(function(blob) {
-            let roomElement = document.getElementById('apple');
-            let roomId = roomElement.dataset.roomId;
-
-            // FormDataを用意し、Blobデータを追加
-            let formData = new FormData();
-            formData.append('image', blob, 'chat-image.png');  // Blobとして画像を追加
-            formData.append('supplement', '');  // サンプル値
-            formData.append('display_order', 1);  // サンプル値
-
-            // Fetch APIを使用してサーバーにPOSTリクエストを送信
-            fetch(`/rooms/${roomId}/save-image`, {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                },
-                body: formData  // JSON.stringifyを使用せず、FormDataを直接送信
+        var image = canvas.toDataURL("image/png");
+        let roomElement = document.getElementById('apple');
+        let roomId = roomElement.dataset.roomId;
+        // Fetch APIを使用してサーバーにPOSTリクエストを送信
+        fetch(`/rooms/${roomId}/save-image`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            body: JSON.stringify({
+                image: image,
+                supplement: '',  // サンプル値
+                display_order: 1  // サンプル値
             })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                location.reload(); // 成功したらページをリロード
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                location.reload(); // エラーが発生した場合もページをリロード
-            });
-        }, 'image/png');
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            location.reload(); // 成功したらページをリロード
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            location.reload(); // エラーが発生した場合もページをリロード
+        });
     });
 }
 </script>
+
 
 
 

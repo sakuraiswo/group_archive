@@ -4,9 +4,13 @@ class ArchivesController < ApplicationController
   def create
     @archive = @room.archives.new(archive_params)
 
-    # FormDataから送られてくるファイルを直接アタッチする
     if params[:image].present?
-      @archive.image.attach(params[:image])
+      # Base64エンコードされた画像データをデコードし、Active Storageにアタッチする
+      data = params[:image].sub(%r{^data:image/\w+;base64,}, '')
+      decoded_data = Base64.decode64(data)
+      image_io = StringIO.new(decoded_data)
+      image_file = { io: image_io, filename: 'archive_image.png', content_type: 'image/png' }
+      @archive.image.attach(image_file)
     end
 
     if @archive.save
@@ -30,7 +34,6 @@ class ArchivesController < ApplicationController
     @room = Room.find(params[:room_id])
   end
 
-  # imageをPermitリストに追加
   def archive_params
     params.require(:archive).permit(:supplement, :display_order, :image).merge(user_id: current_user.id)
   end
