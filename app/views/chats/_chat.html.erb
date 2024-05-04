@@ -92,7 +92,31 @@
 <script>
 function captureChat(chatId) {
     const elementId = "archive-capture-" + chatId;
-    html2canvas(document.getElementById(elementId), { useCORS: true }).then(canvas => {
+    html2canvas(document.getElementById(elementId), {
+        useCORS: true,
+        onclone: function (clonedDocument) {
+            // クローンされたドキュメント内のすべての画像を確認し、ロード完了を待つ
+            return new Promise(resolve => {
+                const images = clonedDocument.getElementsByTagName('img');
+                let imagesToLoad = images.length; // ロードが必要な画像の数
+                Array.from(images).forEach(img => {
+                    if (img.complete) {
+                        imagesToLoad--;
+                    } else {
+                        img.addEventListener('load', () => {
+                            imagesToLoad--;
+                            if (imagesToLoad === 0) resolve();
+                        });
+                        img.addEventListener('error', () => {
+                            imagesToLoad--; // エラーが発生した画像もカウントから除外
+                            if (imagesToLoad === 0) resolve();
+                        });
+                    }
+                });
+                if (imagesToLoad === 0) resolve(); // すでにすべての画像がロードされている場合
+            });
+        }
+    }).then(canvas => {
         const image = canvas.toDataURL("image/png");
         let roomElement = document.getElementById('apple');
         let roomId = roomElement.dataset.roomId;
@@ -112,11 +136,11 @@ function captureChat(chatId) {
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            location.reload();
+            location.reload(); // ページをリロード
         })
         .catch((error) => {
             console.error('Error:', error);
-            location.reload();
+            location.reload(); // エラー時もページをリロード
         });
     });
 }
