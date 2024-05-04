@@ -20,9 +20,7 @@
             <%= simple_format(chat.message) %>
           </div>
           <div class="image0">
-            <% if chat.image.attached? %>
-              <%= image_tag(image_proxy_path(url: url_for(chat.image)), class: 'message-image', crossOrigin: 'anonymous') %>
-            <% end %>
+            <%= image_tag(chat.image, class: 'message-image', crossOrigin: 'anonymous') if chat.image.attached? %>
           </div>
         </div>
       </div>
@@ -55,11 +53,7 @@
           </div>
         </div>
         <div class="all-messages-box"><%= simple_format(chat.message) %></div>
-        <div class="image1">
-            <% if chat.image.attached? %>
-              <%= image_tag(image_proxy_path(url: url_for(chat.image)), class: 'message-image', crossOrigin: 'anonymous') %>
-            <% end %>
-        </div>
+        <div class="image1"><%= image_tag(chat.image, class: 'message-image', crossOrigin: 'anonymous') if chat.image.attached? %></div>
   </div></div><div class="message-bottom-box-user1"><button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button></div>
   </div>
   <div class="user2-box">
@@ -86,11 +80,7 @@
           </div>
         </div>
         <div class="all-messages-box"><%= simple_format(chat.message) %></div>
-        <div class="image2">
-            <% if chat.image.attached? %>
-              <%= image_tag(image_proxy_path(url: url_for(chat.image)), class: 'message-image', crossOrigin: 'anonymous') %>
-            <% end %>
-        </div>
+        <div class="image2"><%= image_tag(chat.image, class: 'message-image', crossOrigin: 'anonymous') if chat.image.attached? %></div>
    </div></div><div class="message-bottom-box-user2"><button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button></div>
   </div>
 <% end %>
@@ -102,31 +92,7 @@
 <script>
 function captureChat(chatId) {
     const elementId = "archive-capture-" + chatId;
-    html2canvas(document.getElementById(elementId), {
-        useCORS: true,
-        onclone: function (clonedDocument) {
-            // クローンされたドキュメント内のすべての画像を確認し、ロード完了を待つ
-            return new Promise(resolve => {
-                const images = clonedDocument.getElementsByTagName('img');
-                let imagesToLoad = images.length; // ロードが必要な画像の数
-                Array.from(images).forEach(img => {
-                    if (img.complete) {
-                        imagesToLoad--;
-                    } else {
-                        img.addEventListener('load', () => {
-                            imagesToLoad--;
-                            if (imagesToLoad === 0) resolve();
-                        });
-                        img.addEventListener('error', () => {
-                            imagesToLoad--; // エラーが発生した画像もカウントから除外
-                            if (imagesToLoad === 0) resolve();
-                        });
-                    }
-                });
-                if (imagesToLoad === 0) resolve(); // すでにすべての画像がロードされている場合
-            });
-        }
-    }).then(canvas => {
+    html2canvas(document.getElementById(elementId), { useCORS: true }).then(canvas => {
         const image = canvas.toDataURL("image/png");
         let roomElement = document.getElementById('apple');
         let roomId = roomElement.dataset.roomId;
@@ -146,11 +112,11 @@ function captureChat(chatId) {
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            location.reload(); // ページをリロード
+            location.reload();
         })
         .catch((error) => {
             console.error('Error:', error);
-            location.reload(); // エラー時もページをリロード
+            location.reload();
         });
     });
 }

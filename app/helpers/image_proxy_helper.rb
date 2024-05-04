@@ -1,2 +1,0 @@
-module ImageProxyHelper
-end
