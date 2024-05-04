@@ -92,11 +92,13 @@
 <script>
 function captureChat(chatId) {
     var elementId = "archive-capture-" + chatId;
+    // useCORS: true を設定して、CORSを考慮した画像の取り扱いを有効にする
     html2canvas(document.getElementById(elementId), { useCORS: true }).then(canvas => {
+        // キャンバスから画像をJPEG形式でBase64エンコーディングされた文字列として取得
         var image = canvas.toDataURL("image/png");
         let roomElement = document.getElementById('apple');
         let roomId = roomElement.dataset.roomId;
-
+        // Fetch APIを使用してサーバーにPOSTリクエストを送信
         fetch(`/rooms/${roomId}/save-image`, {
             method: 'POST',
             headers: {
@@ -105,27 +107,19 @@ function captureChat(chatId) {
             },
             body: JSON.stringify({
                 image: image,
-                supplement: '',  // 追加情報があればここに含める
-                display_order: 1  // 表示順序
+                supplement: '',  // サンプル値
+                display_order: 1  // サンプル値
             })
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            alert('画像が正常に保存されました。'); // 成功アラート
+            location.reload(); // 成功したらページをリロード
         })
         .catch((error) => {
             console.error('Error:', error);
-            alert('画像の保存に失敗しました。'); // エラーアラート
+            location.reload(); // エラーが発生した場合もページをリロード
         });
-    }).catch(error => {
-        console.error('html2canvas error:', error);
-        alert('画像のキャプチャに失敗しました。');
     });
 }
 </script>
