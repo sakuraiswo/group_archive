@@ -91,9 +91,9 @@
 
 <script>
 function captureChat(chatId) {
-    var elementId = "archive-capture-" + chatId;
+    const elementId = "archive-capture-" + chatId;
     html2canvas(document.getElementById(elementId), { useCORS: true }).then(canvas => {
-        var image = canvas.toDataURL("image/png");
+        const image = canvas.toDataURL("image/png");
         let roomElement = document.getElementById('apple');
         let roomId = roomElement.dataset.roomId;
         // Fetch APIを使用してサーバーにPOSTリクエストを送信
@@ -105,18 +105,18 @@ function captureChat(chatId) {
             },
             body: JSON.stringify({
                 image: image,
-                supplement: '',  // サンプル値
-                display_order: 1  // サンプル値
+                supplement: '',
+                display_order: 1
             })
         })
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            location.reload(); // 成功したらページをリロード
+            location.reload();
         })
         .catch((error) => {
             console.error('Error:', error);
-            location.reload(); // エラーが発生した場合もページをリロード
+            location.reload();
         });
     });
 }
