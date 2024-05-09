@@ -72,7 +72,7 @@ https://docs.google.com/spreadsheets/d/1I-EgpxF6DWjk98mKD3zFlLVFD0y9m8Qu9XVqvRaq
 特別演出機能（登録した日、例えば、誰かの誕生日などに特定の演出が起こる機能）  
 MyMap作成機能（Maps JavaScript APIの利用。GoogleMap上にマークやテキストを載せることができ、Archive機能で保存できる機能）  
 ルーレット機能（決められない事柄を運が決めてくれる機能）  
-ChatGPT API利用（機能の概要は考え中）  
+ChatGPT API利用（機能の概要は考案中です）  
 その他（フレンド管理機能、フレンド検索機能、非同期通信の実装、ルーム削除機能などの基本機能）
 
 # データベース設計
