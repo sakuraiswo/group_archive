@@ -1,5 +1,7 @@
 class QuestionSheetsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_room
+  before_action :check_membership
 
   def index
     @answer = Answer.new
@@ -33,4 +35,11 @@ class QuestionSheetsController < ApplicationController
     params.require(:question_sheet).permit(:question,
                                            options_attributes: %i[id title _destroy]).merge(user_id: current_user.id)
   end
+
+  def check_membership
+    unless @room.users.include?(current_user)
+      redirect_to new_user_session_path, alert: 'You are not authorized to access this chatroom.'
+    end
+  end
+
 end

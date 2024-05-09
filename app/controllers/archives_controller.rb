@@ -1,5 +1,7 @@
 class ArchivesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_room
+  before_action :check_membership
 
   def create
     @archive = @room.archives.new(archive_params)
@@ -37,4 +39,11 @@ class ArchivesController < ApplicationController
   def archive_params
     params.require(:archive).permit(:supplement, :display_order, :image).merge(user_id: current_user.id)
   end
+
+  def check_membership
+    unless @room.users.include?(current_user)
+      redirect_to new_user_session_path, alert: 'You are not authorized to access this chatroom.'
+    end
+  end
+  
 end

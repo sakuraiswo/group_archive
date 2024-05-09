@@ -1,5 +1,7 @@
 class ChatsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_room
+  before_action :check_membership
 
   def index
     @memo = if @room.memos.find_by(user_id: current_user.id).present?
@@ -46,4 +48,11 @@ class ChatsController < ApplicationController
   def chat_params
     params.require(:chat).permit(:message, :image).merge(user_id: current_user.id)
   end
+
+  def check_membership
+    unless @room.users.include?(current_user)
+      redirect_to new_user_session_path, alert: 'You are not authorized to access this chatroom.'
+    end
+  end
+
 end
