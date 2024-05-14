@@ -102,15 +102,9 @@ function captureChat(chatId) {
         img.src = imgUrl;
 
         img.onload = function() {
-            const canvasElement = document.createElement('canvas');
-            canvasElement.width = img.width;
-            canvasElement.height = img.height;
-            const ctx = canvasElement.getContext('2d');
-            ctx.drawImage(img, 0, 0);
-
             html2canvas(document.getElementById(elementId), {
-                canvas: canvasElement,
-                useCORS: true
+                useCORS: true,
+                allowTaint: false  // 画像がクロスオリジンであることを許可しない
             }).then(canvas => {
                 const image = canvas.toDataURL("image/png");
                 let roomElement = document.getElementById('apple');
