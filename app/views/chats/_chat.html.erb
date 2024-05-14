@@ -93,55 +93,61 @@
 function captureChat(chatId) {
     const elementId = "archive-capture-" + chatId;
     var imgElement = document.querySelector('#' + elementId + ' .message-image'); // .message-image クラスを持つ img タグを取得
+
     if (imgElement) {
         var imgUrl = imgElement.dataset.url;
 
-    var img = new Image();
-    img.crossOrigin = "anonymous";
-    img.src = imgUrl;
+        var img = new Image();
+        img.crossOrigin = "anonymous";
+        img.src = imgUrl;
 
-    img.onload = function() {
-        const canvasElement = document.createElement('canvas');
-        canvasElement.width = img.width;
-        canvasElement.height = img.height;
-        const ctx = canvasElement.getContext('2d');
-        ctx.drawImage(img, 0, 0);
+        img.onload = function() {
+            const canvasElement = document.createElement('canvas');
+            canvasElement.width = img.width;
+            canvasElement.height = img.height;
+            const ctx = canvasElement.getContext('2d');
+            ctx.drawImage(img, 0, 0);
 
-        html2canvas(document.getElementById(elementId), { canvas: canvasElement, useCORS: true }).then(canvas => {
-            const image = canvas.toDataURL("image/png");
-            let roomElement = document.getElementById('apple');
-            let roomId = roomElement.dataset.roomId;
-            // Fetch APIを使用してサーバーにPOSTリクエストを送信
-            fetch(`/rooms/${roomId}/save-image`, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                },
-                body: JSON.stringify({
-                    image: image,
-                    supplement: '',
-                    display_order: 1
+            html2canvas(document.getElementById(elementId), {
+                canvas: canvasElement,
+                useCORS: true
+            }).then(canvas => {
+                const image = canvas.toDataURL("image/png");
+                let roomElement = document.getElementById('apple');
+                let roomId = roomElement.dataset.roomId;
+                // Fetch APIを使用してサーバーにPOSTリクエストを送信
+                fetch(`/rooms/${roomId}/save-image`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    },
+                    body: JSON.stringify({
+                        image: image,
+                        supplement: '',
+                        display_order: 1
+                    })
                 })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                location.reload();
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                location.reload();
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    location.reload();
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    location.reload();
+                });
+            }).catch((error) => {
+                console.error('html2canvas error:', error);
             });
-        });
-    };
+        };
 
-    img.onerror = function() {
-        console.error('Error loading the image');
-    };
-  }else {
-      console.error('Image element not found');
-  }
+        img.onerror = function() {
+            console.error('Error loading the image');
+        };
+    } else {
+        console.error('Image element not found');
+    }
 }
 </script>
 
