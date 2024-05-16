@@ -28,14 +28,14 @@
         <div class="delete-button">
           <%= link_to 'Delete', room_chat_path(@room, chat), data: { turbo_method: :delete } %>
         </div>
-        <div class="form-image-to-archive-btn-box">
     <% if chat.image.attached? %>
+      <div class="form-image-to-archive-btn-box">
       <%= form_with model: Archive.new, url: copy_image_room_chat_path(@room, chat), local: true do |f| %>
         <%= f.hidden_field :chat_id, value: chat.id %>
         <%= f.submit 'ImgArc', class: 'form-image-to-archive-btn' %>
       <% end %>
+      </div>
     <% end %>
-        </div>
         <button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button>
       </div>
     </div>
@@ -66,14 +66,14 @@
   </div>
   <div class="message-bottom-box">
   <div class="delete-button-dammy"></div>
-  <div class="form-image-to-archive-btn-box">
     <% if chat.image.attached? %>
+    <div class="form-image-to-archive-btn-box">
       <%= form_with model: Archive.new, url: copy_image_room_chat_path(@room, chat), local: true do |f| %>
         <%= f.hidden_field :chat_id, value: chat.id %>
         <%= f.submit 'ImgArc', class: 'form-image-to-archive-btn' %>
       <% end %>
+    </div>
     <% end %>
-  </div>
     <button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button></div>
   </div>
   <div class="user2-box">
@@ -108,14 +108,14 @@
     </div>
     <div class="message-bottom-box">
     <div class="delete-button-dammy"></div>
-    <div class="form-image-to-archive-btn-box">
     <% if chat.image.attached? %>
+    <div class="form-image-to-archive-btn-box">
       <%= form_with model: Archive.new, url: copy_image_room_chat_path(@room, chat), local: true do |f| %>
         <%= f.hidden_field :chat_id, value: chat.id %>
         <%= f.submit 'ImgArc', class: 'form-image-to-archive-btn' %>
       <% end %>
-    <% end %>
     </div>
+    <% end %>
       <button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button>
     </div>
   </div>
