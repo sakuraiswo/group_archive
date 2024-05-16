@@ -20,6 +20,7 @@ class ArchivesController < ApplicationController
     end
   end
 
+  
   def destroy
     archive = Archive.find(params[:id])
     archive.destroy
