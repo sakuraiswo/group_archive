@@ -5,7 +5,6 @@ class ArchivesController < ApplicationController
 
   def create
     @archive = @room.archives.new(archive_params)
-
     if params[:image]
       decoded_image = Base64.decode64(params[:image].split(",")[1])
       io = StringIO.new(decoded_image)
@@ -20,6 +19,23 @@ class ArchivesController < ApplicationController
     end
   end
 
+  def copy_image
+    chat = Chat.find(params[:id])
+    if chat.image.attached?
+      archive = @room.archives.new
+      archive.image.attach(chat.image.blob) # チャットの画像を新しいアーカイブにコピー
+      archive.user = current_user
+      archive.display_order = 1
+
+      if archive.save
+        redirect_to room_path(@room), notice: 'Image was successfully copied to archive.'
+      else
+        redirect_to room_path(@room), alert: 'Failed to copy image to archive.'
+      end
+    else
+      redirect_to room_path(@room), alert: 'No image attached to chat.'
+    end
+  end
   
   def destroy
     archive = Archive.find(params[:id])
@@ -42,5 +58,7 @@ class ArchivesController < ApplicationController
       redirect_to new_user_session_path, alert: 'You are not authorized to access this chatroom.'
     end
   end
+
+
   
 end

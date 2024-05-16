@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :chats, only: %i[index create destroy] do
       member do
         get 'stream'
+        post 'copy_image', to: 'archives#copy_image'
       end
     end
   end

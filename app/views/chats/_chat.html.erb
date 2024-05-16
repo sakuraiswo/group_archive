@@ -28,6 +28,14 @@
         <div class="delete-button">
           <%= link_to 'Delete', room_chat_path(@room, chat), data: { turbo_method: :delete } %>
         </div>
+
+    <% if chat.image.attached? %>
+      <%= form_with model: Archive.new, url: copy_image_room_chat_path(@room, chat), local: true do |f| %>
+        <%= f.hidden_field :chat_id, value: chat.id %>
+        <%= f.submit 'Copy Image to Archive' %>
+      <% end %>
+    <% end %>
+
         <button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button>
       </div>
     </div>
@@ -55,7 +63,17 @@
         <div class="all-messages-box"><%= simple_format(chat.message) %></div>
     </div>
         <div class="image1"><%= image_tag(chat.image, class: 'message-image') if chat.image.attached? %></div>
-  </div><div class="message-bottom-box-user1"><button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button></div>
+  </div>
+  <div class="message-bottom-box-user1">
+    
+    <% if chat.image.attached? %>
+      <%= form_with model: Archive.new, url: copy_image_room_chat_path(@room, chat), local: true do |f| %>
+        <%= f.hidden_field :chat_id, value: chat.id %>
+        <%= f.submit 'Copy Image to Archive' %>
+      <% end %>
+    <% end %>
+    
+    <button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button></div>
   </div>
   <div class="user2-box">
   </div>
@@ -87,7 +105,16 @@
       <div class="image2"><%= image_tag(chat.image, class: 'message-image') if chat.image.attached? %>
       </div>
     </div>
-    <div class="message-bottom-box-user2"><button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button>
+    <div class="message-bottom-box-user2">
+      
+    <% if chat.image.attached? %>
+      <%= form_with model: Archive.new, url: copy_image_room_chat_path(@room, chat), local: true do |f| %>
+        <%= f.hidden_field :chat_id, value: chat.id %>
+        <%= f.submit 'Copy Image to Archive' %>
+      <% end %>
+    <% end %>
+
+      <button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button>
     </div>
   </div>
 <% end %>
