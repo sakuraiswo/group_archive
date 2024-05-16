@@ -6,21 +6,17 @@ class ArchivesController < ApplicationController
   def create
     @archive = @room.archives.new(archive_params)
 
-    if params[:image].present?
-      # Base64エンコードされた画像データをデコードし、Active Storageにアタッチする
-      data = params[:image].sub(%r{^data:image/\w+;base64,}, '')
-      decoded_data = Base64.decode64(data)
-      image_io = StringIO.new(decoded_data)
-      image_file = { io: image_io, filename: 'archive_image.png', content_type: 'image/png' }
-      @archive.image.attach(image_file)
+    if params[:image]
+      decoded_image = Base64.decode64(params[:image].split(",")[1])
+      io = StringIO.new(decoded_image)
+      io.set_encoding('BINARY')
+      @archive.image.attach(io: io, filename: "capture.png", content_type: "image/png")
     end
 
     if @archive.save
-      # 成功した場合はリダイレクト
-      redirect_to room_chats_path(@room) and return
+      redirect_to room_path(@room), notice: 'Archive was successfully created.'
     else
-      # 保存が失敗した場合はエラーメッセージを含めてJSONを返す
-      render json: { status: 'error', errors: @archive.errors.full_messages }, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 

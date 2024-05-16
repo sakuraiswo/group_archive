@@ -19,10 +19,10 @@
           <div class="all-messages-box">
             <%= simple_format(chat.message) %>
           </div>
+          </div>
           <div class="image0">
             <%= image_tag(chat.image, class: 'message-image', crossOrigin: 'anonymous', data: { url: url_for(chat.image) }) if chat.image.attached? %>
           </div>
-        </div>
       </div>
       <div class="message-bottom-box">
         <div class="delete-button">
@@ -53,8 +53,9 @@
           </div>
         </div>
         <div class="all-messages-box"><%= simple_format(chat.message) %></div>
+    </div>
         <div class="image1"><%= image_tag(chat.image, class: 'message-image', crossOrigin: 'anonymous', data: { url: url_for(chat.image) }) if chat.image.attached? %></div>
-  </div></div><div class="message-bottom-box-user1"><button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button></div>
+  </div><div class="message-bottom-box-user1"><button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button></div>
   </div>
   <div class="user2-box">
   </div>
@@ -66,11 +67,12 @@
   </div>
 
   <div class="archive-capture">
-  <div class="user2-box">
-          <div class="message-flame" id="archive-capture-<%= chat.id %>">
-           <div class="name-and-created-date">
-        <div class="created-date"><%= l chat.created_at %></div>
-         <div class="message-user-name">
+    <div class="user2-box">
+      <div class="message-flame" id="archive-capture-<%= chat.id %>">
+        <div class="name-and-created-date">
+          <div class="created-date"><%= l chat.created_at %>
+          </div>
+          <div class="message-user-name">
           <%= "　" %>
           <% if current_user.id == @room_users[2].user_id %>
           <%= @room_users[1].user.nickname %>
@@ -79,9 +81,14 @@
           <% end %>
           </div>
         </div>
-        <div class="all-messages-box"><%= simple_format(chat.message) %></div>
-        <div class="image2"><%= image_tag(chat.image, class: 'message-image', crossOrigin: 'anonymous', data: { url: url_for(chat.image) }) if chat.image.attached? %></div>
-   </div></div><div class="message-bottom-box-user2"><button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button></div>
+        <div class="all-messages-box"><%= simple_format(chat.message) %>
+        </div>
+      </div>
+      <div class="image2"><%= image_tag(chat.image, class: 'message-image', crossOrigin: 'anonymous', data: { url: url_for(chat.image) }) if chat.image.attached? %>
+      </div>
+    </div>
+    <div class="message-bottom-box-user2"><button onclick="captureChat(<%= chat.id %>)" class="capture-button">Archive</button>
+    </div>
   </div>
 <% end %>
 </div>
@@ -92,59 +99,44 @@
 <script>
 function captureChat(chatId) {
     const elementId = "archive-capture-" + chatId;
-    var imgElement = document.querySelector('#' + elementId + ' .message-image'); // .message-image クラスを持つ img タグを取得
 
-    if (imgElement) {
-        var imgUrl = imgElement.dataset.url;
+    // 対象ブロック全体のキャプチャ
+    html2canvas(document.getElementById(elementId), {
+        useCORS: true,
+        allowTaint: false
+    }).then(canvas => {
+        const image = canvas.toDataURL("image/png");
+        console.log('Captured image:', image); // デバッグ用
+        let roomElement = document.getElementById('apple');
+        let roomId = roomElement.dataset.roomId;
 
-        var img = new Image();
-        img.crossOrigin = "anonymous";
-        img.src = imgUrl;
-
-        img.onload = function() {
-            html2canvas(document.getElementById(elementId), {
-                useCORS: true,
-                allowTaint: false  // 画像がクロスオリジンであることを許可しない
-            }).then(canvas => {
-                const image = canvas.toDataURL("image/png");
-                let roomElement = document.getElementById('apple');
-                let roomId = roomElement.dataset.roomId;
-                // Fetch APIを使用してサーバーにPOSTリクエストを送信
-                fetch(`/rooms/${roomId}/save-image`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                    },
-                    body: JSON.stringify({
-                        image: image,
-                        supplement: '',
-                        display_order: 1
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Success:', data);
-                    location.reload();
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                    location.reload();
-                });
-            }).catch((error) => {
-                console.error('html2canvas error:', error);
-            });
-        };
-
-        img.onerror = function() {
-            console.error('Error loading the image');
-        };
-    } else {
-        console.error('Image element not found');
-    }
+        // Fetch APIを使用してサーバーにPOSTリクエストを送信
+        fetch(`/rooms/${roomId}/save-image`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            body: JSON.stringify({
+                image: image,
+                supplement: '',
+                display_order: 1
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            location.reload();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            location.reload();
+        });
+    }).catch((error) => {
+        console.error('html2canvas error:', error);
+    });
 }
 </script>
-
 
 
 
