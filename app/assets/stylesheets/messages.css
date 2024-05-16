@@ -461,17 +461,6 @@ a{
  justify-content: space-between;
 }
 
-.message-bottom-box-user1{
-  display: flex;
-  justify-content: flex-end;
-}
-
-
-.message-bottom-box-user2{
-  display: flex;
-  justify-content: flex-end;
-}
-
 .delete-button{
   text-align: center;
   width: 60px;
@@ -488,6 +477,52 @@ a{
   background-color: rgba(245, 40, 40, 0.699);
   margin-right: 0%;
   color:white;
+}
+
+
+
+.delete-button-dammy{
+  text-align: center;
+  width: 60px;
+  background-color: transparent;
+  color:black;
+  border: none;
+  border-radius: 10px;
+  font-size: 90%;
+}
+
+
+
+.form-image-to-archive-btn-box{
+  text-align: center;
+  width: 60px;
+  background-color: transparent;
+  color:black;
+  transition: background-color 0.3s, color 0.3s;
+  border: none;
+  border-radius: 10px;
+  font-size: 90%;
+}
+
+.form-image-to-archive-btn-box:hover {
+  background-color:lightgreen;
+  margin-right: 0%;
+  color:white;
+}
+
+.form-image-to-archive-btn{
+  width: 60px;
+  background-color: transparent;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+.form-image-to-archive-btn:hover {
+  background-color: lightgreen;
+  margin-right: 0%;
+  color: white;
 }
 
 
