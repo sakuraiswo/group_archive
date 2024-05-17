@@ -49,10 +49,10 @@ https://docs.google.com/spreadsheets/d/1I-EgpxF6DWjk98mKD3zFlLVFD0y9m8Qu9XVqvRaq
 # 実装した機能についての画像やGIFおよびその説明
 ## チャット機能
 文章と画像の投稿動画  
-[![Image from Gyazo](https://i.gyazo.com/555a8600cc04effebfcd4188e83b9dd0.gif)](https://gyazo.com/555a8600cc04effebfcd4188e83b9dd0)
+[![Image from Gyazo](https://i.gyazo.com/7daba6c420d7c91278d7983b430b0c01.gif)](https://gyazo.com/7daba6c420d7c91278d7983b430b0c01)
 ## アーカイブ機能  
 投稿文章のアーカイブ動画  
-[![Image from Gyazo](https://i.gyazo.com/9a533d3eaf1807909d45d5ac27e2577b.gif)](https://gyazo.com/9a533d3eaf1807909d45d5ac27e2577b)
+[![Image from Gyazo](https://i.gyazo.com/b7a59ea866c33edf0aeefb9fbc89c2ef.gif)](https://gyazo.com/b7a59ea866c33edf0aeefb9fbc89c2ef)
 ## アンケート機能  
 アンケートシート作成動画  
 [![Image from Gyazo](https://i.gyazo.com/b64a95d0fc549f7d701ee506cc87f81f.gif)](https://gyazo.com/b64a95d0fc549f7d701ee506cc87f81f)
