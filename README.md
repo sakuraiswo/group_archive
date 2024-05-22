@@ -61,8 +61,7 @@ https://docs.google.com/spreadsheets/d/1I-EgpxF6DWjk98mKD3zFlLVFD0y9m8Qu9XVqvRaq
 アンケートアーカイブ動画  
 [![Image from Gyazo](https://i.gyazo.com/88d806586fd14868234297466b233de4.gif)](https://gyazo.com/88d806586fd14868234297466b233de4)
 
-# 実装予定の機能
-アーカイブ編集機能（アーカイブ画像の表示順の入替、補足情報付与などの機能）  
+# 実装予定の機能 
 アルバム機能（アーカイブ画像をフォルダ毎に分けることのできる機能）  
 リマインダー機能（連絡の予定などが通知される機能）  
 カレンダー機能（予定が書き込める機能）  
