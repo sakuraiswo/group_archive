@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :options
     end
     post 'save-image', to: 'archives#create', as: 'save_image'
-    resources :archives, only: [:destroy]  # createアクションを除去
+    resources :archives, only: [:edit, :update, :destroy]
     resources :memos, only: %i[create update]
     resources :chats, only: %i[index create destroy] do
       member do

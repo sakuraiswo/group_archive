@@ -37,6 +37,20 @@ class ArchivesController < ApplicationController
     end
   end
   
+  def edit
+    @archive = @room.archives.find(params[:id])
+  end
+
+  def update
+    @archive = @room.archives.find(params[:id])
+    if @archive.update(archive_params)
+      flash[:notice] = "更新しました"
+      redirect_to edit_room_archive_path(@room, @archive)
+    else
+    end
+  end
+
+
   def destroy
     archive = Archive.find(params[:id])
     archive.destroy
@@ -48,6 +62,8 @@ class ArchivesController < ApplicationController
   def set_room
     @room = Room.find(params[:room_id])
   end
+
+
 
   def archive_params
     params.require(:archive).permit(:supplement, :display_order, :image).merge(user_id: current_user.id)

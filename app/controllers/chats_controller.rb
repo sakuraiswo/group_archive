@@ -14,7 +14,7 @@ class ChatsController < ApplicationController
     @archive = Archive.new
     @chat = Chat.new
     @question_sheets = @room.question_sheets.includes(:user, :options).order(created_at: :desc)
-    @archives = @room.archives.includes(:user)
+    @archives = @room.archives.includes(:user).order(display_order: :desc)
     @chats = @room.chats.includes(:user)
     @room_users = @room.room_users.includes(:user).order('created_at ASC')
   end

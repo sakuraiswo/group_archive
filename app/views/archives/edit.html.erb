@@ -1,0 +1,33 @@
+<div>
+  <%= image_tag(@archive.image, data: { fullsize: url_for(@archive.image) }) if @archive.image.attached? %>
+</div>
+<div>
+  アーカイブ日時：<%= @archive.created_at.strftime("%Y-%m-%d-%H:%M") %>
+</div>
+<div class="edit_archive_form">
+  <%= form_with model: [@room, @archive], local: true do |f|%>
+  <div>サブタイトル</div>
+    <%= f.text_field :supplement, class: 'form_supplement', placeholder: 'サブタイトル' %>
+    <div class="">
+      <div>
+        表示順<br>
+        デフォルトでは1に設定されており、数字が大きいほど上に、小さいほど下に表示されます。
+      </div>
+        <%= f.text_field :display_order, class: 'form_display_order', placeholder: '表示順' %>
+        範囲[0.0001~100]
+      <div class="edit_archive_submit_btn_box">
+        <div>
+          <%= f.submit '更新', class: 'edit_archive_submit_btn' %>
+        </div>
+        <% if flash[:notice] %>
+          <div class="flash notice">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="archive_edit_back_to_room_link">
+  <%= link_to '編集をやめてルームに戻る', room_chats_path(@room) %>
+</div>
